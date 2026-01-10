@@ -10,6 +10,7 @@ import { Logo } from '@/components/logo';
 import { useAuth } from '@/context/auth-context';
 import { auth } from '@/lib/firebase';
 import { useRouter } from 'next/navigation';
+import { ThemeToggle } from '../theme-toggle';
 
 const navLinks = [
   { href: '#destinations', label: 'Destinations' },
@@ -58,6 +59,7 @@ export function Header() {
           ))}
         </nav>
         <div className="hidden items-center gap-2 md:flex">
+          <ThemeToggle />
           {user ? (
             <>
               <Button onClick={() => router.push('/dashboard')} variant="ghost">Dashboard</Button>
@@ -105,6 +107,7 @@ export function Header() {
                 ))}
               </nav>
               <div className="mt-auto flex flex-col gap-4">
+                 <ThemeToggle />
                 {user ? (
                   <>
                     <Button onClick={() => { router.push('/dashboard'); setIsMobileMenuOpen(false); }} variant="outline">Dashboard</Button>
