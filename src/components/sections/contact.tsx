@@ -1,10 +1,10 @@
 "use client";
 
-import { useFormState, useFormStatus } from "react-dom";
+import { useActionState, useEffect } from "react";
+import { useFormStatus } from "react-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -33,7 +33,7 @@ function SubmitButton() {
 
 export function Contact() {
   const { toast } = useToast();
-  const [state, formAction] = useFormState(submitContactForm, { message: "", errors: {} });
+  const [state, formAction] = useActionState(submitContactForm, { message: "", errors: {} });
   
   const { register, reset, formState: { errors } } = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
@@ -70,17 +70,17 @@ export function Contact() {
               <form action={formAction} className="space-y-6">
                 <div className="space-y-2">
                   <Label htmlFor="name">Name</Label>
-                  <Input id="name" {...register("name")} />
+                  <Input id="name" {...register("name")} name="name" />
                   {(errors.name || state.errors?.name) && <p className="text-sm text-destructive">{errors.name?.message || state.errors?.name?.[0]}</p>}
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="email">Email</Label>
-                  <Input id="email" type="email" {...register("email")} />
+                  <Input id="email" type="email" {...register("email")} name="email" />
                    {(errors.email || state.errors?.email) && <p className="text-sm text-destructive">{errors.email?.message || state.errors?.email?.[0]}</p>}
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="message">Message</Label>
-                  <Textarea id="message" {...register("message")} />
+                  <Textarea id="message" {...register("message")} name="message" />
                   {(errors.message || state.errors?.message) && <p className="text-sm text-destructive">{errors.message?.message || state.errors?.message?.[0]}</p>}
                 </div>
                 <SubmitButton />
