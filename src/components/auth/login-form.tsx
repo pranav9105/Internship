@@ -49,6 +49,10 @@ export function LoginForm() {
   const { toast } = useToast();
   const { register, handleSubmit, formState: { errors } } = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
+    defaultValues: {
+      email: 'admin1@gmail.com',
+      password: '1234567890',
+    }
   });
 
   const onSubmit = async (data: LoginFormValues) => {
