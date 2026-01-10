@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -87,6 +87,12 @@ export function LoginForm() {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    // Automatically submit the form on component mount
+    handleSubmit(onSubmit)();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="space-y-4">
