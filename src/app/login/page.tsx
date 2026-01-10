@@ -16,6 +16,7 @@ export default function LoginPage() {
           fill
           className="object-cover"
           data-ai-hint={bgImage.imageHint}
+          priority
         />
       )}
       <div className="absolute inset-0 bg-black/60" />
