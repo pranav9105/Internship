@@ -45,7 +45,7 @@ export function SignupForm() {
         createdAt: new Date(),
       });
 
-      router.push('/dashboard');
+      router.push('/welcome');
     } catch (error: any) {
       toast({
         title: 'Sign Up Failed',

@@ -55,7 +55,7 @@ export function LoginForm() {
     setLoading(true);
     try {
       await signInWithEmailAndPassword(auth, data.email, data.password);
-      router.push('/dashboard');
+      router.push('/welcome');
     } catch (error: any) {
       toast({
         title: 'Login Failed',
@@ -72,7 +72,7 @@ export function LoginForm() {
     try {
       const provider = new GoogleAuthProvider();
       await signInWithPopup(auth, provider);
-      router.push('/dashboard');
+      router.push('/welcome');
     } catch (error: any) {
       toast({
         title: 'Google Sign-In Failed',
