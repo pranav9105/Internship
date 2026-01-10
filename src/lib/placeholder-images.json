@@ -1,3 +1,88 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-background",
+      "description": "A stunning view of mountains and a lake.",
+      "imageUrl": "https://images.unsplash.com/photo-1604440095301-4ec2f9230155?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxtb3VudGFpbiUyMGxha2V8ZW58MHx8fHwxNzY3OTk5MTIwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "mountain lake"
+    },
+    {
+      "id": "destination-paris",
+      "description": "The Eiffel Tower in Paris, France.",
+      "imageUrl": "https://images.unsplash.com/photo-1604175287072-b5e71423060c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxFaWZmZWwlMjBUb3dlcnxlbnwwfHx8fDE3Njc5OTkyNTd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Eiffel Tower"
+    },
+    {
+      "id": "destination-kyoto",
+      "description": "A traditional temple in Kyoto, Japan.",
+      "imageUrl": "https://images.unsplash.com/photo-1706132604889-eaec56922a73?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxLeW90byUyMHRlbXBsZXxlbnwwfHx8fDE3Njc5OTkyNTd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Kyoto temple"
+    },
+    {
+      "id": "destination-santorini",
+      "description": "White buildings with blue domes in Santorini, Greece.",
+      "imageUrl": "https://images.unsplash.com/photo-1722581174702-706197ded63d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxTYW50b3JpbmklMjBHcmVlY2V8ZW58MHx8fHwxNzY4MDQxNjUxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Santorini Greece"
+    },
+    {
+      "id": "destination-bora-bora",
+      "description": "Overwater bungalows in Bora Bora.",
+      "imageUrl": "https://images.unsplash.com/photo-1676405328043-85738f8473ba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxCb3JhJTIwQm9yYXxlbnwwfHx8fDE3NjgwNTc3ODJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Bora Bora"
+    },
+    {
+      "id": "package-tropical",
+      "description": "A relaxing beach with palm trees.",
+      "imageUrl": "https://images.unsplash.com/photo-1586500036706-41963de24d8b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx0cm9waWNhbCUyMGJlYWNofGVufDB8fHx8MTc2ODA1NTg0OXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "tropical beach"
+    },
+    {
+      "id": "package-adventure",
+      "description": "A person hiking in the mountains.",
+      "imageUrl": "https://images.unsplash.com/photo-1541542684-be0c46417a12?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxtb3VudGFpbiUyMGhpa2luZ3xlbnwwfHx8fDE3Njc5Njk0MTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "mountain hiking"
+    },
+    {
+      "id": "package-city",
+      "description": "A bustling city street at night.",
+      "imageUrl": "https://images.unsplash.com/photo-1588312744377-2adfb7b8578a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxjaXR5JTIwbmlnaHR8ZW58MHx8fHwxNzY3OTc5MzI3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "city night"
+    },
+    {
+      "id": "gallery-1",
+      "description": "A desert landscape with sand dunes.",
+      "imageUrl": "https://images.unsplash.com/photo-1542401886-65d6c61db217?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxkZXNlcnQlMjBkdW5lc3xlbnwwfHx8fDE3NjgwMjcwMDJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "desert dunes"
+    },
+    {
+      "id": "gallery-2",
+      "description": "A waterfall in a lush forest.",
+      "imageUrl": "https://images.unsplash.com/photo-1513103386264-85344d5b081c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxmb3Jlc3QlMjB3YXRlcmZhbGx8ZW58MHx8fHwxNzY4MDU3NzgxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "forest waterfall"
+    },
+    {
+      "id": "gallery-3",
+      "description": "The Northern Lights in the sky.",
+      "imageUrl": "https://images.unsplash.com/photo-1504858700536-882c978a3464?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxhdXJvcmElMjBib3JlYWxpc3xlbnwwfHx8fDE3NjgwNTc3NDN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "aurora borealis"
+    },
+    {
+      "id": "gallery-4",
+      "description": "A coral reef underwater.",
+      "imageUrl": "https://images.unsplash.com/photo-1546500840-ae38253aba9b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjb3JhbCUyMHJlZWZ8ZW58MHx8fHwxNzY4MDE4MTIzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "coral reef"
+    },
+    {
+      "id": "gallery-5",
+      "description": "Hot air balloons over a landscape.",
+      "imageUrl": "https://images.unsplash.com/photo-1519659528534-7fd733a832a0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxob3QlMjBhaXIlMjBiYWxsb29uc3xlbnwwfHx8fDE3Njc5NjYxMTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "hot air balloons"
+    },
+    {
+      "id": "gallery-6",
+      "description": "A historic castle.",
+      "imageUrl": "https://images.unsplash.com/photo-1678038069938-cb449132a9ba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxoaXN0b3JpYyUyMGNhc3RsZXxlbnwwfHx8fDE3Njc5NjIxMDd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "historic castle"
+    }
+  ]
 }
