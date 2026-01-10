@@ -27,6 +27,11 @@ export function SignupForm() {
   const { toast } = useToast();
   const { register, handleSubmit, formState: { errors } } = useForm<SignupFormValues>({
     resolver: zodResolver(signupSchema),
+    defaultValues: {
+      name: 'Admin',
+      email: 'admin1@gmail.com',
+      password: '1234567890',
+    }
   });
 
   const onSubmit = async (data: SignupFormValues) => {
