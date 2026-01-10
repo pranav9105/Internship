@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -63,7 +63,7 @@ export function LoginForm() {
     } catch (error: any) {
       toast({
         title: 'Login Failed',
-        description: error.message,
+        description: "Please sign up first to create the account.",
         variant: 'destructive',
       });
     } finally {
@@ -87,12 +87,6 @@ export function LoginForm() {
       setLoading(false);
     }
   };
-
-  useEffect(() => {
-    // Automatically submit the form on component mount
-    handleSubmit(onSubmit)();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <div className="space-y-4">
