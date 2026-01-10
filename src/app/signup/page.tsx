@@ -14,13 +14,13 @@ export default function SignupPage() {
           src={bgImage.imageUrl}
           alt={bgImage.description}
           fill
-          className="object-cover"
+          className="object-cover -z-10"
           data-ai-hint={bgImage.imageHint}
           priority
         />
       )}
-      <div className="absolute inset-0 bg-black/60" />
-      <Card className="w-full max-w-md z-10 bg-background/80 backdrop-blur-sm">
+      <div className="absolute inset-0 bg-black/60 -z-10" />
+      <Card className="w-full max-w-md bg-background/80 backdrop-blur-sm">
         <CardHeader className="text-center">
           <div className="mb-4 flex justify-center">
             <Logo />
