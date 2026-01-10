@@ -83,6 +83,12 @@
       "description": "A historic castle.",
       "imageUrl": "https://images.unsplash.com/photo-1678038069938-cb449132a9ba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxoaXN0b3JpYyUyMGNhc3RsZXxlbnwwfHx8fDE3Njc5NjIxMDd8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "historic castle"
+    },
+    {
+      "id": "auth-background",
+      "description": "A person with luggage looking out an airport window.",
+      "imageUrl": "https://images.unsplash.com/photo-1609605898097-4428e7552636?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxNXx8dHJhdmVsJTIwYWlycG9ydHxlbnwwfHx8fDE3MjE0MDYzODd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "travel airport"
     }
   ]
 }
