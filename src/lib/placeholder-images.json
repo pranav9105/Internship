@@ -86,9 +86,9 @@
     },
     {
       "id": "auth-background",
-      "description": "A travel-themed graphic with a passport, plane, and globe.",
-      "imageUrl": "https://marketplace.canva.com/ccf6w/MAED1Tccf6w/1/tl/canva-travel-MAED1Tccf6w.jpg",
-      "imageHint": "travel illustration"
+      "description": "A world map with travel pins.",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4LmckXJP8T7TwQi4YwOzlRe9dx8dN4OcCRQ&s",
+      "imageHint": "world map"
     }
   ]
 }
