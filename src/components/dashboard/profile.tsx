@@ -5,8 +5,8 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { User, updateProfile } from 'firebase/auth';
-import { doc, updateDoc } from 'firebase/firestore';
-import { auth, db } from '@/lib/firebase';
+import { doc } from 'firebase/firestore';
+import { useAuth, useFirestore, updateDocumentNonBlocking } from '@/firebase';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -28,6 +28,8 @@ interface ProfileProps {
 export function Profile({ user }: ProfileProps) {
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
+  const auth = useAuth();
+  const firestore = useFirestore();
   const { register, handleSubmit, formState: { errors } } = useForm<ProfileFormValues>({
     resolver: zodResolver(profileSchema),
     defaultValues: {
@@ -45,8 +47,8 @@ export function Profile({ user }: ProfileProps) {
       setLoading(true);
       try {
         await updateProfile(auth.currentUser, { displayName: data.name });
-        const userDocRef = doc(db, 'users', auth.currentUser.uid);
-        await updateDoc(userDocRef, { displayName: data.name });
+        const userDocRef = doc(firestore, 'users', auth.currentUser.uid);
+        updateDocumentNonBlocking(userDocRef, { name: data.name });
         
         toast({
           title: 'Profile Updated',

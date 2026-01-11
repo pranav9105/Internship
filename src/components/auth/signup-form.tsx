@@ -6,12 +6,13 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { useRouter } from 'next/navigation';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { auth, db } from '@/lib/firebase';
+import { useAuth, useFirestore } from '@/firebase';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { doc, setDoc } from 'firebase/firestore';
+import { setDocumentNonBlocking } from '@/firebase';
 
 const signupSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters' }),
@@ -25,6 +26,8 @@ export function SignupForm() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const { toast } = useToast();
+  const auth = useAuth();
+  const firestore = useFirestore();
   const { register, handleSubmit, formState: { errors } } = useForm<SignupFormValues>({
     resolver: zodResolver(signupSchema),
     defaultValues: {
@@ -42,13 +45,13 @@ export function SignupForm() {
 
       await updateProfile(user, { displayName: data.name });
       
-      // Create user document in Firestore
-      await setDoc(doc(db, 'users', user.uid), {
-        uid: user.uid,
-        displayName: data.name,
+      const userDocRef = doc(firestore, 'users', user.uid);
+      const userData = {
+        id: user.uid,
+        name: data.name,
         email: data.email,
-        createdAt: new Date(),
-      });
+      };
+      setDocumentNonBlocking(userDocRef, userData, { merge: true });
 
       router.push('/welcome');
     } catch (error: any) {

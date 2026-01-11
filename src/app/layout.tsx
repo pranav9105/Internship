@@ -1,8 +1,8 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { AuthProvider } from '@/context/auth-context';
 import { Toaster } from '@/components/ui/toaster';
 import { ThemeProvider } from '@/context/theme-provider';
+import { FirebaseClientProvider } from '@/firebase';
 
 export const metadata: Metadata = {
   title: 'RoamReady',
@@ -31,10 +31,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <AuthProvider>
+          <FirebaseClientProvider>
             {children}
             <Toaster />
-          </AuthProvider>
+          </FirebaseClientProvider>
         </ThemeProvider>
       </body>
     </html>

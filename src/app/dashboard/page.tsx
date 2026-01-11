@@ -2,23 +2,23 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAuth } from '@/context/auth-context';
+import { useUser } from '@/firebase';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { Profile } from '@/components/dashboard/profile';
 import { Recommendations } from '@/components/dashboard/recommendations';
 
 export default function DashboardPage() {
-  const { user, loading } = useAuth();
+  const { user, isUserLoading } = useUser();
   const router = useRouter();
 
   useEffect(() => {
-    if (!loading && !user) {
+    if (!isUserLoading && !user) {
       router.push('/login');
     }
-  }, [user, loading, router]);
+  }, [user, isUserLoading, router]);
 
-  if (loading || !user) {
+  if (isUserLoading || !user) {
     return (
       <div className="flex items-center justify-center h-screen bg-background">
         <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-primary"></div>

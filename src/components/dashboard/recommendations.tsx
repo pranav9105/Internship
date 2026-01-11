@@ -12,7 +12,7 @@ import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import { getPersonalizedDestinationRecommendations } from '@/ai/flows/personalized-destination-recommendations';
 import { collection, getDocs, query, where } from 'firebase/firestore';
-import { db } from '@/lib/firebase';
+import { useFirestore } from '@/firebase';
 import { AnimateOnScroll } from '../animate-on-scroll';
 import { Lightbulb, Compass } from 'lucide-react';
 
@@ -30,6 +30,7 @@ export function Recommendations({ user }: RecommendationsProps) {
   const [loading, setLoading] = useState(false);
   const [recommendations, setRecommendations] = useState<string[]>([]);
   const { toast } = useToast();
+  const firestore = useFirestore();
   const { register, handleSubmit, formState: { errors } } = useForm<PreferencesFormValues>({
     resolver: zodResolver(preferencesSchema),
   });
@@ -39,7 +40,7 @@ export function Recommendations({ user }: RecommendationsProps) {
     setRecommendations([]);
     try {
       // Fetch past inquiries from Firestore
-      const inquiriesQuery = query(collection(db, 'inquiries'), where('email', '==', user.email));
+      const inquiriesQuery = query(collection(firestore, 'inquiries'), where('email', '==', user.email));
       const querySnapshot = await getDocs(inquiriesQuery);
       const pastInquiries = querySnapshot.docs.map(doc => doc.data().message as string);
 

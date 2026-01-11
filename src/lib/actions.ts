@@ -1,7 +1,7 @@
 "use server";
 
 import { z } from "zod";
-import { db } from "@/lib/firebase";
+import { initializeFirebase } from "@/firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 const contactSchema = z.object({
@@ -25,7 +25,8 @@ export async function submitContactForm(prevState: any, formData: FormData) {
   }
 
   try {
-    await addDoc(collection(db, "inquiries"), {
+    const { firestore } = initializeFirebase();
+    await addDoc(collection(firestore, "inquiries"), {
       ...validatedFields.data,
       createdAt: serverTimestamp(),
     });
