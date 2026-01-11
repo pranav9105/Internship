@@ -75,7 +75,7 @@
     {
       "id": "gallery-5",
       "description": "Hot air balloons over a landscape.",
-      "imageUrl": "https://images.unsplash.com/photo-1519659528534-7fd733a832a0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxob3QlMjBhaXIlMjBiYWxsb29uc3xlbnwwfHx8fDE3Njc5NjYxMTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1519659528534-7fd733a832a0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxob3QlMjBhaXIlMjBiYWxsb29uc3xlbnwwfHx8fDE3Njc5NjYxMTl8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "hot air balloons"
     },
     {
@@ -86,9 +86,9 @@
     },
     {
       "id": "auth-background",
-      "description": "A world map with travel pins.",
-      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4LmckXJP8T7TwQi4YwOzlRe9dx8dN4OcCRQ&s",
-      "imageHint": "world map"
+      "description": "A person looking at a travel map.",
+      "imageUrl": "https://www.heart.org/en/-/media/AHA/H4GM/Article-Images/travel.jpg?sc_lang=en",
+      "imageHint": "travel map"
     }
   ]
 }
