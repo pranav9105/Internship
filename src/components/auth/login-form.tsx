@@ -61,9 +61,15 @@ export function LoginForm() {
       await signInWithEmailAndPassword(auth, data.email, data.password);
       router.push('/welcome');
     } catch (error: any) {
+      let description = "An unexpected error occurred. Please try again.";
+      if (error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential') {
+        description = "Account not found. Please sign up first to create an account.";
+      } else {
+        description = error.message;
+      }
       toast({
         title: 'Login Failed',
-        description: "Please sign up first to create the account.",
+        description: description,
         variant: 'destructive',
       });
     } finally {
