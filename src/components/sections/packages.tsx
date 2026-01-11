@@ -85,7 +85,7 @@ export function Packages() {
       <div className="container mx-auto px-4 md:px-6">
         <AnimateOnScroll>
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="font-headline text-4xl font-bold md:text-5xl">Our Packages</h2>
+            <h2 className="font-headline text-4xl font-bold md:text-5xl">Special Deals</h2>
             <p className="mt-4 text-lg text-muted-foreground">
               Carefully crafted experiences for every type of traveler.
             </p>

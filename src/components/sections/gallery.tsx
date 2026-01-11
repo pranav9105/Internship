@@ -25,7 +25,7 @@ export function Gallery() {
       <div className="container mx-auto px-4 md:px-6">
         <AnimateOnScroll>
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="font-headline text-4xl font-bold md:text-5xl">Moments from Our Travels</h2>
+            <h2 className="font-headline text-4xl font-bold md:text-5xl">Travel Inspiration</h2>
             <p className="mt-4 text-lg text-muted-foreground">
               A glimpse into the beautiful experiences waiting for you.
             </p>
