@@ -9,21 +9,21 @@ import Link from 'next/link';
 const packages = [
   {
     title: 'Tropical Getaway',
-    price: '$1,499',
+    price: '₹1,25,000',
     duration: '7 Days / 6 Nights',
     features: ['5-star Beachfront Resort', 'Daily Breakfast', 'Snorkeling Tour'],
     image: PlaceHolderImages.find((img) => img.id === 'package-tropical'),
   },
   {
     title: 'Mountain Adventure',
-    price: '$1,899',
+    price: '₹1,50,000',
     duration: '8 Days / 7 Nights',
     features: ['Cozy Mountain Lodge', 'Guided Hiking Treks', 'All Meals Included'],
     image: PlaceHolderImages.find((img) => img.id === 'package-adventure'),
   },
   {
     title: 'City Explorer',
-    price: '$1,299',
+    price: '₹1,00,000',
     duration: '5 Days / 4 Nights',
     features: ['Downtown Luxury Hotel', 'City Tour Pass', 'Museum Tickets'],
     image: PlaceHolderImages.find((img) => img.id === 'package-city'),
