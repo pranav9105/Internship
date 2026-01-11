@@ -28,6 +28,55 @@ const packages = [
     features: ['Downtown Luxury Hotel', 'City Tour Pass', 'Museum Tickets'],
     image: PlaceHolderImages.find((img) => img.id === 'package-city'),
   },
+  {
+    title: 'Heritage Rajasthan',
+    price: '₹1,40,000',
+    duration: '9 Days / 8 Nights',
+    features: ['Stay in Heritage Hotels', 'Desert Safari', 'Fort & Palace Tours'],
+    image: PlaceHolderImages.find((img) => img.id === 'package-heritage-rajasthan'),
+  },
+  {
+    title: 'Kerala Backwaters',
+    price: '₹1,30,000',
+    duration: '6 Days / 5 Nights',
+    features: ['Private Houseboat Stay', 'Ayurvedic Massage', 'Spice Plantation Visit'],
+    image: PlaceHolderImages.find((img) => img.id === 'package-kerala-backwaters'),
+  },
+  {
+    title: 'Himalayan Escape',
+    price: '₹1,75,000',
+    duration: '10 Days / 9 Nights',
+    features: ['Monastery Visits', 'High-Altitude Trekking', 'River Rafting'],
+    image: PlaceHolderImages.find((img) => img.id === 'package-himalayan-escape'),
+  },
+  {
+    title: 'Goa Beach Bliss',
+    price: '₹90,000',
+    duration: '4 Days / 3 Nights',
+    features: ['North & South Goa Tour', 'Water Sports', 'Beachside Parties'],
+    image: PlaceHolderImages.find((img) => img.id === 'package-goa-beach'),
+  },
+  {
+    title: 'Golden Triangle',
+    price: '₹1,10,000',
+    duration: '6 Days / 5 Nights',
+    features: ['Delhi, Agra & Jaipur', 'Taj Mahal at Sunrise', 'Rickshaw Ride in Delhi'],
+    image: PlaceHolderImages.find((img) => img.id === 'package-golden-triangle'),
+  },
+  {
+    title: 'Andaman Islands',
+    price: '₹1,60,000',
+    duration: '7 Days / 6 Nights',
+    features: ['Scuba Diving', 'Cellular Jail Visit', 'Radhanagar Beach'],
+    image: PlaceHolderImages.find((img) => img.id === 'package-andaman-islands'),
+  },
+  {
+    title: 'Wildlife Safari',
+    price: '₹1,35,000',
+    duration: '5 Days / 4 Nights',
+    features: ['Jungle Jeep Safari', 'Stay in a Wildlife Resort', 'Bird Watching Tours'],
+    image: PlaceHolderImages.find((img) => img.id === 'package-wildlife-safari'),
+  },
 ];
 
 export function Packages() {
@@ -42,7 +91,7 @@ export function Packages() {
             </p>
           </div>
         </AnimateOnScroll>
-        <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {packages.map((pkg, index) => (
             <AnimateOnScroll key={pkg.title} delay={index * 100}>
               <Card className="flex flex-col h-full overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">

@@ -75,7 +75,7 @@
     {
       "id": "gallery-5",
       "description": "Hot air balloons over a landscape.",
-      "imageUrl": "https://images.unsplash.com/photo-1519659528534-7fd733a832a0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxob3QlMjBhaXIlMjBiYWxsb29uc3xlbnwwfHx8fDE3Njc5NjYxMTl8MA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1519659528534-7fd733a832a0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxob3QlMjBhaXIlMjBiYWxsb29uc3xlbnwwfHx8fDE3Njc5NjYxMTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "hot air balloons"
     },
     {
@@ -89,6 +89,48 @@
       "description": "A person looking at a travel map.",
       "imageUrl": "https://www.heart.org/en/-/media/AHA/H4GM/Article-Images/travel.jpg?sc_lang=en",
       "imageHint": "travel map"
+    },
+    {
+      "id": "package-heritage-rajasthan",
+      "description": "A majestic fort in Rajasthan.",
+      "imageUrl": "https://images.unsplash.com/photo-1628353527233-9d4e74562098?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxSYWphc3RoYW4lMjBmb3J0fGVufDB8fHx8MTcyNDYxMjQwNHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Rajasthan fort"
+    },
+    {
+      "id": "package-kerala-backwaters",
+      "description": "A traditional houseboat on the Kerala backwaters.",
+      "imageUrl": "https://images.unsplash.com/photo-1603787748416-83247a3296c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxLZXJhbGElMjBiYWNrd2F0ZXJzfGVufDB8fHx8MTcyNDYxMjQyN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Kerala backwaters"
+    },
+    {
+      "id": "package-himalayan-escape",
+      "description": "Snow-capped peaks in the Himalayas.",
+      "imageUrl": "https://images.unsplash.com/photo-1588636402459-59132d713a20?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxIaW1hbGF5YXN8ZW58MHx8fHwxNzI0NjEyNDQ5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Himalayas"
+    },
+    {
+      "id": "package-goa-beach",
+      "description": "A sunny beach in Goa, India.",
+      "imageUrl": "https://images.unsplash.com/photo-1590393430342-e633a6b83f06?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxHb2ElMjBiZWFjaHxlbnwwfHx8fDE3MjQ2MTI0Njl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Goa beach"
+    },
+    {
+      "id": "package-golden-triangle",
+      "description": "The Taj Mahal in Agra, India.",
+      "imageUrl": "https://images.unsplash.com/photo-1564507592333-c60657eea523?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxUYWolMjBNYWhhbHxlbnwwfHx8fDE3MjQ2MTI0ODh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Taj Mahal"
+    },
+    {
+      "id": "package-andaman-islands",
+      "description": "Clear turquoise water and white sand beach in the Andaman Islands.",
+      "imageUrl": "https://images.unsplash.com/photo-1609122394541-e63d373a0a4a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxBbmRhbWFuJTIwSXNsYW5kc3xlbnwwfHx8fDE3MjQ2MTI1MDh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Andaman Islands"
+    },
+    {
+      "id": "package-wildlife-safari",
+      "description": "A tiger in a national park in India.",
+      "imageUrl": "https://images.unsplash.com/photo-1589530403318-774e4c2f21a4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0aWdlciUyMHNhZmFyaSUyMEluZGlnfGVufDB8fHx8MTcyNDYxMjUzMnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "tiger safari"
     }
   ]
 }
