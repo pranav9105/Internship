@@ -67,8 +67,41 @@ export const FirebaseProvider: React.FC<FirebaseProviderProps> = ({
     userError: null,
   });
 
+  const mockUser: User = {
+    uid: 'mock-user-id',
+    email: 'admin1@gmail.com',
+    displayName: 'Mock User',
+    photoURL: null,
+    emailVerified: true,
+    isAnonymous: false,
+    metadata: {},
+    providerData: [],
+    providerId: 'password',
+    tenantId: null,
+    delete: async () => {},
+    getIdToken: async () => 'mock-token',
+    getIdTokenResult: async () => ({
+      token: 'mock-token',
+      expirationTime: '',
+      authTime: '',
+      issuedAtTime: '',
+      signInProvider: null,
+      signInSecondFactor: null,
+      claims: {},
+    }),
+    reload: async () => {},
+    toJSON: () => ({}),
+  };
+
   // Effect to subscribe to Firebase auth state changes
   useEffect(() => {
+    // For development, we are mocking the user so we don't need the listener.
+    const isDevelopment = process.env.NODE_ENV === 'development';
+    if (isDevelopment) {
+      setUserAuthState({ user: mockUser, isUserLoading: false, userError: null });
+      return;
+    }
+
     if (!auth) { // If no Auth service instance, cannot determine user state
       setUserAuthState({ user: null, isUserLoading: false, userError: new Error("Auth service not provided.") });
       return;
@@ -92,13 +125,19 @@ export const FirebaseProvider: React.FC<FirebaseProviderProps> = ({
   // Memoize the context value
   const contextValue = useMemo((): FirebaseContextState => {
     const servicesAvailable = !!(firebaseApp && firestore && auth);
+    
+    const isDevelopment = process.env.NODE_ENV === 'development';
+    const currentUser = isDevelopment ? mockUser : userAuthState.user;
+    const isLoading = isDevelopment ? false : userAuthState.isUserLoading;
+
+
     return {
       areServicesAvailable: servicesAvailable,
       firebaseApp: servicesAvailable ? firebaseApp : null,
       firestore: servicesAvailable ? firestore : null,
       auth: servicesAvailable ? auth : null,
-      user: userAuthState.user,
-      isUserLoading: userAuthState.isUserLoading,
+      user: currentUser,
+      isUserLoading: isLoading,
       userError: userAuthState.userError,
     };
   }, [firebaseApp, firestore, auth, userAuthState]);
