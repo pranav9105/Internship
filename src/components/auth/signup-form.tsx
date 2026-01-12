@@ -9,6 +9,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
+import { useAuth } from '@/firebase';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 
 
 const signupSchema = z.object({
@@ -22,6 +24,7 @@ type SignupFormValues = z.infer<typeof signupSchema>;
 export function SignupForm() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const auth = useAuth();
   const { toast } = useToast();
   const { register, handleSubmit, formState: { errors } } = useForm<SignupFormValues>({
     resolver: zodResolver(signupSchema),
@@ -34,16 +37,27 @@ export function SignupForm() {
 
   const onSubmit = async (data: SignupFormValues) => {
     setLoading(true);
-    // This is a mocked signup for development.
-    // The Firebase provider is handling the user state.
-    toast({
-        title: 'Account Creation Simulated',
-        description: "Redirecting you to the dashboard.",
-    });
-    setTimeout(() => {
-        router.push('/welcome');
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password);
+      await updateProfile(userCredential.user, {
+        displayName: data.name
+      });
+      
+      toast({
+          title: 'Account Created!',
+          description: "Redirecting you to the dashboard.",
+      });
+      router.push('/welcome');
+
+    } catch (error: any) {
+        toast({
+            title: 'Signup Failed',
+            description: error.message || 'An error occurred during signup.',
+            variant: 'destructive',
+        });
+    } finally {
         setLoading(false);
-    }, 1000);
+    }
   };
 
   return (

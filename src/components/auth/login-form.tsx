@@ -6,24 +6,35 @@ import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
+import { useAuth } from '@/firebase';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 export function LoginForm() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const auth = useAuth();
+  const { toast } = useToast();
   
   const testUser = {
       email: 'admin1@gmail.com',
       password: '1234567890',
   }
 
-  // Simulate a successful login for development purposes
   const handleSignIn = async () => {
     setLoading(true);
-    // Instead of calling Firebase, we'll just redirect to the welcome/dashboard page
-    // as if the login was successful. The Firebase provider is mocked to handle the user state.
-    setTimeout(() => {
+    try {
+      await signInWithEmailAndPassword(auth, testUser.email, testUser.password);
       router.push('/welcome');
-    }, 500); // A small delay to simulate a network request
+    } catch (error: any) {
+      console.error("Sign-in error", error);
+      toast({
+        title: "Sign-in Failed",
+        description: error.message || "Could not sign in. Please check your credentials or sign up.",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
