@@ -8,6 +8,7 @@ import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { UserSummaryPanel } from '@/components/dashboard/user-summary-panel';
 import { WelcomeCard } from '@/components/dashboard/welcome-card';
+import { Profile } from '@/components/dashboard/profile';
 import { AnimateOnScroll } from '@/components/animate-on-scroll';
 
 export default function DashboardPage() {
@@ -42,6 +43,10 @@ export default function DashboardPage() {
             <div className="lg:col-span-8 xl:col-span-9 space-y-8">
               <AnimateOnScroll delay={100}>
                 <WelcomeCard userName={user.displayName || 'Traveler'} />
+              </AnimateOnScroll>
+              
+              <AnimateOnScroll delay={200}>
+                <Profile user={user} />
               </AnimateOnScroll>
               
               {/* Other dashboard components will go here */}
