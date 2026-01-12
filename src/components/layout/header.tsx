@@ -3,7 +3,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Menu, X, LogOut, LayoutDashboard, Settings, User as UserIcon, LifeBuoy, MessageSquareQuote, Palette, Calendar, Landmark, Package } from 'lucide-react';
+import { Menu, X, LogOut, LayoutDashboard, Settings, User as UserIcon, LifeBuoy, MessageSquareQuote, Palette, Calendar, Landmark, Package, Briefcase, Heart, Hotel } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
@@ -13,6 +13,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import { ThemeToggle, ThemeSubMenu } from '../theme-toggle';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, DropdownMenuSub, DropdownMenuSubTrigger, DropdownMenuPortal, DropdownMenuSubContent } from '@/components/ui/dropdown-menu';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Separator } from '../ui/separator';
 
 const homeNavLinks = [
   { href: '/#destinations', label: 'Destinations', icon: Landmark },
@@ -24,6 +25,9 @@ const homeNavLinks = [
 const appNavLinks = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/schedule', label: 'Schedule', icon: Calendar },
+  { href: '/my-trips', label: 'My Trips', icon: Briefcase },
+  { href: '/wishlist', label: 'Wishlist', icon: Heart },
+  { href: '/bookings', label: 'Bookings', icon: Hotel },
 ]
 
 export function Header() {
@@ -34,7 +38,7 @@ export function Header() {
   const router = useRouter();
   const pathname = usePathname();
 
-  const isAppPage = pathname.startsWith('/dashboard') || pathname.startsWith('/schedule') || pathname.startsWith('/my-trips') || pathname.startsWith('/wishlist') || pathname.startsWith('/bookings');
+  const isAppPage = appNavLinks.some(link => pathname.startsWith(link.href));
   const isHomePage = pathname === '/';
 
   useEffect(() => {
@@ -187,49 +191,58 @@ export function Header() {
               <span className="sr-only">Toggle navigation menu</span>
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-full max-w-xs bg-background">
-            <div className="flex h-full flex-col p-6">
-              <div className="mb-8 flex items-center justify-between">
-                <Logo />
-                <SheetTrigger asChild>
-                  <Button variant="ghost" size="icon">
-                    <X className="h-6 w-6" />
-                    <span className="sr-only">Close menu</span>
-                  </Button>
-                </SheetTrigger>
-              </div>
-              <nav className="flex flex-col gap-6 text-lg">
-                {(isAppPage ? appNavLinks : homeNavLinks).map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className="font-medium text-foreground/80 transition-colors hover:text-primary flex items-center gap-3"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    <link.icon className="h-5 w-5" />
+          <SheetContent side="left" className="w-full max-w-xs bg-gray-900 text-white p-0 flex flex-col">
+            <div className="flex h-20 items-center justify-between border-b border-gray-800 px-6">
+              <Logo />
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="text-white hover:bg-gray-800 hover:text-white">
+                  <X className="h-6 w-6" />
+                  <span className="sr-only">Close menu</span>
+                </Button>
+              </SheetTrigger>
+            </div>
+            <nav className="flex-1 space-y-2 p-4">
+              {(isAppPage ? appNavLinks : homeNavLinks).map((link) => (
+                <Button
+                  key={link.href}
+                  asChild
+                  variant={pathname.startsWith(link.href) ? 'secondary' : 'ghost'}
+                  className="w-full justify-start text-base hover:bg-gray-800"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <Link href={link.href}>
+                    <link.icon className="mr-3 h-5 w-5" />
                     {link.label}
                   </Link>
-                ))}
-              </nav>
-              <div className="mt-auto flex flex-col gap-4">
-                 {!isUserLoading && (
-                    user ? (
-                    <>
-                        <Button onClick={() => { router.push('/dashboard'); setIsMobileMenuOpen(false); }} variant="outline">Dashboard</Button>
-                        <Button onClick={() => { handleLogout(); setIsMobileMenuOpen(false); }}>Logout</Button>
-                    </>
-                    ) : (
-                    <>
-                        <Button asChild variant="outline">
-                        <Link href="/login" onClick={() => setIsMobileMenuOpen(false)}>Login</Link>
-                        </Button>
-                        <Button asChild>
-                        <Link href="/signup" onClick={() => setIsMobileMenuOpen(false)}>Sign Up</Link>
-                        </Button>
-                    </>
-                    )
-                 )}
-              </div>
+                </Button>
+              ))}
+            </nav>
+            <div className="mt-auto border-t border-gray-800 p-4">
+              {!isUserLoading && (
+                user ? (
+                  <div className="flex items-center gap-3">
+                    <Avatar className="h-10 w-10">
+                      {user.photoURL && <AvatarImage src={user.photoURL} alt={user.displayName || 'User'} />}
+                      <AvatarFallback className="bg-gray-700 text-white">{getInitials(user.displayName)}</AvatarFallback>
+                    </Avatar>
+                    <div className="flex flex-col">
+                      <span className="font-medium">{user.displayName || 'Traveler'}</span>
+                      <Button variant="link" onClick={handleLogout} className="p-0 h-auto text-sm text-gray-400 justify-start">
+                        Logout
+                      </Button>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="flex flex-col gap-2">
+                    <Button asChild variant="outline" className="bg-transparent border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                      <Link href="/login" onClick={() => setIsMobileMenuOpen(false)}>Login</Link>
+                    </Button>
+                    <Button asChild>
+                      <Link href="/signup" onClick={() => setIsMobileMenuOpen(false)}>Sign Up</Link>
+                    </Button>
+                  </div>
+                )
+              )}
             </div>
           </SheetContent>
         </Sheet>
