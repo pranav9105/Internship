@@ -4,42 +4,26 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
-import { useAuth } from '@/firebase';
-import { signInWithEmailAndPassword } from 'firebase/auth';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 
 export function LoginForm() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const { toast } = useToast();
-  const auth = useAuth();
   
   const testUser = {
       email: 'admin1@gmail.com',
       password: '1234567890',
   }
 
+  // Simulate a successful login for development purposes
   const handleSignIn = async () => {
     setLoading(true);
-    try {
-      await signInWithEmailAndPassword(auth, testUser.email, testUser.password);
+    // Instead of calling Firebase, we'll just redirect to the welcome/dashboard page
+    // as if the login was successful. The Firebase provider is mocked to handle the user state.
+    setTimeout(() => {
       router.push('/welcome');
-    } catch (error: any) {
-      let description = "An unexpected error occurred. Please try again.";
-      if (error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential' || error.code === 'auth/wrong-password') {
-        description = "Invalid credentials. Please check your email and password. You may need to sign up first.";
-      } else {
-        description = error.message;
-      }
-      toast({
-        title: 'Login Failed',
-        description: description,
-        variant: 'destructive',
-      });
-    } finally {
-      setLoading(false);
-    }
+    }, 500); // A small delay to simulate a network request
   };
 
   return (

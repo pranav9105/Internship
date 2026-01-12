@@ -5,14 +5,11 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { useRouter } from 'next/navigation';
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { useAuth, useFirestore } from '@/firebase';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
-import { doc, setDoc } from 'firebase/firestore';
-import { setDocumentNonBlocking } from '@/firebase';
+
 
 const signupSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters' }),
@@ -26,8 +23,6 @@ export function SignupForm() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const { toast } = useToast();
-  const auth = useAuth();
-  const firestore = useFirestore();
   const { register, handleSubmit, formState: { errors } } = useForm<SignupFormValues>({
     resolver: zodResolver(signupSchema),
     defaultValues: {
@@ -39,47 +34,33 @@ export function SignupForm() {
 
   const onSubmit = async (data: SignupFormValues) => {
     setLoading(true);
-    try {
-      const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password);
-      const user = userCredential.user;
-
-      await updateProfile(user, { displayName: data.name });
-      
-      const userDocRef = doc(firestore, 'users', user.uid);
-      const userData = {
-        id: user.uid,
-        name: data.name,
-        email: data.email,
-      };
-      setDocumentNonBlocking(userDocRef, userData, { merge: true });
-
-      router.push('/welcome');
-    } catch (error: any) {
-      toast({
-        title: 'Sign Up Failed',
-        description: error.message,
-        variant: 'destructive',
-      });
-    } finally {
-      setLoading(false);
-    }
+    // This is a mocked signup for development.
+    // The Firebase provider is handling the user state.
+    toast({
+        title: 'Account Creation Simulated',
+        description: "Redirecting you to the dashboard.",
+    });
+    setTimeout(() => {
+        router.push('/welcome');
+        setLoading(false);
+    }, 1000);
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       <div className="space-y-2">
         <Label htmlFor="name">Name</Label>
-        <Input id="name" type="text" placeholder="John Doe" {...register('name')} />
+        <Input id="name" type="text" placeholder="John Doe" {...register('name')} readOnly/>
         {errors.name && <p className="text-sm text-destructive">{errors.name.message}</p>}
       </div>
       <div className="space-y-2">
         <Label htmlFor="email">Email</Label>
-        <Input id="email" type="email" placeholder="m@example.com" {...register('email')} />
+        <Input id="email" type="email" placeholder="m@example.com" {...register('email')} readOnly/>
         {errors.email && <p className="text-sm text-destructive">{errors.email.message}</p>}
       </div>
       <div className="space-y-2">
         <Label htmlFor="password">Password</Label>
-        <Input id="password" type="password" {...register('password')} />
+        <Input id="password" type="password" {...register('password')} readOnly/>
         {errors.password && <p className="text-sm text-destructive">{errors.password.message}</p>}
       </div>
       <Button type="submit" className="w-full" disabled={loading}>
