@@ -10,6 +10,7 @@ import { UserSummaryPanel } from '@/components/dashboard/user-summary-panel';
 import { WelcomeCard } from '@/components/dashboard/welcome-card';
 import { Profile } from '@/components/dashboard/profile';
 import { AnimateOnScroll } from '@/components/animate-on-scroll';
+import { Recommendations } from '@/components/dashboard/recommendations';
 
 export default function DashboardPage() {
   const { user, isUserLoading } = useUser();
@@ -49,7 +50,9 @@ export default function DashboardPage() {
                 <Profile user={user} />
               </AnimateOnScroll>
               
-              {/* Other dashboard components will go here */}
+              <AnimateOnScroll delay={300}>
+                <Recommendations user={user} />
+              </AnimateOnScroll>
             </div>
 
           </div>
