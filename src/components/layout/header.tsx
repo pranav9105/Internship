@@ -113,35 +113,36 @@ export function Header() {
                     <LayoutDashboard className="mr-2 h-4 w-4" />
                     <span>Dashboard</span>
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => router.push('/dashboard')}>
-                    <Settings className="mr-2 h-4 w-4" />
-                    <span>Settings</span>
-                  </DropdownMenuItem>
-
-                  <DropdownMenuSeparator />
 
                   <DropdownMenuSub>
                     <DropdownMenuSubTrigger>
-                      <Palette className="mr-2 h-4 w-4" />
-                      <span>Theme</span>
+                      <Settings className="mr-2 h-4 w-4" />
+                      <span>Settings</span>
                     </DropdownMenuSubTrigger>
                     <DropdownMenuPortal>
                       <DropdownMenuSubContent>
-                        <ThemeSubMenu />
+                          <DropdownMenuSub>
+                            <DropdownMenuSubTrigger>
+                              <Palette className="mr-2 h-4 w-4" />
+                              <span>Theme</span>
+                            </DropdownMenuSubTrigger>
+                            <DropdownMenuPortal>
+                              <DropdownMenuSubContent>
+                                <ThemeSubMenu />
+                              </DropdownMenuSubContent>
+                            </DropdownMenuPortal>
+                          </DropdownMenuSub>
+                          <DropdownMenuItem onClick={() => router.push('/help')}>
+                            <LifeBuoy className="mr-2 h-4 w-4" />
+                            <span>Help & Support</span>
+                          </DropdownMenuItem>
+                          <DropdownMenuItem onClick={() => router.push('/feedback')}>
+                            <MessageSquareQuote className="mr-2 h-4 w-4" />
+                            <span>Feedback</span>
+                          </DropdownMenuItem>
                       </DropdownMenuSubContent>
                     </DropdownMenuPortal>
                   </DropdownMenuSub>
-                  
-                  <DropdownMenuSeparator />
-
-                  <DropdownMenuItem onClick={() => router.push('/help')}>
-                    <LifeBuoy className="mr-2 h-4 w-4" />
-                    <span>Help & Support</span>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => router.push('/feedback')}>
-                    <MessageSquareQuote className="mr-2 h-4 w-4" />
-                    <span>Feedback</span>
-                  </DropdownMenuItem>
 
                   <DropdownMenuSeparator />
                   
