@@ -3,23 +3,28 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Menu, X, LogOut, LayoutDashboard, Settings, User as UserIcon, LifeBuoy, MessageSquareQuote, Palette } from 'lucide-react';
+import { Menu, X, LogOut, LayoutDashboard, Settings, User as UserIcon, LifeBuoy, MessageSquareQuote, Palette, Calendar } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Logo } from '@/components/logo';
 import { useAuth, useUser } from '@/firebase';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { ThemeToggle, ThemeSubMenu } from '../theme-toggle';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, DropdownMenuSub, DropdownMenuSubTrigger, DropdownMenuPortal, DropdownMenuSubContent } from '@/components/ui/dropdown-menu';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
-const navLinks = [
+const homeNavLinks = [
   { href: '#destinations', label: 'Destinations' },
   { href: '#packages', label: 'Deals' },
   { href: '#gallery', label: 'Inspiration' },
   { href: '#contact', label: 'Contact' },
 ];
+
+const appNavLinks = [
+  { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+  { href: '/schedule', label: 'Schedule', icon: Calendar },
+]
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -27,6 +32,9 @@ export function Header() {
   const { user, isUserLoading } = useUser();
   const auth = useAuth();
   const router = useRouter();
+  const pathname = usePathname();
+
+  const isAppPage = pathname.startsWith('/dashboard') || pathname.startsWith('/schedule');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -49,14 +57,19 @@ export function Header() {
   return (
     <header
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out',
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out md:absolute',
+        isAppPage ? 'md:left-64' : '',
         scrolled ? 'bg-background/80 shadow-md backdrop-blur-sm' : 'bg-transparent'
       )}
     >
       <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6">
-        <Logo />
+        <div className={cn('md:hidden', { 'hidden': isAppPage })}>
+          <Logo />
+        </div>
+        <div className="hidden md:block" />
+
         <nav className="hidden items-center gap-1 md:flex">
-          {navLinks.map((link) => (
+          {!isAppPage && homeNavLinks.map((link) => (
             <Button key={link.href} asChild variant="link" className="text-foreground/80">
                <Link
                 href={link.href}
@@ -68,7 +81,7 @@ export function Header() {
             </Button>
           ))}
         </nav>
-        <div className="hidden items-center gap-2 md:flex">
+        <div className="flex items-center gap-2">
           <ThemeToggle />
           {!isUserLoading && (
             user ? (
@@ -183,7 +196,7 @@ export function Header() {
                 </SheetTrigger>
               </div>
               <nav className="flex flex-col gap-6 text-lg">
-                {navLinks.map((link) => (
+                {(isAppPage ? appNavLinks : homeNavLinks).map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
