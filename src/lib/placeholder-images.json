@@ -99,14 +99,14 @@
     {
       "id": "package-kerala-backwaters",
       "description": "A traditional houseboat on the Kerala backwaters.",
-      "imageUrl": "https://images.unsplash.com/photo-1549558316-f3c95a31a976?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxLZXJhbGElMjBiYWNrd2F0ZXJzfGVufDB8fHx8MTcyNTAyMjQxOHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1622762831572-87a4126c7d23?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxLZXJhbGElMjBiYWNrd2F0ZXJzfGVufDB8fHx8MTcyNTAyNDk3Mnww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "Kerala backwaters"
     },
     {
       "id": "package-himalayan-escape",
       "description": "Snow-capped peaks in the Himalayas.",
-      "imageUrl": "https://images.unsplash.com/photo-1506742818298-5c31ea114620?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxIaW1hbGF5YXN8ZW58MHx8fHwxNzI1MDIyNDc4fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "Himalayas"
+      "imageUrl": "https://images.unsplash.com/photo-1551632811-561732d1e306?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxIaW1hbGF5YXMlMjB0cmVrfGVufDB8fHx8MTcyNTAyNDk5NXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Himalayas trek"
     },
     {
       "id": "package-goa-beach",
@@ -131,6 +131,12 @@
       "description": "A tiger in a national park in India.",
       "imageUrl": "https://images.unsplash.com/photo-1589530403318-774e4c2f21a4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0aWdlciUyMHNhZmFyaSUyMEluZGlnfGVufDB8fHx8MTcyNDYxMjUzMnww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "tiger safari"
+    },
+    {
+      "id": "about-us-team",
+      "description": "A diverse group of happy people planning a trip together around a map.",
+      "imageUrl": "https://images.unsplash.com/photo-1521737852577-6864c9292671?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0cmF2ZWwlMjB0ZWFtJTIwbWFwfGVufDB8fHx8MTcyNTAyNTI4Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "travel team"
     }
   ]
 }

@@ -1,4 +1,4 @@
-import { Twitter, Instagram, Facebook } from 'lucide-react';
+import { Twitter, Instagram, Facebook, Linkedin } from 'lucide-react';
 import Link from 'next/link';
 import { Logo } from '../logo';
 
@@ -21,6 +21,10 @@ export function Footer() {
             <Link href="#" className="text-muted-foreground hover:text-primary" prefetch={false}>
               <Facebook className="h-5 w-5" />
               <span className="sr-only">Facebook</span>
+            </Link>
+            <Link href="#" className="text-muted-foreground hover:text-primary" prefetch={false}>
+              <Linkedin className="h-5 w-5" />
+              <span className="sr-only">LinkedIn</span>
             </Link>
           </div>
         </div>
