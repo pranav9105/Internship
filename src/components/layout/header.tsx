@@ -134,11 +134,11 @@ export function Header() {
                   
                   <DropdownMenuSeparator />
 
-                  <DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => router.push('/help')}>
                     <LifeBuoy className="mr-2 h-4 w-4" />
                     <span>Help & Support</span>
                   </DropdownMenuItem>
-                  <DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => router.push('/feedback')}>
                     <MessageSquareQuote className="mr-2 h-4 w-4" />
                     <span>Feedback</span>
                   </DropdownMenuItem>
@@ -220,4 +220,3 @@ export function Header() {
     </header>
   );
 }
-
