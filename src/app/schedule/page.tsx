@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { AnimateOnScroll } from '@/components/animate-on-scroll';
 import { ScheduleCalendar } from '@/components/schedule/schedule-calendar';
 import { ScheduleDetails } from '@/components/schedule/schedule-details';
@@ -10,7 +10,13 @@ import { Header } from '@/components/layout/header';
 import { Sidebar } from '@/components/layout/sidebar';
 
 export default function SchedulePage() {
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>();
+
+  useEffect(() => {
+    // Set the date only on the client side after mounting
+    // to avoid server-client mismatch (hydration error).
+    setSelectedDate(new Date());
+  }, []);
 
   return (
     <div className="flex min-h-screen bg-muted/40 w-full">
