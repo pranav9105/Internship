@@ -50,11 +50,19 @@ export function SignupForm() {
       router.push('/welcome');
 
     } catch (error: any) {
-        toast({
-            title: 'Signup Failed',
-            description: error.message || 'An error occurred during signup.',
-            variant: 'destructive',
-        });
+        if (error.code === 'auth/email-already-in-use') {
+            toast({
+                title: 'Account Exists',
+                description: 'This account already exists. Redirecting to login.',
+            });
+            router.push('/login');
+        } else {
+            toast({
+                title: 'Signup Failed',
+                description: error.message || 'An error occurred during signup.',
+                variant: 'destructive',
+            });
+        }
     } finally {
         setLoading(false);
     }

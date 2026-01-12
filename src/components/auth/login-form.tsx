@@ -27,11 +27,20 @@ export function LoginForm() {
       router.push('/welcome');
     } catch (error: any) {
       console.error("Sign-in error", error);
-      toast({
-        title: "Sign-in Failed",
-        description: error.message || "Could not sign in. Please check your credentials or sign up.",
-        variant: "destructive",
-      });
+      if (error.code === 'auth/invalid-credential' || error.code === 'auth/user-not-found') {
+        toast({
+          title: "Account Not Found",
+          description: "Please go to the Sign Up page to create the test account first.",
+          variant: "destructive",
+        });
+        router.push('/signup');
+      } else {
+        toast({
+          title: "Sign-in Failed",
+          description: error.message || "Could not sign in. Please check your credentials or sign up.",
+          variant: "destructive",
+        });
+      }
     } finally {
       setLoading(false);
     }
