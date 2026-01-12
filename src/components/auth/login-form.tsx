@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from 'react';
@@ -7,7 +8,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { useAuth } from '@/firebase';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 
 export function LoginForm() {
   const [loading, setLoading] = useState(false);
@@ -26,18 +27,25 @@ export function LoginForm() {
       await signInWithEmailAndPassword(auth, testUser.email, testUser.password);
       router.push('/welcome');
     } catch (error: any) {
-      console.error("Sign-in error", error);
       if (error.code === 'auth/invalid-credential' || error.code === 'auth/user-not-found') {
-        toast({
-          title: "Account Not Found",
-          description: "Please go to the Sign Up page to create the test account first.",
-          variant: "destructive",
-        });
-        router.push('/signup');
+        // If user does not exist, create it and then sign in.
+        try {
+          await createUserWithEmailAndPassword(auth, testUser.email, testUser.password);
+          // The onAuthStateChanged listener in the provider will handle the redirect.
+          // For immediate feedback, we can push to welcome.
+          router.push('/welcome');
+        } catch (creationError: any) {
+          toast({
+            title: "Auto Sign-Up Failed",
+            description: creationError.message || "Could not create the test account.",
+            variant: "destructive",
+          });
+        }
       } else {
+        console.error("Sign-in error", error);
         toast({
           title: "Sign-in Failed",
-          description: error.message || "Could not sign in. Please check your credentials or sign up.",
+          description: error.message || "An unexpected error occurred.",
           variant: "destructive",
         });
       }
