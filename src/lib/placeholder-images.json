@@ -99,13 +99,13 @@
     {
       "id": "package-kerala-backwaters",
       "description": "A traditional houseboat on the Kerala backwaters.",
-      "imageUrl": "https://images.unsplash.com/photo-1603787748416-83247a3296c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxLZXJhbGElMjBiYWNrd2F0ZXJzfGVufDB8fHx8MTcyNDYxMjQyN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1549558316-f3c95a31a976?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxLZXJhbGElMjBiYWNrd2F0ZXJzfGVufDB8fHx8MTcyNTAyMjQxOHww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "Kerala backwaters"
     },
     {
       "id": "package-himalayan-escape",
       "description": "Snow-capped peaks in the Himalayas.",
-      "imageUrl": "https://images.unsplash.com/photo-1588636402459-59132d713a20?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxIaW1hbGF5YXN8ZW58MHx8fHwxNzI0NjEyNDQ5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1506742818298-5c31ea114620?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxIaW1hbGF5YXN8ZW58MHx8fHwxNzI1MDIyNDc4fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "Himalayas"
     },
     {
