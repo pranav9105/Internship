@@ -3,7 +3,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Menu, X, LogOut, LayoutDashboard, Settings, User as UserIcon, LifeBuoy, MessageSquareQuote, Palette, Calendar } from 'lucide-react';
+import { Menu, X, LogOut, LayoutDashboard, Settings, User as UserIcon, LifeBuoy, MessageSquareQuote, Palette, Calendar, Landmark, Package } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
@@ -15,10 +15,10 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 const homeNavLinks = [
-  { href: '#destinations', label: 'Destinations' },
-  { href: '#packages', label: 'Deals' },
-  { href: '#gallery', label: 'Inspiration' },
-  { href: '#contact', label: 'Contact' },
+  { href: '/#destinations', label: 'Destinations', icon: Landmark },
+  { href: '/deals', label: 'Deals', icon: Package },
+  { href: '/#gallery', label: 'Inspiration', icon: Palette },
+  { href: '/#contact', label: 'Contact', icon: MessageSquareQuote },
 ];
 
 const appNavLinks = [
@@ -34,7 +34,8 @@ export function Header() {
   const router = useRouter();
   const pathname = usePathname();
 
-  const isAppPage = pathname.startsWith('/dashboard') || pathname.startsWith('/schedule');
+  const isAppPage = pathname.startsWith('/dashboard') || pathname.startsWith('/schedule') || pathname.startsWith('/my-trips') || pathname.startsWith('/wishlist') || pathname.startsWith('/bookings');
+  const isHomePage = pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -57,20 +58,22 @@ export function Header() {
   return (
     <header
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out md:absolute',
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out',
         isAppPage ? 'md:left-64' : '',
-        scrolled ? 'bg-background/80 shadow-md backdrop-blur-sm' : 'bg-transparent'
+        scrolled || !isHomePage ? 'bg-background/80 shadow-md backdrop-blur-sm' : 'bg-transparent'
       )}
     >
       <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6">
         <div className={cn('md:hidden', { 'hidden': isAppPage })}>
           <Logo />
         </div>
-        <div className="hidden md:block" />
+        <div className={cn("hidden md:block", isAppPage ? "pl-4" : "")}>
+          <Logo />
+        </div>
 
         <nav className="hidden items-center gap-1 md:flex">
           {!isAppPage && homeNavLinks.map((link) => (
-            <Button key={link.href} asChild variant="link" className="text-foreground/80">
+            <Button key={link.href} asChild variant="link" className={cn("text-lg", isHomePage && !scrolled ? "text-white" : "text-foreground/80")}>
                <Link
                 href={link.href}
                 className="group font-medium transition-colors hover:text-primary"
@@ -167,7 +170,7 @@ export function Header() {
               </DropdownMenu>
             ) : (
               <>
-                <Button asChild variant="ghost">
+                <Button asChild variant={isHomePage && !scrolled ? "secondary" : "ghost"}>
                   <Link href="/login">Login</Link>
                 </Button>
                 <Button asChild>
@@ -200,15 +203,15 @@ export function Header() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="font-medium text-foreground/80 transition-colors hover:text-primary"
+                    className="font-medium text-foreground/80 transition-colors hover:text-primary flex items-center gap-3"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
+                    <link.icon className="h-5 w-5" />
                     {link.label}
                   </Link>
                 ))}
               </nav>
               <div className="mt-auto flex flex-col gap-4">
-                 <ThemeToggle />
                  {!isUserLoading && (
                     user ? (
                     <>

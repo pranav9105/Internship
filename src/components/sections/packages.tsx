@@ -1,9 +1,10 @@
+
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { AnimateOnScroll } from '../animate-on-scroll';
-import { CheckCircle } from 'lucide-react';
+import { CheckCircle, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
 const packages = [
@@ -79,7 +80,13 @@ const packages = [
   },
 ];
 
-export function Packages() {
+interface PackagesProps {
+  isPage?: boolean;
+}
+
+export function Packages({ isPage = false }: PackagesProps) {
+  const displayedPackages = isPage ? packages : packages.slice(0, 4);
+
   return (
     <section id="packages" className="py-20 md:py-32 bg-muted/50">
       <div className="container mx-auto px-4 md:px-6">
@@ -92,7 +99,7 @@ export function Packages() {
           </div>
         </AnimateOnScroll>
         <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {packages.map((pkg, index) => (
+          {displayedPackages.map((pkg, index) => (
             <AnimateOnScroll key={pkg.title} delay={index * 100}>
               <Card className="flex flex-col h-full overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
                 <CardHeader className="p-0">
@@ -131,6 +138,18 @@ export function Packages() {
             </AnimateOnScroll>
           ))}
         </div>
+        {!isPage && (
+          <AnimateOnScroll delay={300}>
+            <div className="mt-16 text-center">
+              <Button asChild size="lg">
+                <Link href="/deals">
+                  View All Deals
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+            </div>
+          </AnimateOnScroll>
+        )}
       </div>
     </section>
   );
