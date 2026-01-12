@@ -11,10 +11,11 @@ import { Sidebar } from '@/components/layout/sidebar';
 
 export default function SchedulePage() {
   const [selectedDate, setSelectedDate] = useState<Date | undefined>();
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    // Set the date only on the client side after mounting
-    // to avoid server-client mismatch (hydration error).
+    // This effect runs only on the client, after the component has mounted.
+    setIsClient(true);
     setSelectedDate(new Date());
   }, []);
 
@@ -32,20 +33,30 @@ export default function SchedulePage() {
               </p>
             </header>
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-              <AnimateOnScroll className="lg:col-span-2">
-                <ScheduleCalendar 
-                  selectedDate={selectedDate} 
-                  onDateChange={setSelectedDate} 
-                />
-              </AnimateOnScroll>
-              <div className="space-y-8">
-                <AnimateOnScroll delay={100}>
-                  <ScheduleDetails selectedDate={selectedDate} />
-                </AnimateOnScroll>
-                <AnimateOnScroll delay={200}>
-                  <QuickActions />
-                </AnimateOnScroll>
-              </div>
+              {isClient ? (
+                <>
+                  <AnimateOnScroll className="lg:col-span-2">
+                    <ScheduleCalendar
+                      selectedDate={selectedDate}
+                      onDateChange={setSelectedDate}
+                    />
+                  </AnimateOnScroll>
+                  <div className="space-y-8">
+                    <AnimateOnScroll delay={100}>
+                      <ScheduleDetails selectedDate={selectedDate} />
+                    </AnimateOnScroll>
+                    <AnimateOnScroll delay={200}>
+                      <QuickActions />
+                    </AnimateOnScroll>
+                  </div>
+                </>
+              ) : (
+                // Render a placeholder or skeleton loader on the server
+                // to prevent hydration mismatch.
+                <div className="lg:col-span-3 text-center p-8 text-muted-foreground">
+                  Loading schedule...
+                </div>
+              )}
             </div>
           </div>
         </main>
