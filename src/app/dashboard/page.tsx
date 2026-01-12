@@ -11,6 +11,7 @@ import { WelcomeCard } from '@/components/dashboard/welcome-card';
 import { Profile } from '@/components/dashboard/profile';
 import { AnimateOnScroll } from '@/components/animate-on-scroll';
 import { Recommendations } from '@/components/dashboard/recommendations';
+import { RoamingChart } from '@/components/dashboard/roaming-chart';
 
 export default function DashboardPage() {
   const { user, isUserLoading } = useUser();
@@ -47,10 +48,14 @@ export default function DashboardPage() {
               </AnimateOnScroll>
               
               <AnimateOnScroll delay={200}>
-                <Profile user={user} />
+                <RoamingChart />
               </AnimateOnScroll>
               
               <AnimateOnScroll delay={300}>
+                <Profile user={user} />
+              </AnimateOnScroll>
+              
+              <AnimateOnScroll delay={400}>
                 <Recommendations user={user} />
               </AnimateOnScroll>
             </div>
