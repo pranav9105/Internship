@@ -49,6 +49,8 @@ export function Header() {
     return name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
   };
 
+  const headerTextColor = isHomePage && !isScrolled ? 'text-white' : 'text-foreground';
+
   return (
     <header
       className={cn(
@@ -69,8 +71,8 @@ export function Header() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                    "font-medium  transition-colors",
-                    isHomePage && !isScrolled ? 'text-white hover:text-primary' : 'text-foreground hover:text-primary'
+                    "font-medium  transition-colors hover:text-primary",
+                    headerTextColor
                 )}
               >
                 {link.label}
@@ -79,7 +81,7 @@ export function Header() {
           </nav>
 
           <div className="hidden md:flex items-center gap-4">
-            <Button variant="ghost" size="icon" className={isHomePage && !isScrolled ? 'text-white' : ''}>
+            <Button variant="ghost" size="icon" className={headerTextColor}>
                 <Search />
             </Button>
             <ThemeToggle />
@@ -89,11 +91,11 @@ export function Header() {
                         {user.photoURL && <AvatarImage src={user.photoURL} alt={user.displayName || ''} />}
                         <AvatarFallback>{getInitials(user.displayName)}</AvatarFallback>
                     </Avatar>
-                     <span className={cn(isHomePage && !isScrolled ? 'text-white' : '')}>Hello, {user.displayName?.split(' ')[0]}</span>
+                     <span className={cn(headerTextColor)}>Hello, {user.displayName?.split(' ')[0]}</span>
                 </div>
             ) : (
                 <>
-                    <Button asChild variant="ghost" className={isHomePage && !isScrolled ? 'text-white' : ''}>
+                    <Button asChild variant="ghost" className={headerTextColor}>
                         <Link href="/login">Sign In</Link>
                     </Button>
                     <Button asChild>
@@ -107,7 +109,7 @@ export function Header() {
           <div className="md:hidden">
             <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className={isHomePage && !isScrolled ? 'text-white' : ''}>
+                <Button variant="ghost" size="icon" className={headerTextColor}>
                   {isMenuOpen ? <X /> : <Menu />}
                   <span className="sr-only">Toggle Menu</span>
                 </Button>
