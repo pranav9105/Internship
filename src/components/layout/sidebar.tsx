@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Logo } from '@/components/logo';
 import { useAuth } from '@/firebase';
-import { LayoutDashboard, Briefcase, Heart, MessageSquare, Repeat, Settings, LogOut, Ticket, Star } from 'lucide-react';
+import { LayoutDashboard, Briefcase, Heart, MessageSquare, Repeat, Settings, LogOut, Ticket } from 'lucide-react';
 import { Card, CardContent } from '../ui/card';
 
 const navLinks = [

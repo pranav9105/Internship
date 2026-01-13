@@ -1,10 +1,11 @@
 
 'use client';
 
-import { useUser } from '@/firebase';
+import { useRouter } from 'next/navigation';
+import { useUser, useAuth } from '@/firebase';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Search, Bell } from 'lucide-react';
+import { Search, Bell, LogOut } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import {
   DropdownMenu,
@@ -17,7 +18,14 @@ import {
 
 export function DashboardHeader() {
   const { user } = useUser();
+  const auth = useAuth();
+  const router = useRouter();
   
+  const handleLogout = async () => {
+    await auth.signOut();
+    router.push('/');
+  };
+
   const getInitials = (name: string | null | undefined) => {
     if (!name) return 'U';
     return name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
@@ -63,7 +71,10 @@ export function DashboardHeader() {
                 <DropdownMenuItem>Profile</DropdownMenuItem>
                 <DropdownMenuItem>Settings</DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>Logout</DropdownMenuItem>
+                <DropdownMenuItem onClick={handleLogout}>
+                    <LogOut className="mr-2 h-4 w-4" />
+                    Logout
+                </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>
 
