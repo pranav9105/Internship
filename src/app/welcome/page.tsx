@@ -17,7 +17,7 @@ export default function WelcomePage() {
   }, [router]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
+    <div className="flex min-h-screen w-full items-center justify-center bg-background">
       <AnimateOnScroll className="animate-pulse">
         <Logo />
       </AnimateOnScroll>
