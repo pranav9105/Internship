@@ -79,6 +79,12 @@
       "imageHint": "beach sunset"
     },
     {
+      "id": "auth-background-2",
+      "description": "A winding road through the mountains in India.",
+      "imageUrl": "https://images.unsplash.com/photo-1599423598453-9093583288a6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxpbmRpYSUyMG1vdW50YWluJTIwcm9hZHxlbnwwfHx8fDE3MjU5MjU5ODV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "mountain road"
+    },
+    {
       "id": "package-heritage-rajasthan",
       "description": "A majestic fort in Rajasthan.",
       "imageUrl": "https://cdn.rajasthanstudio.com/wp-content/uploads/2022/02/Untitled-design-3-1024x536.jpg",

@@ -1,13 +1,30 @@
+
 import Link from 'next/link';
+import Image from 'next/image';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { SignupForm } from '@/components/auth/signup-form';
 import { Logo } from '@/components/logo';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 export default function SignupPage() {
+    const authImage = PlaceHolderImages.find((img) => img.id === 'auth-background-2');
+
   return (
-    <div className="flex min-h-screen w-full items-center justify-center p-4">
-      <div className="w-full flex justify-center items-center">
-        <Card className="w-full max-w-md">
+    <div className="w-full min-h-screen grid grid-cols-1 lg:grid-cols-2">
+       <div className="relative hidden lg:block">
+        {authImage && (
+            <Image
+                src={authImage.imageUrl}
+                alt={authImage.description}
+                fill
+                className="object-cover"
+                data-ai-hint={authImage.imageHint}
+            />
+        )}
+        <div className="absolute inset-0 bg-black/20" />
+      </div>
+      <div className="flex items-center justify-center p-4">
+        <Card className="w-full max-w-md border-0 shadow-none">
           <CardHeader className="text-center">
             <div className="mb-4 flex justify-center">
               <Logo />
