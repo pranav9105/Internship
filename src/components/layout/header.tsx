@@ -10,8 +10,8 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Logo } from '@/components/logo';
 import { useAuth, useUser } from '@/firebase';
 import { useRouter, usePathname } from 'next/navigation';
-import { ThemeToggle, ThemeSubMenu } from '../theme-toggle';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, DropdownMenuSub, DropdownMenuSubTrigger, DropdownMenuPortal, DropdownMenuSubContent } from '@/components/ui/dropdown-menu';
+import { ThemeToggle } from '../theme-toggle';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 const homeNavLinks = [
@@ -27,6 +27,7 @@ const appNavLinks = [
   { href: '/my-trips', label: 'My Trips', icon: Briefcase },
   { href: '/wishlist', label: 'Wishlist', icon: Heart },
   { href: '/bookings', label: 'Bookings', icon: Hotel },
+  { href: '/settings', label: 'Settings', icon: Settings },
 ];
 
 export function Header() {
@@ -98,10 +99,6 @@ export function Header() {
                             ))}
                          </nav>
                          <div className="mt-auto border-t p-4 space-y-2">
-                             <Button variant="ghost" className="w-full justify-start text-base" onClick={() => { router.push('/dashboard'); setIsMobileMenuOpen(false); }}>
-                                 <Settings className="mr-3 h-5 w-5" />
-                                 Settings
-                             </Button>
                              <Button variant="ghost" className="w-full justify-start text-base" onClick={handleLogout}>
                                  <LogOut className="mr-3 h-5 w-5" />
                                  Logout
