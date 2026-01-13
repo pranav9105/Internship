@@ -22,7 +22,7 @@ export default function SignupPage() {
       )}
       <div className="absolute inset-0 bg-black/60" />
       <div className="relative z-10 flex min-h-screen items-center justify-center p-8">
-        <Card className="w-full max-w-md mx-auto bg-black/70 border-gray-700">
+        <Card className="w-full max-w-md mx-auto bg-black/50 border-gray-700">
             <CardHeader className="text-center">
                 <div className="mb-4 flex justify-center">
                     <Logo />
