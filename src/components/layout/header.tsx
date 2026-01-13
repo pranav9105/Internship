@@ -13,7 +13,6 @@ import { useRouter, usePathname } from 'next/navigation';
 import { ThemeToggle, ThemeSubMenu } from '../theme-toggle';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, DropdownMenuSub, DropdownMenuSubTrigger, DropdownMenuPortal, DropdownMenuSubContent } from '@/components/ui/dropdown-menu';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Separator } from '../ui/separator';
 
 const homeNavLinks = [
   { href: '/#destinations', label: 'Destinations', icon: Landmark },
@@ -172,36 +171,6 @@ export function Header() {
                     <LayoutDashboard className="mr-2 h-4 w-4" />
                     <span>Dashboard</span>
                   </DropdownMenuItem>
-
-                  <DropdownMenuSub>
-                    <DropdownMenuSubTrigger>
-                      <Settings className="mr-2 h-4 w-4" />
-                      <span>Settings</span>
-                    </DropdownMenuSubTrigger>
-                    <DropdownMenuPortal>
-                      <DropdownMenuSubContent>
-                          <DropdownMenuSub>
-                            <DropdownMenuSubTrigger>
-                              <Palette className="mr-2 h-4 w-4" />
-                              <span>Theme</span>
-                            </DropdownMenuSubTrigger>
-                            <DropdownMenuPortal>
-                              <DropdownMenuSubContent>
-                                <ThemeSubMenu />
-                              </DropdownMenuSubContent>
-                            </DropdownMenuPortal>
-                          </DropdownMenuSub>
-                          <DropdownMenuItem onClick={() => router.push('/help')}>
-                            <LifeBuoy className="mr-2 h-4 w-4" />
-                            <span>Help & Support</span>
-                          </DropdownMenuItem>
-                          <DropdownMenuItem onClick={() => router.push('/feedback')}>
-                            <MessageSquareQuote className="mr-2 h-4 w-4" />
-                            <span>Feedback</span>
-                          </DropdownMenuItem>
-                      </DropdownMenuSubContent>
-                    </DropdownMenuPortal>
-                  </DropdownMenuSub>
 
                   <DropdownMenuSeparator />
                   
