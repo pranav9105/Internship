@@ -36,12 +36,22 @@ const heroSlides = [
     {
         title: 'GOA',
         description: 'Goa is a state in western India with coastlines stretching along the Arabian Sea. Its long history as a Portuguese colony prior to 1961 is evident in its preserved 17th-century churches.',
-        image: PlaceHolderImages.find((img) => img.id === 'package-goa-beach'),
+        image: {
+            id: 'package-goa-beach-2',
+            imageUrl: 'https://images.travelandleisureasia.com/wp-content/uploads/sites/3/2024/04/15151106/palm-beach-1.jpeg?tr=w-1200,q-60',
+            description: 'Goa beach',
+            imageHint: 'Goa beach'
+        },
     },
     {
         title: 'ANDAMAN',
         description: 'The Andaman Islands are an Indian archipelago in the Bay of Bengal. These roughly 300 islands are known for their palm-lined, white-sand beaches, mangroves and tropical rainforests.',
-        image: PlaceHolderImages.find((img) => img.id === 'package-andaman-islands'),
+        image: {
+            id: 'package-andaman-islands-3',
+            imageUrl: 'https://mauzeeholiday.com/wp-content/uploads/2024/11/New-Project-2024-11-14T112001.161-1.webp',
+            description: 'Andaman Islands',
+            imageHint: 'Andaman Islands'
+        },
     },
 ].filter(Boolean);
 
