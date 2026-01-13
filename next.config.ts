@@ -112,6 +112,12 @@ const nextConfig: NextConfig = {
         hostname: 'i1.pickpik.com',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'static.vecteezy.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
@@ -131,5 +137,7 @@ export default nextConfig;
 
     
 
+
+    
 
     
