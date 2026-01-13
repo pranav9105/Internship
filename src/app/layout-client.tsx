@@ -2,8 +2,6 @@
 
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
-import { useTheme } from 'next-themes';
-import { useEffect } from 'react';
 
 export default function RootLayoutClient({
   children,
@@ -11,7 +9,6 @@ export default function RootLayoutClient({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  const { theme } = useTheme();
 
   const isDashboard = pathname.startsWith('/dashboard') || 
                       pathname.startsWith('/my-trips') ||
@@ -22,8 +19,7 @@ export default function RootLayoutClient({
   return (
     <div
       className={cn(
-        'relative flex min-h-screen w-full',
-        theme === 'dark' ? 'dark bg-background text-foreground' : 'bg-background text-foreground'
+        'relative flex min-h-screen w-full'
       )}
     >
       {children}
