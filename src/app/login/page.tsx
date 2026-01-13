@@ -20,26 +20,28 @@ export default function LoginPage() {
         />
       )}
       <div className="absolute inset-0 bg-black/60 -z-10" />
-      <Card className="w-full max-w-md bg-background/80 backdrop-blur-sm">
-        <CardHeader className="text-center">
-          <div className="mb-4 flex justify-center">
-            <Logo />
-          </div>
-          <CardTitle className="font-headline text-3xl">Welcome Back</CardTitle>
-          <CardDescription>Sign in to access your dashboard and bookings.</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <LoginForm />
-        </CardContent>
-        <CardFooter className="flex justify-center">
-          <p className="text-sm text-muted-foreground">
-            Don&apos;t have an account?{' '}
-            <Link href="/signup" className="font-medium text-primary hover:underline" prefetch={false}>
-              Sign up
-            </Link>
-          </p>
-        </CardFooter>
-      </Card>
+      <div className="w-full flex justify-center items-center">
+        <Card className="w-full max-w-md bg-background/80 backdrop-blur-sm">
+          <CardHeader className="text-center">
+            <div className="mb-4 flex justify-center">
+              <Logo />
+            </div>
+            <CardTitle className="font-headline text-3xl">Welcome Back</CardTitle>
+            <CardDescription>Sign in to access your dashboard and bookings.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <LoginForm />
+          </CardContent>
+          <CardFooter className="flex justify-center">
+            <p className="text-sm text-muted-foreground">
+              Don&apos;t have an account?{' '}
+              <Link href="/signup" className="font-medium text-primary hover:underline" prefetch={false}>
+                Sign up
+              </Link>
+            </p>
+          </CardFooter>
+        </Card>
+      </div>
     </div>
   );
 }

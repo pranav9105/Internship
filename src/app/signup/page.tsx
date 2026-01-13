@@ -9,7 +9,7 @@ export default function SignupPage() {
   const bgImage = PlaceHolderImages.find((img) => img.id === 'auth-background');
   return (
     <div className="relative flex min-h-screen items-center justify-center p-4">
-        {bgImage && (
+      {bgImage && (
         <Image
           src={bgImage.imageUrl}
           alt={bgImage.description}
@@ -20,26 +20,28 @@ export default function SignupPage() {
         />
       )}
       <div className="absolute inset-0 bg-black/60 -z-10" />
-      <Card className="w-full max-w-md bg-background/80 backdrop-blur-sm">
-        <CardHeader className="text-center">
-          <div className="mb-4 flex justify-center">
-            <Logo />
-          </div>
-          <CardTitle className="font-headline text-3xl">Create an Account</CardTitle>
-          <CardDescription>Join RoamReady and start planning your next adventure.</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <SignupForm />
-        </CardContent>
-        <CardFooter className="flex justify-center">
-          <p className="text-sm text-muted-foreground">
-            Already have an account?{' '}
-            <Link href="/login" className="font-medium text-primary hover:underline" prefetch={false}>
-              Sign in
-            </Link>
-          </p>
-        </CardFooter>
-      </Card>
+      <div className="w-full flex justify-center items-center">
+        <Card className="w-full max-w-md bg-background/80 backdrop-blur-sm">
+          <CardHeader className="text-center">
+            <div className="mb-4 flex justify-center">
+              <Logo />
+            </div>
+            <CardTitle className="font-headline text-3xl">Create an Account</CardTitle>
+            <CardDescription>Join RoamReady and start planning your next adventure.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <SignupForm />
+          </CardContent>
+          <CardFooter className="flex justify-center">
+            <p className="text-sm text-muted-foreground">
+              Already have an account?{' '}
+              <Link href="/login" className="font-medium text-primary hover:underline" prefetch={false}>
+                Sign in
+              </Link>
+            </p>
+          </CardFooter>
+        </Card>
+      </div>
     </div>
   );
 }
