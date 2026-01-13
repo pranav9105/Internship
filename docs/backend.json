@@ -1,0 +1,159 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "User Profile",
+      "description": "Represents a user's profile information.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The user's unique ID."
+        },
+        "displayName": {
+          "type": "string",
+          "description": "The user's display name."
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "The user's email address."
+        },
+        "photoURL": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the user's profile picture."
+        }
+      },
+      "required": ["id", "email"]
+    },
+    "BookingInquiry": {
+      "title": "Booking Inquiry",
+      "description": "Represents an inquiry submitted by a user.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "The ID of the user who made the inquiry."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the person inquiring."
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "The email of the person inquiring."
+        },
+        "message": {
+          "type": "string",
+          "description": "The content of the inquiry message."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The timestamp when the inquiry was created."
+        }
+      },
+      "required": ["userId", "name", "email", "message"]
+    },
+    "Recommendation": {
+      "title": "Recommendation",
+      "description": "Represents an AI-generated travel recommendation for a user.",
+      "type": "object",
+      "properties": {
+        "destination": {
+          "type": "string",
+          "description": "The recommended travel destination."
+        },
+        "reason": {
+          "type": "string",
+          "description": "The reason for the recommendation."
+        },
+        "generatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The timestamp when the recommendation was generated."
+        }
+      },
+      "required": ["destination"]
+    },
+    "Trip": {
+        "title": "Trip",
+        "description": "A user's travel itinerary, either upcoming or past.",
+        "type": "object",
+        "properties": {
+            "destination": { "type": "string" },
+            "dates": { "type": "string" },
+            "status": { "type": "string", "enum": ["Upcoming", "Completed"] }
+        },
+        "required": ["destination", "dates", "status"]
+    },
+    "Booking": {
+        "title": "Booking",
+        "description": "A specific booking for a flight, hotel, etc.",
+        "type": "object",
+        "properties": {
+            "type": { "type": "string", "enum": ["Hotel", "Flight"] },
+            "details": { "type": "string" },
+            "date": { "type": "string", "format": "date" },
+            "status": { "type": "string", "enum": ["Confirmed", "Completed", "Cancelled"] }
+        },
+        "required": ["type", "details", "date", "status"]
+    },
+    "WishlistItem": {
+        "title": "Wishlist Item",
+        "description": "A destination or package saved by a user.",
+        "type": "object",
+        "properties": {
+            "name": { "type": "string" },
+            "description": { "type": "string" }
+        },
+        "required": ["name"]
+    },
+    "Reward": {
+        "title": "Reward",
+        "description": "User's loyalty points, tier, and progress.",
+        "type": "object",
+        "properties": {
+            "points": { "type": "number" },
+            "level": { "type": "string" },
+            "progress": { "type": "number" },
+            "tier": { "type": "string" }
+        },
+        "required": ["points", "level", "progress", "tier"]
+    }
+  },
+  "auth": {
+    "providers": ["email-password", "google"]
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "Stores public information for each user."
+    },
+    "/users/{userId}/bookingInquiries/{bookingInquiryId}": {
+      "schema": { "$ref": "#/entities/BookingInquiry" },
+      "description": "Stores booking inquiries made by a specific user."
+    },
+    "/users/{userId}/recommendations/{recommendationId}": {
+      "schema": { "$ref": "#/entities/Recommendation" },
+      "description": "Stores AI-generated recommendations for a specific user."
+    },
+    "/users/{userId}/trips/{tripId}": {
+        "schema": { "$ref": "#/entities/Trip" },
+        "description": "User's travel itineraries."
+    },
+    "/users/{userId}/bookings/{bookingId}": {
+        "schema": { "$ref": "#/entities/Booking" },
+        "description": "User's specific bookings."
+    },
+    "/users/{userId}/wishlist/{wishlistItemId}": {
+        "schema": { "$ref": "#/entities/WishlistItem" },
+        "description": "User's saved wishlist items."
+    },
+    "/users/{userId}/rewards/{rewardId}": {
+        "schema": { "$ref": "#/entities/Reward" },
+        "description": "User's rewards and loyalty status."
+    }
+  }
+}

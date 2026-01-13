@@ -12,8 +12,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import { getPersonalizedDestinationRecommendations } from '@/ai/flows/personalized-destination-recommendations';
-import { collection, getDocs, query, where } from 'firebase/firestore';
-import { useFirestore } from '@/firebase';
+import { collection } from 'firebase/firestore';
+import { useFirestore, useCollection, useMemoFirebase } from '@/firebase';
 import { AnimateOnScroll } from '../animate-on-scroll';
 import { Lightbulb, Compass } from 'lucide-react';
 
@@ -32,6 +32,14 @@ export function Recommendations({ user }: RecommendationsProps) {
   const [recommendations, setRecommendations] = useState<string[]>([]);
   const { toast } = useToast();
   const firestore = useFirestore();
+
+  const inquiriesQuery = useMemoFirebase(() => {
+    if (!user?.uid || !firestore) return null;
+    return collection(firestore, 'users', user.uid, 'bookingInquiries');
+  }, [user?.uid, firestore]);
+
+  const { data: inquiries } = useCollection(inquiriesQuery);
+
   const { register, handleSubmit, formState: { errors } } = useForm<PreferencesFormValues>({
     resolver: zodResolver(preferencesSchema),
   });
@@ -40,10 +48,7 @@ export function Recommendations({ user }: RecommendationsProps) {
     setLoading(true);
     setRecommendations([]);
     try {
-      // Fetch past inquiries from Firestore
-      const inquiriesQuery = query(collection(firestore, 'inquiries'), where('email', '==', user.email));
-      const querySnapshot = await getDocs(inquiriesQuery);
-      const pastInquiries = querySnapshot.docs.map(doc => doc.data().message as string);
+      const pastInquiries = inquiries?.map(inquiry => inquiry.message as string) || [];
 
       const result = await getPersonalizedDestinationRecommendations({
         userId: user.uid,
@@ -77,7 +82,7 @@ export function Recommendations({ user }: RecommendationsProps) {
             Personalized Recommendations
           </CardTitle>
           <CardDescription>
-            Tell us what you&apos;re looking for, and our AI will suggest your next perfect trip.
+            Tell us what you're looking for, and our AI will suggest your next perfect trip.
           </CardDescription>
         </CardHeader>
         <CardContent>

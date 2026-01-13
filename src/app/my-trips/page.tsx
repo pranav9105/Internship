@@ -1,52 +1,45 @@
-
 'use client';
 
-import { useState } from 'react';
 import Image from 'next/image';
 import { Header } from '@/components/layout/header';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Briefcase, Plane, Calendar, Tag } from 'lucide-react';
+import { Briefcase, Calendar } from 'lucide-react';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { AnimateOnScroll } from '@/components/animate-on-scroll';
 import { Badge } from '@/components/ui/badge';
-
-const upcomingTrips = [
-  {
-    id: 1,
-    destination: 'Himalayan Escape',
-    dates: 'Oct 15, 2024 - Oct 25, 2024',
-    status: 'Upcoming',
-    image: PlaceHolderImages.find((img) => img.id === 'package-himalayan-escape'),
-  },
-  {
-    id: 2,
-    destination: 'Andaman Islands',
-    dates: 'Dec 20, 2024 - Dec 27, 2024',
-    status: 'Upcoming',
-    image: PlaceHolderImages.find((img) => img.id === 'package-andaman-islands'),
-  },
-];
-
-const pastTrips = [
-  {
-    id: 3,
-    destination: 'Goa Beach Bliss',
-    dates: 'Mar 10, 2024 - Mar 14, 2024',
-    status: 'Completed',
-    image: PlaceHolderImages.find((img) => img.id === 'package-goa-beach'),
-  },
-  {
-    id: 4,
-    destination: 'Golden Triangle',
-    dates: 'Jan 05, 2024 - Jan 11, 2024',
-    status: 'Completed',
-    image: PlaceHolderImages.find((img) => img.id === 'package-golden-triangle'),
-  },
-];
+import { useUser, useCollection, useFirestore, useMemoFirebase } from '@/firebase';
+import { collection, query, where } from 'firebase/firestore';
 
 export default function MyTripsPage() {
+  const { user } = useUser();
+  const firestore = useFirestore();
+
+  const upcomingTripsQuery = useMemoFirebase(() => {
+    if (!user || !firestore) return null;
+    return query(
+      collection(firestore, 'users', user.uid, 'trips'),
+      where('status', '==', 'Upcoming')
+    );
+  }, [user, firestore]);
+
+  const pastTripsQuery = useMemoFirebase(() => {
+    if (!user || !firestore) return null;
+    return query(
+      collection(firestore, 'users', user.uid, 'trips'),
+      where('status', '==', 'Completed')
+    );
+  }, [user, firestore]);
+
+  const { data: upcomingTrips, isLoading: upcomingLoading } = useCollection(upcomingTripsQuery);
+  const { data: pastTrips, isLoading: pastLoading } = useCollection(pastTripsQuery);
+
+  const getImageForTrip = (destination: string) => {
+    const tripId = `package-${destination.toLowerCase().replace(/ /g, '-')}`;
+    return PlaceHolderImages.find((img) => img.id === tripId) || PlaceHolderImages.find((img) => img.id === 'gallery-1');
+  };
+
   return (
     <div className="flex min-h-screen bg-muted/40 w-full">
       <div className="flex flex-col flex-grow w-full">
@@ -71,19 +64,19 @@ export default function MyTripsPage() {
                 </TabsList>
                 <TabsContent value="upcoming" className="mt-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {upcomingTrips.map((trip) => (
+                    {upcomingLoading && <p>Loading upcoming trips...</p>}
+                    {!upcomingLoading && upcomingTrips?.length === 0 && <p>No upcoming trips found.</p>}
+                    {upcomingTrips?.map((trip) => (
                       <Card key={trip.id} className="overflow-hidden">
-                        {trip.image && (
-                          <div className="relative h-48 w-full">
-                            <Image
-                              src={trip.image.imageUrl}
-                              alt={trip.destination}
-                              fill
-                              className="object-cover"
-                              data-ai-hint={trip.image.imageHint}
-                            />
-                          </div>
-                        )}
+                        <div className="relative h-48 w-full">
+                          <Image
+                            src={getImageForTrip(trip.destination)?.imageUrl || ''}
+                            alt={trip.destination}
+                            fill
+                            className="object-cover"
+                            data-ai-hint={getImageForTrip(trip.destination)?.imageHint}
+                          />
+                        </div>
                         <CardHeader>
                           <CardTitle>{trip.destination}</CardTitle>
                         </CardHeader>
@@ -105,20 +98,20 @@ export default function MyTripsPage() {
                 </TabsContent>
                 <TabsContent value="past" className="mt-6">
                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {pastTrips.map((trip) => (
+                     {pastLoading && <p>Loading past trips...</p>}
+                     {!pastLoading && pastTrips?.length === 0 && <p>No past trips found.</p>}
+                    {pastTrips?.map((trip) => (
                       <Card key={trip.id} className="overflow-hidden opacity-80">
-                        {trip.image && (
-                          <div className="relative h-48 w-full">
-                            <Image
-                              src={trip.image.imageUrl}
-                              alt={trip.destination}
-                              fill
-                              className="object-cover"
-                              data-ai-hint={trip.image.imageHint}
-                            />
+                         <div className="relative h-48 w-full">
+                          <Image
+                            src={getImageForTrip(trip.destination)?.imageUrl || ''}
+                            alt={trip.destination}
+                            fill
+                            className="object-cover"
+                            data-ai-hint={getImageForTrip(trip.destination)?.imageHint}
+                          />
                            <div className="absolute inset-0 bg-black/20"></div>
                           </div>
-                        )}
                         <CardHeader>
                           <CardTitle>{trip.destination}</CardTitle>
                         </CardHeader>

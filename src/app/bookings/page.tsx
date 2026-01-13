@@ -1,4 +1,3 @@
-
 'use client';
 
 import { Header } from '@/components/layout/header';
@@ -20,39 +19,20 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { Hotel } from 'lucide-react';
 import { AnimateOnScroll } from '@/components/animate-on-scroll';
-
-const bookings = [
-  {
-    id: 'BK-84726',
-    type: 'Hotel',
-    details: 'The Grand Parisian, Paris',
-    date: '2024-11-15',
-    status: 'Confirmed',
-  },
-  {
-    id: 'BK-72945',
-    type: 'Flight',
-    details: 'DEL → CDG, Air India AI143',
-    date: '2024-11-14',
-    status: 'Confirmed',
-  },
-  {
-    id: 'BK-61029',
-    type: 'Hotel',
-    details: 'Beachfront Resort, Goa',
-    date: '2024-03-10',
-    status: 'Completed',
-  },
-  {
-    id: 'BK-58319',
-    type: 'Flight',
-    details: 'BOM → GOI, IndiGo 6E249',
-    date: '2024-03-10',
-    status: 'Completed',
-  },
-];
+import { useUser, useCollection, useFirestore, useMemoFirebase } from '@/firebase';
+import { collection, query } from 'firebase/firestore';
 
 export default function BookingsPage() {
+  const { user } = useUser();
+  const firestore = useFirestore();
+
+  const bookingsQuery = useMemoFirebase(() => {
+    if (!user || !firestore) return null;
+    return query(collection(firestore, 'users', user.uid, 'bookings'));
+  }, [user, firestore]);
+
+  const { data: bookings, isLoading } = useCollection(bookingsQuery);
+
   return (
     <div className="flex min-h-screen bg-muted/40 w-full">
       <div className="flex flex-col flex-grow w-full">
@@ -82,7 +62,21 @@ export default function BookingsPage() {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      {bookings.map((booking) => (
+                      {isLoading && (
+                        <TableRow>
+                          <TableCell colSpan={5} className="text-center">
+                            Loading your bookings...
+                          </TableCell>
+                        </TableRow>
+                      )}
+                      {!isLoading && bookings?.length === 0 && (
+                         <TableRow>
+                          <TableCell colSpan={5} className="text-center">
+                            You have no bookings yet.
+                          </TableCell>
+                        </TableRow>
+                      )}
+                      {bookings?.map((booking) => (
                         <TableRow key={booking.id}>
                           <TableCell className="font-medium">{booking.id}</TableCell>
                           <TableCell>{booking.type}</TableCell>

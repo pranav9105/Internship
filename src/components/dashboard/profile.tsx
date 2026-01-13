@@ -7,7 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { User } from 'firebase/auth';
 import { doc } from 'firebase/firestore';
-import { useAuth, useFirestore, setDocumentNonBlocking, useUser } from '@/firebase';
+import { useAuth, useFirestore, setDocumentNonBlocking } from '@/firebase';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -15,6 +15,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { User as UserIcon } from 'lucide-react';
+import { updateProfile } from 'firebase/auth';
 
 const profileSchema = z.object({
   displayName: z.string().min(2, { message: 'Name must be at least 2 characters' }),
@@ -45,13 +46,14 @@ export function Profile({ user: initialUser }: { user: User }) {
     if (auth.currentUser) {
       setLoading(true);
       try {
-        // We are using a mock user, so we cannot update the profile directly
-        console.log("Simulating profile update with:", data);
+        await updateProfile(auth.currentUser, {
+          displayName: data.displayName
+        });
 
         const userDocRef = doc(firestore, 'users', auth.currentUser.uid);
         setDocumentNonBlocking(userDocRef, { 
             id: auth.currentUser.uid,
-            name: data.displayName,
+            displayName: data.displayName,
             email: auth.currentUser.email
         }, { merge: true });
         
@@ -100,7 +102,6 @@ export function Profile({ user: initialUser }: { user: User }) {
                     </div>
                 </div>
             </div>
-            {/* Future fields will go here */}
           </form>
         </CardContent>
         <CardFooter className="border-t px-6 py-4">

@@ -1,48 +1,36 @@
-
 'use client';
 
-import { useState } from 'react';
 import Image from 'next/image';
 import { Header } from '@/components/layout/header';
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
+import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Heart, Trash2 } from 'lucide-react';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { AnimateOnScroll } from '@/components/animate-on-scroll';
-
-const initialWishlistItems = [
-  {
-    id: 1,
-    name: 'Jaipur, Rajasthan',
-    description: 'The Pink City, full of heritage forts.',
-    image: PlaceHolderImages.find((img) => img.id === 'destination-jaipur'),
-  },
-  {
-    id: 2,
-    name: 'Goa',
-    description: 'Pristine beaches and vibrant nightlife.',
-    image: PlaceHolderImages.find((img) => img.id === 'destination-goa'),
-  },
-  {
-    id: 3,
-    name: 'Alleppey, Kerala',
-    description: 'Serene backwaters and lush greenery.',
-    image: PlaceHolderImages.find((img) => img.id === 'destination-kerala'),
-  },
-  {
-    id: 4,
-    name: 'Ladakh',
-    description: 'High-altitude desert and stunning vistas.',
-    image: PlaceHolderImages.find((img) => img.id === 'destination-ladakh'),
-  },
-];
+import { useUser, useCollection, useFirestore, useMemoFirebase, deleteDocumentNonBlocking } from '@/firebase';
+import { collection, doc } from 'firebase/firestore';
 
 export default function WishlistPage() {
-  const [wishlistItems, setWishlistItems] = useState(initialWishlistItems);
+  const { user } = useUser();
+  const firestore = useFirestore();
 
-  const handleRemove = (id: number) => {
-    setWishlistItems((prev) => prev.filter((item) => item.id !== id));
+  const wishlistQuery = useMemoFirebase(() => {
+    if (!user || !firestore) return null;
+    return collection(firestore, 'users', user.uid, 'wishlist');
+  }, [user, firestore]);
+
+  const { data: wishlistItems, isLoading } = useCollection(wishlistQuery);
+
+  const handleRemove = (id: string) => {
+    if (!user || !firestore) return;
+    const docRef = doc(firestore, 'users', user.uid, 'wishlist', id);
+    deleteDocumentNonBlocking(docRef);
   };
+  
+  const getImageForItem = (name: string) => {
+    const itemId = `destination-${name.toLowerCase().replace(/, /g, '-')}`;
+    return PlaceHolderImages.find((img) => img.id === itemId) || PlaceHolderImages.find((img) => img.id === 'gallery-1');
+  }
 
   return (
     <div className="flex min-h-screen bg-muted/40 w-full">
@@ -59,23 +47,27 @@ export default function WishlistPage() {
                 <p className="text-muted-foreground">Your saved destinations for future adventures.</p>
               </header>
             </AnimateOnScroll>
+            
+            {isLoading && (
+                 <div className="text-center py-16">
+                    <p>Loading your wishlist...</p>
+                 </div>
+            )}
 
-            {wishlistItems.length > 0 ? (
+            {!isLoading && wishlistItems && wishlistItems.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {wishlistItems.map((item, index) => (
                   <AnimateOnScroll key={item.id} delay={index * 100}>
                     <Card className="overflow-hidden h-full flex flex-col">
-                      {item.image && (
-                        <div className="relative h-60 w-full">
+                      <div className="relative h-60 w-full">
                           <Image
-                            src={item.image.imageUrl}
+                            src={getImageForItem(item.name)?.imageUrl || ''}
                             alt={item.name}
                             fill
                             className="object-cover"
-                            data-ai-hint={item.image.imageHint}
+                            data-ai-hint={getImageForItem(item.name)?.imageHint}
                           />
                         </div>
-                      )}
                       <CardContent className="p-4 flex-grow">
                         <h3 className="font-headline text-xl font-bold">{item.name}</h3>
                         <p className="text-sm text-muted-foreground mt-1">{item.description}</p>
@@ -96,18 +88,20 @@ export default function WishlistPage() {
                 ))}
               </div>
             ) : (
-              <AnimateOnScroll>
-                <div className="text-center py-16 border-2 border-dashed rounded-lg">
-                  <Heart className="mx-auto h-12 w-12 text-muted-foreground" />
-                  <h3 className="mt-4 text-lg font-medium">Your wishlist is empty</h3>
-                  <p className="mt-1 text-sm text-muted-foreground">
-                    Start exploring and add destinations you'd like to visit.
-                  </p>
-                  <Button asChild className="mt-6">
-                    <a href="/deals">Explore Deals</a>
-                  </Button>
-                </div>
-              </AnimateOnScroll>
+              !isLoading && (
+                <AnimateOnScroll>
+                  <div className="text-center py-16 border-2 border-dashed rounded-lg">
+                    <Heart className="mx-auto h-12 w-12 text-muted-foreground" />
+                    <h3 className="mt-4 text-lg font-medium">Your wishlist is empty</h3>
+                    <p className="mt-1 text-sm text-muted-foreground">
+                      Start exploring and add destinations you'd like to visit.
+                    </p>
+                    <Button asChild className="mt-6">
+                      <a href="/deals">Explore Deals</a>
+                    </Button>
+                  </div>
+                </AnimateOnScroll>
+              )
             )}
           </div>
         </main>
