@@ -82,6 +82,24 @@ const nextConfig: NextConfig = {
         hostname: 'cf.bstatic.com',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'curlytales.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.transindiatravels.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'akm-img-a-in.tosshub.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },

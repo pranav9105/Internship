@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import {
@@ -16,7 +17,6 @@ const galleryImages = [
   PlaceHolderImages.find((img) => img.id === 'gallery-3'),
   PlaceHolderImages.find((img) => img.id === 'gallery-4'),
   PlaceHolderImages.find((img) => img.id === 'gallery-5'),
-  PlaceHolderImages.find((img) => img.id === 'gallery-6'),
 ].filter(Boolean);
 
 export function Gallery() {

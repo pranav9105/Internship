@@ -32,39 +32,33 @@
     },
     {
       "id": "gallery-1",
-      "description": "A desert landscape with sand dunes.",
-      "imageUrl": "https://images.unsplash.com/photo-1542401886-65d6c61db217?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxkZXNlcnQlMjBkdW5lc3xlbnwwfHx8fDE3NjgwMjcwMDJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "desert dunes"
+      "description": "A woman in traditional attire.",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShzyNfX8koN4p58AsdjuB1lKIdkK013mJrpw&s",
+      "imageHint": "Indian woman"
     },
     {
       "id": "gallery-2",
-      "description": "A waterfall in a lush forest.",
-      "imageUrl": "https://images.unsplash.com/photo-1513103386264-85344d5b081c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxmb3Jlc3QlMjB3YXRlcmZhbGx8ZW58MHx8fHwxNzY4MDU3NzgxfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "forest waterfall"
+      "description": "A toy train on a scenic mountain railway.",
+      "imageUrl": "https://curlytales.com/wp-content/uploads/2023/12/Beautiful-Train-Journeys-In-India.jpg",
+      "imageHint": "mountain train"
     },
     {
       "id": "gallery-3",
-      "description": "Boats on the Ganges River in Varanasi at sunrise.",
-      "imageUrl": "https://images.unsplash.com/photo-1524293581917-878a6d017c71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxWYXJhbmFzaSUyMGdoYXRzJTIwc3VucmlzZXxlbnwwfHx8fDE3MjQ4OTg2ODJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "Varanasi sunrise"
+      "description": "The brightly lit Mysore Palace at night.",
+      "imageUrl": "https://www.transindiatravels.com/wp-content/uploads/mysore-palace7.jpg",
+      "imageHint": "Mysore palace"
     },
     {
       "id": "gallery-4",
-      "description": "People celebrating the Holi festival with colored powders.",
-      "imageUrl": "https://images.unsplash.com/photo-1616424508781-a67e2a90b6a5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxIb2xpJTIwZmVzdGl2YWwlMjBJbmRpYXxlbnwwfHx8fDE3MjQ4OTg3MTd8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "Holi festival"
+      "description": "A scenic view of a tea plantation in the mountains.",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkqtjrfQOXtC1AALXteePmzd2nkrww-eSH3w&s",
+      "imageHint": "tea plantation"
     },
     {
       "id": "gallery-5",
-      "description": "A hot air balloon festival.",
-      "imageUrl": "https://images.unsplash.com/photo-1528458873991-8b4d8c2d583e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxob3QlMjBhaXIlMjBiYWxsb29uJTIwZmVzdGl2YWx8ZW58MHx8fHwxNzY4MDI3MDM2fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "balloon festival"
-    },
-    {
-      "id": "gallery-6",
-      "description": "A winding road through a forest.",
-      "imageUrl": "https://images.unsplash.com/photo-1499591934245-4a6a8d6b1a13?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3aW5kaW5nJTIwcm9hZCUyMGZvcmVzdHxlbnwwfHx8fDE3NjgwNTc3MDl8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "winding road"
+      "description": "A quaint village in a lush green valley.",
+      "imageUrl": "https://akm-img-a-in.tosshub.com/indiatoday/images/story/202306/village-sixteen_nine.jpg?VersionId=Dkl6DrFxTctKzuU798sb09C2kC93pI5X&size=690:388",
+      "imageHint": "village valley"
     },
     {
       "id": "about-us-team",
