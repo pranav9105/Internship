@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from '@/components/ui/sheet';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useUser } from '@/firebase';
 
 const navLinks = [
   { href: '/deals', label: 'Deals' },
@@ -19,15 +20,17 @@ export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
+  const { user } = useUser();
 
   const isHomePage = pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 20);
     };
 
     if (isHomePage) {
+      handleScroll(); // Check on mount
       window.addEventListener('scroll', handleScroll, { passive: true });
       return () => window.removeEventListener('scroll', handleScroll);
     } else {
@@ -43,8 +46,8 @@ export function Header() {
     <header
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-        isScrolled || !isHomePage
-          ? 'bg-background/80 backdrop-blur-sm shadow-md'
+        isScrolled
+          ? 'bg-background/80 backdrop-blur-sm shadow-sm'
           : 'bg-transparent'
       )}
     >
@@ -53,7 +56,7 @@ export function Header() {
           <Logo />
           
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-6">
+          <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -66,12 +69,20 @@ export function Header() {
           </nav>
 
           <div className="hidden md:flex items-center gap-4">
-            <Button asChild variant="ghost">
-              <Link href="/login">Sign In</Link>
-            </Button>
-            <Button asChild>
-              <Link href="/signup">Sign Up</Link>
-            </Button>
+            {user ? (
+                <Button asChild>
+                    <Link href="/dashboard">Dashboard</Link>
+                </Button>
+            ) : (
+                <>
+                    <Button asChild variant="ghost">
+                        <Link href="/login">Sign In</Link>
+                    </Button>
+                    <Button asChild>
+                        <Link href="/signup">Sign Up</Link>
+                    </Button>
+                </>
+            )}
           </div>
 
           {/* Mobile Navigation */}
@@ -98,12 +109,20 @@ export function Header() {
                     </Link>
                   ))}
                    <div className="border-t pt-4 flex flex-col gap-4">
-                        <Button asChild variant="outline" className="w-full">
-                            <Link href="/login">Sign In</Link>
-                        </Button>
-                        <Button asChild className="w-full">
-                            <Link href="/signup">Sign Up</Link>
-                        </Button>
+                         {user ? (
+                            <Button asChild className="w-full">
+                                <Link href="/dashboard">Dashboard</Link>
+                            </Button>
+                        ) : (
+                            <>
+                                <Button asChild variant="outline" className="w-full">
+                                    <Link href="/login">Sign In</Link>
+                                </Button>
+                                <Button asChild className="w-full">
+                                    <Link href="/signup">Sign Up</Link>
+                                </Button>
+                            </>
+                        )}
                     </div>
                 </div>
               </SheetContent>

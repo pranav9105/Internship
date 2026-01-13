@@ -4,31 +4,31 @@
 
 @layer base {
   :root {
-    --background: 222 83% 4%;
-    --foreground: 210 20% 98%;
-    --card: 222 47% 11%;
-    --card-foreground: 210 20% 98%;
-    --popover: 222 47% 11%;
-    --popover-foreground: 210 20% 98%;
-    --primary: 72 98% 49%;
-    --primary-foreground: 222 83% 4%;
-    --secondary: 215 28% 25%;
-    --secondary-foreground: 210 20% 98%;
-    --muted: 215 28% 15%;
-    --muted-foreground: 215 20% 65%;
-    --accent: 215 28% 25%;
-    --accent-foreground: 210 20% 98%;
-    --destructive: 0 62.8% 30.6%;
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 204 92% 53%; /* Deep Ocean Blue */
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 142 76% 36%; /* Muted Teal */
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-    --border: 217 33% 25%;
-    --input: 217 33% 18%;
-    --ring: 72 98% 49%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.75rem;
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
-    --radius: 0.75rem;
   }
 
   .dark {
@@ -38,19 +38,19 @@
     --card-foreground: 210 20% 98%;
     --popover: 222 47% 11%;
     --popover-foreground: 210 20% 98%;
-    --primary: 72 98% 49%;
+    --primary: 204 92% 53%;
     --primary-foreground: 222 83% 4%;
     --secondary: 215 28% 25%;
     --secondary-foreground: 210 20% 98%;
     --muted: 215 28% 15%;
     --muted-foreground: 215 20% 65%;
-    --accent: 215 28% 25%;
+    --accent: 142 76% 36%;
     --accent-foreground: 210 20% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
     --border: 217 33% 25%;
     --input: 217 33% 18%;
-    --ring: 72 98% 49%;
+    --ring: 204 92% 53%;
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
