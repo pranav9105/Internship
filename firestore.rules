@@ -1,3 +1,4 @@
+
 /**
  * This ruleset enforces a hybrid security model for a travel application.
  *
@@ -207,7 +208,7 @@ service cloud.firestore {
        *              by a backend process.
        */
       match /rewards/{rewardId} {
-        allow get, list: if isOwner(userId);
+        allow read: if isOwner(userId);
         allow create, update, delete: if false;
       }
     }
