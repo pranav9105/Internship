@@ -4,13 +4,12 @@ import { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Plane, Hotel, Home, Briefcase, Train, Bus, Car, Sailboat, Anchor, Banknote, ShieldCheck } from 'lucide-react';
-import { FlightSearchForm } from './flight-search-form';
+import { StaySearchForm } from './stay-search-form';
 import { TrainIcon } from '../icons/train-icon';
 import { BusIcon } from '../icons/bus-icon';
 import { cn } from '@/lib/utils';
 
 const searchTabs = [
-  { value: 'flights', label: 'Flights', icon: Plane },
   { value: 'hotels', label: 'Hotels', icon: Hotel },
   { value: 'villas', label: 'Villas & Homestays', icon: Home },
   { value: 'holiday', label: 'Holiday Packages', icon: Briefcase },
@@ -25,12 +24,12 @@ const searchTabs = [
 ];
 
 export function SearchWidget() {
-  const [activeTab, setActiveTab] = useState('flights');
+  const [activeTab, setActiveTab] = useState('hotels');
   return (
     <Card className="w-full max-w-6xl mx-auto shadow-2xl rounded-xl bg-background/80 backdrop-blur-sm">
       <CardContent className="p-2">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-6 md:grid-cols-12 h-auto bg-transparent p-0 gap-x-1">
+          <TabsList className="grid w-full grid-cols-6 md:grid-cols-11 h-auto bg-transparent p-0 gap-x-1">
             {searchTabs.map((tab) => (
               <TabsTrigger
                 key={tab.value}
@@ -48,10 +47,10 @@ export function SearchWidget() {
               </TabsTrigger>
             ))}
           </TabsList>
-          <TabsContent value="flights" className="mt-4">
-            <FlightSearchForm />
+          <TabsContent value="hotels" className="mt-4">
+            <StaySearchForm />
           </TabsContent>
-          {searchTabs.filter(t => t.value !== 'flights').map(tab => (
+          {searchTabs.filter(t => t.value !== 'hotels').map(tab => (
              <TabsContent key={tab.value} value={tab.value}>
                 <div className="text-center p-16 text-muted-foreground">
                     <tab.icon className="mx-auto h-12 w-12 mb-4" />
