@@ -77,6 +77,12 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'cf.bstatic.com',
+        port: '',
+        pathname: '/**',
+      }
     ],
   },
   env: {
@@ -90,5 +96,7 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
+
+    
 
     
