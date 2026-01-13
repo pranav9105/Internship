@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect } from 'react';
@@ -86,13 +87,13 @@ export function Header() {
             </Button>
             <ThemeToggle />
             {user ? (
-                <div className="flex items-center gap-2">
+                <Link href="/dashboard" className="flex items-center gap-2">
                     <Avatar className="h-9 w-9">
                         {user.photoURL && <AvatarImage src={user.photoURL} alt={user.displayName || ''} />}
                         <AvatarFallback>{getInitials(user.displayName)}</AvatarFallback>
                     </Avatar>
-                     <span className={cn(headerTextColor)}>Hello, {user.displayName?.split(' ')[0]}</span>
-                </div>
+                     <span className={cn("hidden lg:inline", headerTextColor)}>Hello, {user.displayName?.split(' ')[0]}</span>
+                </Link>
             ) : (
                 <>
                     <Button asChild variant="ghost" className={headerTextColor}>
