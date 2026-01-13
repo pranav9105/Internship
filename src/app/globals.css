@@ -69,3 +69,11 @@
     scroll-behavior: smooth;
   }
 }
+
+/* Genkit Dev Widget Alignment Fix */
+@layer utilities {
+  genkit-dev-menu {
+    left: auto !important;
+    right: 1rem !important;
+  }
+}
