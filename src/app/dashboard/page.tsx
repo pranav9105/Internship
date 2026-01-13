@@ -1,30 +1,14 @@
 
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useUser } from '@/firebase';
-import { UserSummaryPanel } from '@/components/dashboard/user-summary-panel';
-import { WelcomeCard } from '@/components/dashboard/welcome-card';
-import { Profile } from '@/components/dashboard/profile';
-import { AnimateOnScroll } from '@/components/animate-on-scroll';
-import { Recommendations } from '@/components/dashboard/recommendations';
-import { RoamingChart } from '@/components/dashboard/roaming-chart';
 import { Header } from '@/components/layout/header';
-import { TripSearch } from '@/components/dashboard/trip-search';
-import { ScheduleCalendar } from '@/components/schedule/schedule-calendar';
-import { ScheduleDetails } from '@/components/schedule/schedule-details';
-import { QuickActions } from '@/components/schedule/quick-actions';
 
 export default function DashboardPage() {
   const { user, isUserLoading } = useUser();
   const router = useRouter();
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
 
   useEffect(() => {
     if (!isUserLoading && !user) {
@@ -46,64 +30,10 @@ export default function DashboardPage() {
         <Header />
         <main className="flex-grow pt-20">
           <div className="container mx-auto px-4 py-8 md:px-6">
-            <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
-              
-              <AnimateOnScroll className="lg:col-span-4 xl:col-span-3">
-                <UserSummaryPanel user={user} />
-              </AnimateOnScroll>
-              
-              <div className="lg:col-span-8 xl:col-span-9 space-y-8">
-                <AnimateOnScroll delay={100}>
-                  <TripSearch />
-                </AnimateOnScroll>
-                
-                <AnimateOnScroll delay={150}>
-                  <WelcomeCard userName={user.displayName || 'Traveler'} />
-                </AnimateOnScroll>
-
-                <div className="grid grid-cols-1 gap-8 xl:grid-cols-3">
-                  {isClient ? (
-                    <>
-                      <AnimateOnScroll className="xl:col-span-2">
-                        <ScheduleCalendar
-                          selectedDate={selectedDate}
-                          onDateChange={setSelectedDate}
-                        />
-                      </AnimateOnScroll>
-                      <div className="space-y-8">
-                        <AnimateOnScroll delay={100}>
-                          <ScheduleDetails selectedDate={selectedDate} />
-                        </AnimateOnScroll>
-                        <AnimateOnScroll delay={200}>
-                          <QuickActions />
-                        </AnimateOnScroll>
-                      </div>
-                    </>
-                  ) : (
-                    <div className="lg:col-span-3 text-center p-8 text-muted-foreground">
-                      Loading schedule...
-                    </div>
-                  )}
-                </div>
-                
-                <AnimateOnScroll delay={200}>
-                  <RoamingChart />
-                </AnimateOnScroll>
-                
-                <AnimateOnScroll delay={300}>
-                  <Profile user={user} />
-                </AnimateOnScroll>
-                
-                <AnimateOnScroll delay={400}>
-                  <Recommendations user={user} />
-                </AnimateOnScroll>
-              </div>
-
-            </div>
+            {/* All dashboard content has been removed as requested. */}
           </div>
         </main>
       </div>
     </div>
   );
 }
-
