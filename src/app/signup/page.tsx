@@ -17,10 +17,9 @@ const GoogleIcon = (props: React.SVGProps<SVGSVGElement>) => (
     </svg>
   );
   
-  const YoutubeIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  const TwitterIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
-      <path d="M2.5 17a24.12 24.12 0 0 1 0-10C2.5 6 4.5 4 7.5 4h9c3 0 5 2 5 3v10c0 1-2 3-5 3h-9c-3 0-5-2-5-3Z" />
-      <path d="m10 9 5 3-5 3Z" />
+      <path d="M22 4s-.7 2.1-2 3.4c1.6 1.4 1.6 3.6 0 5.1-2.4 2.5-5.9 4-9.5 4s-7.1-1.5-9.5-4c-1.6-1.5-1.6-3.6 0-5.1 1.4-1.4 2.8-2.1 5-2.1s3.7.8 5 2.1c1.2 1.3 2 3.4 2 3.4Z" />
     </svg>
   );
   
@@ -71,8 +70,8 @@ export default function SignupPage() {
                     <span className="sr-only">Google</span>
                 </Button>
                 <Button variant="outline" size="icon" className="rounded-full bg-transparent border-gray-600 hover:bg-gray-800 text-white">
-                    <YoutubeIcon className="h-5 w-5" />
-                    <span className="sr-only">YouTube</span>
+                    <TwitterIcon className="h-5 w-5" />
+                    <span className="sr-only">Twitter</span>
                 </Button>
                 <Button variant="outline" size="icon" className="rounded-full bg-transparent border-gray-600 hover:bg-gray-800 text-white">
                     <FacebookIcon className="h-5 w-5" />
