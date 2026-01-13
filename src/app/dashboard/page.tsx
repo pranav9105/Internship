@@ -10,7 +10,6 @@ import { Profile } from '@/components/dashboard/profile';
 import { AnimateOnScroll } from '@/components/animate-on-scroll';
 import { Recommendations } from '@/components/dashboard/recommendations';
 import { RoamingChart } from '@/components/dashboard/roaming-chart';
-import { Sidebar } from '@/components/layout/sidebar';
 import { Header } from '@/components/layout/header';
 import { TripSearch } from '@/components/dashboard/trip-search';
 
@@ -34,10 +33,9 @@ export default function DashboardPage() {
 
   return (
     <div className="flex min-h-screen bg-muted/30">
-      <Sidebar />
-      <div className="flex-grow flex flex-col">
+      <div className="flex-grow flex flex-col w-full">
         <Header />
-        <main className="flex-grow pt-20 md:pl-64">
+        <main className="flex-grow pt-20">
           <div className="container mx-auto px-4 py-8 md:px-6">
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
               

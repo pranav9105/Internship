@@ -59,22 +59,59 @@ export function Header() {
     return name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
   };
 
-  const MobileNavLinks = isAppPage ? appNavLinks : homeNavLinks;
+  const NavLinks = isAppPage ? appNavLinks : homeNavLinks;
 
   return (
     <header
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out',
-        isAppPage ? 'md:left-64' : '',
         scrolled || !isHomePage ? 'bg-background/80 shadow-md backdrop-blur-sm' : 'bg-transparent'
       )}
     >
       <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6">
-        <div className={cn('md:hidden', { 'hidden': isAppPage })}>
-          <Logo />
-        </div>
-        <div className={cn("hidden md:block", isAppPage ? "pl-4" : "")}>
-          <Logo />
+        <div className="flex items-center gap-4">
+            {isAppPage && (
+                 <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+                    <SheetTrigger asChild>
+                        <Button variant="ghost" size="icon">
+                            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                            <span className="sr-only">Toggle navigation menu</span>
+                        </Button>
+                    </SheetTrigger>
+                    <SheetContent side="left" className="w-full max-w-xs p-0 flex flex-col">
+                         <div className="flex h-20 items-center justify-between border-b px-6">
+                            <Logo />
+                         </div>
+                         <nav className="flex-1 space-y-2 p-4">
+                            {NavLinks.map((link) => (
+                                <Button
+                                key={link.href}
+                                asChild
+                                variant={pathname.startsWith(link.href) ? 'secondary' : 'ghost'}
+                                className="w-full justify-start text-base"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                                >
+                                <Link href={link.href}>
+                                    <link.icon className="mr-3 h-5 w-5" />
+                                    {link.label}
+                                </Link>
+                                </Button>
+                            ))}
+                         </nav>
+                         <div className="mt-auto border-t p-4 space-y-2">
+                             <Button variant="ghost" className="w-full justify-start text-base" onClick={() => { router.push('/dashboard'); setIsMobileMenuOpen(false); }}>
+                                 <Settings className="mr-3 h-5 w-5" />
+                                 Settings
+                             </Button>
+                             <Button variant="ghost" className="w-full justify-start text-base" onClick={handleLogout}>
+                                 <LogOut className="mr-3 h-5 w-5" />
+                                 Logout
+                             </Button>
+                         </div>
+                    </SheetContent>
+                </Sheet>
+            )}
+            <Logo />
         </div>
 
         <nav className="hidden items-center gap-1 md:flex">
@@ -186,68 +223,6 @@ export function Header() {
             )
           )}
         </div>
-        <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
-          <SheetTrigger asChild className="md:hidden">
-            <Button variant="ghost" size="icon">
-              <Menu className="h-6 w-6" />
-              <span className="sr-only">Toggle navigation menu</span>
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="left" className="w-full max-w-xs bg-gray-900 text-white p-0 flex flex-col">
-            <div className="flex h-20 items-center justify-between border-b border-gray-800 px-6">
-              <Logo />
-              <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="text-white hover:bg-gray-800 hover:text-white">
-                  <X className="h-6 w-6" />
-                  <span className="sr-only">Close menu</span>
-                </Button>
-              </SheetTrigger>
-            </div>
-            <nav className="flex-1 space-y-2 p-4">
-              {MobileNavLinks.map((link) => (
-                <Button
-                  key={link.href}
-                  asChild
-                  variant={pathname.startsWith(link.href) ? 'secondary' : 'ghost'}
-                  className="w-full justify-start text-base hover:bg-gray-800"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  <Link href={link.href}>
-                    <link.icon className="mr-3 h-5 w-5" />
-                    {link.label}
-                  </Link>
-                </Button>
-              ))}
-            </nav>
-            <div className="mt-auto border-t border-gray-800 p-4">
-              {!isUserLoading && (
-                user ? (
-                  <div className="flex items-center gap-3">
-                    <Avatar className="h-10 w-10">
-                      {user.photoURL && <AvatarImage src={user.photoURL} alt={user.displayName || 'User'} />}
-                      <AvatarFallback className="bg-gray-700 text-white">{getInitials(user.displayName)}</AvatarFallback>
-                    </Avatar>
-                    <div className="flex flex-col">
-                      <span className="font-medium">{user.displayName || 'Traveler'}</span>
-                      <Button variant="link" onClick={handleLogout} className="p-0 h-auto text-sm text-gray-400 justify-start">
-                        Logout
-                      </Button>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="flex flex-col gap-2">
-                    <Button asChild variant="outline" className="bg-transparent border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                      <Link href="/login" onClick={() => setIsMobileMenuOpen(false)}>Login</Link>
-                    </Button>
-                    <Button asChild>
-                      <Link href="/signup" onClick={() => setIsMobileMenuOpen(false)}>Sign Up</Link>
-                    </Button>
-                  </div>
-                )
-              )}
-            </div>
-          </SheetContent>
-        </Sheet>
       </div>
     </header>
   );
