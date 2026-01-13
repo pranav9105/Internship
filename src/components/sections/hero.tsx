@@ -24,24 +24,24 @@ const heroSlides = [
         image: PlaceHolderImages.find((img) => img.id === 'package-kerala-backwaters'),
     },
     {
-        title: 'INDONESIA',
-        description: "A country in Southeast Asia and Oceania between the Indian and Pacific oceans. It consists of over 17,000 islands, including Sumatra, Java, Sulawesi, and parts of Borneo and New Guinea.",
-        image: PlaceHolderImages.find((img) => img.id === 'collection-bangalore'),
+        title: 'RAJASTHAN',
+        description: "India's largest state by area, is in the northwest of the country. It is home to forts, palaces, and the vast Thar Desert.",
+        image: PlaceHolderImages.find((img) => img.id === 'package-heritage-rajasthan'),
     },
     {
-        title: 'THAILAND',
-        description: 'Thailand is a Southeast Asian country. It\'s known for tropical beaches, opulent royal palaces, ancient ruins and ornate temples displaying figures of Buddha.',
-        image: PlaceHolderImages.find((img) => img.id === 'gallery-3'),
+        title: 'HIMALAYAS',
+        description: 'The Himalayas, or Himalaya, are a mountain range in Asia separating the plains of the Indian subcontinent from the Tibetan Plateau.',
+        image: PlaceHolderImages.find((img) => img.id === 'package-himalayan-escape'),
     },
     {
-        title: 'BROKEN BEACH',
-        description: 'A picturesque coastal formation on the southwestern edge of Nusa Penida island. The spot is marked by a hilly arch-like rock formation, which is the distinguishable landmark of the area.',
-        image: PlaceHolderImages.find((img) => img.id === 'collection-beach'),
+        title: 'GOA',
+        description: 'Goa is a state in western India with coastlines stretching along the Arabian Sea. Its long history as a Portuguese colony prior to 1961 is evident in its preserved 17th-century churches.',
+        image: PlaceHolderImages.find((img) => img.id === 'package-goa-beach'),
     },
     {
-        title: 'HILL STATIONS',
-        description: 'Escape to the cool and serene mountains. Discover breathtaking landscapes, lush greenery, and tranquil retreats away from the hustle and bustle of city life.',
-        image: PlaceHolderImages.find((img) => img.id === 'collection-hill'),
+        title: 'ANDAMAN',
+        description: 'The Andaman Islands are an Indian archipelago in the Bay of Bengal. These roughly 300 islands are known for their palm-lined, white-sand beaches, mangroves and tropical rainforests.',
+        image: PlaceHolderImages.find((img) => img.id === 'package-andaman-islands'),
     },
 ].filter(Boolean);
 
