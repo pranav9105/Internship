@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
-import { Plane, Hotel, Home, Briefcase, Train, Bus, Car, Sailboat, Anchor, Banknote, ShieldCheck } from 'lucide-react';
+import { Hotel, Home, Briefcase, Car, Sailboat, Anchor, Banknote, ShieldCheck } from 'lucide-react';
 import { StaySearchForm } from './stay-search-form';
 import { TrainIcon } from '../icons/train-icon';
 import { BusIcon } from '../icons/bus-icon';
