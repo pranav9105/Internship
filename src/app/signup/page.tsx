@@ -12,9 +12,9 @@ export default function SignupPage() {
   return (
     <div className="w-full min-h-screen grid grid-cols-1 lg:grid-cols-2">
         <div className="flex items-center justify-center p-8">
-            <Card className="w-full max-w-md border-0 shadow-none">
-                <CardHeader className="text-left">
-                    <div className="mb-4">
+            <Card className="w-full max-w-md mx-auto">
+                <CardHeader className="text-center">
+                    <div className="mb-4 flex justify-center">
                         <Logo />
                     </div>
                     <CardTitle className="font-headline text-4xl">Create an Account</CardTitle>
@@ -23,7 +23,7 @@ export default function SignupPage() {
                 <CardContent>
                 <SignupForm />
                 </CardContent>
-                <CardFooter className="flex justify-start">
+                <CardFooter className="flex justify-center">
                     <p className="text-sm text-muted-foreground">
                         Already have an account?{' '}
                         <Link href="/login" className="font-medium text-primary hover:underline" prefetch={false}>
@@ -47,5 +47,3 @@ export default function SignupPage() {
     </div>
   );
 }
-
-    

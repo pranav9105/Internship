@@ -12,9 +12,9 @@ export default function LoginPage() {
   return (
     <div className="w-full min-h-screen grid grid-cols-1 lg:grid-cols-2">
       <div className="flex items-center justify-center p-8">
-        <Card className="w-full max-w-md border-0 shadow-none">
-            <CardHeader className="text-left">
-                 <div className="mb-4">
+        <Card className="w-full max-w-md mx-auto">
+            <CardHeader className="text-center">
+                 <div className="mb-4 flex justify-center">
                     <Logo />
                 </div>
                 <CardTitle className="font-headline text-4xl">Welcome Back</CardTitle>
@@ -23,7 +23,7 @@ export default function LoginPage() {
             <CardContent>
             <LoginForm />
             </CardContent>
-            <CardFooter className="flex flex-col items-start gap-4">
+            <CardFooter className="flex flex-col items-center gap-4">
                  <Link href="#" className="text-sm font-medium text-primary hover:underline" prefetch={false}>
                     FORGOT PASSWORD?
                 </Link>
@@ -50,5 +50,3 @@ export default function LoginPage() {
     </div>
   );
 }
-
-    
