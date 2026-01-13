@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { Menu, X, LogOut, LayoutDashboard, Settings, User as UserIcon, LifeBuoy, MessageSquareQuote, Palette, Calendar, Landmark, Package, Briefcase, Heart, Hotel } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Logo } from '@/components/logo';
 import { useAuth, useUser } from '@/firebase';
 import { useRouter, usePathname } from 'next/navigation';
@@ -78,9 +78,9 @@ export function Header() {
                         </Button>
                     </SheetTrigger>
                     <SheetContent side="left" className="w-full max-w-xs p-0 flex flex-col">
-                         <div className="flex h-20 items-center justify-between border-b px-6">
-                            <Logo />
-                         </div>
+                         <SheetHeader className="flex h-20 items-center justify-between border-b px-6">
+                            <SheetTitle><Logo /></SheetTitle>
+                         </SheetHeader>
                          <nav className="flex-1 space-y-2 p-4">
                             {NavLinks.map((link) => (
                                 <Button
