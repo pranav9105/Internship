@@ -73,22 +73,10 @@
       "imageHint": "people planning trip"
     },
     {
-      "id": "auth-background",
-      "description": "A scenic view of a tropical beach at sunset.",
-      "imageUrl": "https://images.unsplash.com/photo-1507525428034-b723a996f329?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0cm9waWNhbCUyMGJlYWNoJTIwc3Vuc2V0fGVufDB8fHx8MTc2ODAzNTE3Mnww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "beach sunset"
-    },
-    {
-      "id": "auth-background-2",
-      "description": "A winding road through the mountains in India.",
-      "imageUrl": "https://images.unsplash.com/photo-1599423598453-9093583288a6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxpbmRpYSUyMG1vdW50YWluJTIwcm9hZHxlbnwwfHx8fDE3MjU5MjU5ODV8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "mountain road"
-    },
-    {
-      "id": "auth-background-3",
-      "description": "A picture of Hawa Mahal.",
-      "imageUrl": "https://i.pinimg.com/originals/dd/bf/b2/ddbfb2f0ff2dcdf9546ef704720ce3aa.jpg",
-      "imageHint": "Hawa Mahal"
+      "id": "auth-background-4",
+      "description": "Lush green forest with dark branches in the foreground.",
+      "imageUrl": "https://i1.pickpik.com/photos/630/109/298/black-branches-forest-green-preview.jpg",
+      "imageHint": "dark forest"
     },
     {
       "id": "package-heritage-rajasthan",

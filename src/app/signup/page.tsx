@@ -7,7 +7,7 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Logo } from '@/components/logo';
 
 export default function SignupPage() {
-    const authImage = PlaceHolderImages.find((img) => img.id === 'auth-background-3');
+    const authImage = PlaceHolderImages.find((img) => img.id === 'auth-background-4');
 
   return (
     <div className="w-full min-h-screen grid grid-cols-1 lg:grid-cols-2">
@@ -47,3 +47,5 @@ export default function SignupPage() {
     </div>
   );
 }
+
+    

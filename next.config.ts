@@ -106,6 +106,12 @@ const nextConfig: NextConfig = {
         hostname: 'i.pinimg.com',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i1.pickpik.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
@@ -122,5 +128,8 @@ const nextConfig: NextConfig = {
 export default nextConfig;
 
     
+
+    
+
 
     
