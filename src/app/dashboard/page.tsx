@@ -12,6 +12,7 @@ import { Recommendations } from '@/components/dashboard/recommendations';
 import { RoamingChart } from '@/components/dashboard/roaming-chart';
 import { Sidebar } from '@/components/layout/sidebar';
 import { Header } from '@/components/layout/header';
+import { TripSearch } from '@/components/dashboard/trip-search';
 
 export default function DashboardPage() {
   const { user, isUserLoading } = useUser();
@@ -47,6 +48,10 @@ export default function DashboardPage() {
               <div className="lg:col-span-8 xl:col-span-9 space-y-8">
                 <AnimateOnScroll delay={100}>
                   <WelcomeCard userName={user.displayName || 'Traveler'} />
+                </AnimateOnScroll>
+
+                <AnimateOnScroll delay={150}>
+                  <TripSearch />
                 </AnimateOnScroll>
                 
                 <AnimateOnScroll delay={200}>
