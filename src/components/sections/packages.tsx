@@ -9,27 +9,6 @@ import Link from 'next/link';
 
 const packages = [
   {
-    title: 'Tropical Getaway',
-    price: '₹1,25,000',
-    duration: '7 Days / 6 Nights',
-    features: ['5-star Beachfront Resort', 'Daily Breakfast', 'Snorkeling Tour'],
-    image: PlaceHolderImages.find((img) => img.id === 'package-tropical'),
-  },
-  {
-    title: 'Mountain Adventure',
-    price: '₹1,50,000',
-    duration: '8 Days / 7 Nights',
-    features: ['Cozy Mountain Lodge', 'Guided Hiking Treks', 'All Meals Included'],
-    image: PlaceHolderImages.find((img) => img.id === 'package-adventure'),
-  },
-  {
-    title: 'City Explorer',
-    price: '₹1,00,000',
-    duration: '5 Days / 4 Nights',
-    features: ['Downtown Luxury Hotel', 'City Tour Pass', 'Museum Tickets'],
-    image: PlaceHolderImages.find((img) => img.id === 'package-city'),
-  },
-  {
     title: 'Heritage Rajasthan',
     price: '₹48,000',
     duration: '9 Days / 8 Nights',
@@ -85,7 +64,7 @@ interface PackagesProps {
 }
 
 export function Packages({ isPage = false }: PackagesProps) {
-  const displayedPackages = isPage ? packages : packages.slice(0, 4);
+  const displayedPackages = isPage ? packages : packages.slice(0, 3);
 
   return (
     <section id="packages" className="py-20 md:py-32 bg-muted/50">
@@ -98,7 +77,7 @@ export function Packages({ isPage = false }: PackagesProps) {
             </p>
           </div>
         </AnimateOnScroll>
-        <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {displayedPackages.map((pkg, index) => (
             <AnimateOnScroll key={pkg.title} delay={index * 100}>
               <Card className="flex flex-col h-full overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
