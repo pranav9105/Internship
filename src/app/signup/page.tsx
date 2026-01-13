@@ -10,40 +10,39 @@ export default function SignupPage() {
     const authImage = PlaceHolderImages.find((img) => img.id === 'auth-background-4');
 
   return (
-    <div className="w-full min-h-screen grid grid-cols-1 lg:grid-cols-2">
-        <div className="flex items-center justify-center p-8">
-            <Card className="w-full max-w-md mx-auto">
-                <CardHeader className="text-center">
-                    <div className="mb-4 flex justify-center">
-                        <Logo />
-                    </div>
-                    <CardTitle className="font-headline text-4xl">Create an Account</CardTitle>
-                    <CardDescription>Let&apos;s get you started.</CardDescription>
-                </CardHeader>
-                <CardContent>
-                <SignupForm />
-                </CardContent>
-                <CardFooter className="flex justify-center">
-                    <p className="text-sm text-muted-foreground">
-                        Already have an account?{' '}
-                        <Link href="/login" className="font-medium text-primary hover:underline" prefetch={false}>
-                        Sign in
-                        </Link>
-                    </p>
-                </CardFooter>
-            </Card>
-        </div>
-        <div className="hidden lg:block relative">
-            {authImage && (
-                <Image
-                    src={authImage.imageUrl}
-                    alt={authImage.description}
-                    fill
-                    className="object-cover"
-                    data-ai-hint={authImage.imageHint}
-                />
-            )}
-        </div>
+    <div className="relative w-full min-h-screen">
+       {authImage && (
+        <Image
+            src={authImage.imageUrl}
+            alt={authImage.description}
+            fill
+            className="object-cover"
+            data-ai-hint={authImage.imageHint}
+        />
+      )}
+      <div className="absolute inset-0 bg-black/60" />
+      <div className="relative z-10 flex min-h-screen items-center justify-center p-8">
+        <Card className="w-full max-w-md mx-auto bg-card/80 backdrop-blur-sm">
+            <CardHeader className="text-center">
+                <div className="mb-4 flex justify-center">
+                    <Logo />
+                </div>
+                <CardTitle className="font-headline text-4xl">Create an Account</CardTitle>
+                <CardDescription>Let&apos;s get you started.</CardDescription>
+            </CardHeader>
+            <CardContent>
+            <SignupForm />
+            </CardContent>
+            <CardFooter className="flex justify-center">
+                <p className="text-sm text-muted-foreground">
+                    Already have an account?{' '}
+                    <Link href="/login" className="font-medium text-primary hover:underline" prefetch={false}>
+                    Sign in
+                    </Link>
+                </p>
+            </CardFooter>
+        </Card>
+      </div>
     </div>
   );
 }

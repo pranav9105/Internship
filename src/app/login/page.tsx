@@ -10,9 +10,19 @@ export default function LoginPage() {
   const authImage = PlaceHolderImages.find((img) => img.id === 'auth-background-4');
 
   return (
-    <div className="w-full min-h-screen grid grid-cols-1 lg:grid-cols-2">
-      <div className="flex items-center justify-center p-8">
-        <Card className="w-full max-w-md mx-auto">
+    <div className="relative w-full min-h-screen">
+      {authImage && (
+        <Image
+          src={authImage.imageUrl}
+          alt={authImage.description}
+          fill
+          className="object-cover"
+          data-ai-hint={authImage.imageHint}
+        />
+      )}
+      <div className="absolute inset-0 bg-black/60" />
+      <div className="relative z-10 flex min-h-screen items-center justify-center p-8">
+        <Card className="w-full max-w-md mx-auto bg-card/80 backdrop-blur-sm">
             <CardHeader className="text-center">
                  <div className="mb-4 flex justify-center">
                     <Logo />
@@ -35,17 +45,6 @@ export default function LoginPage() {
                 </p>
             </CardFooter>
         </Card>
-      </div>
-      <div className="hidden lg:block relative">
-        {authImage && (
-            <Image
-                src={authImage.imageUrl}
-                alt={authImage.description}
-                fill
-                className="object-cover"
-                data-ai-hint={authImage.imageHint}
-            />
-        )}
       </div>
     </div>
   );
