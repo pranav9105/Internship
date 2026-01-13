@@ -10,6 +10,7 @@ import { Menu, X, Search } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useUser } from '@/firebase';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
+import { ThemeToggle } from '../theme-toggle';
 
 const navLinks = [
   { href: '/deals', label: 'Destinations' },
@@ -81,6 +82,7 @@ export function Header() {
             <Button variant="ghost" size="icon" className={isHomePage && !isScrolled ? 'text-white' : ''}>
                 <Search />
             </Button>
+            <ThemeToggle />
             {user ? (
                 <div className="flex items-center gap-2">
                     <Avatar className="h-9 w-9">

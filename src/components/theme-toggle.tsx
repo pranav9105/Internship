@@ -1,4 +1,3 @@
-
 "use client"
 
 import * as React from "react"
@@ -26,27 +25,16 @@ export function ThemeToggle() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <ThemeSubMenu />
+        <DropdownMenuItem onClick={() => setTheme("light")}>
+          Light
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme("dark")}>
+          Dark
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme("system")}>
+          System
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   )
 }
-
-export function ThemeSubMenu() {
-  const { setTheme } = useTheme()
-
-  return (
-    <>
-      <DropdownMenuItem onClick={() => setTheme("light")}>
-        Light
-      </DropdownMenuItem>
-      <DropdownMenuItem onClick={() => setTheme("dark")}>
-        Dark
-      </DropdownMenuItem>
-      <DropdownMenuItem onClick={() => setTheme("system")}>
-        System
-      </DropdownMenuItem>
-    </>
-  )
-}
-

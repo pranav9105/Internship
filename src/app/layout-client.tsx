@@ -11,7 +11,7 @@ export default function RootLayoutClient({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  const { setTheme, resolvedTheme } = useTheme();
+  const { theme } = useTheme();
 
   const isDashboard = pathname.startsWith('/dashboard') || 
                       pathname.startsWith('/my-trips') ||
@@ -19,18 +19,11 @@ export default function RootLayoutClient({
                       pathname.startsWith('/bookings') ||
                       pathname.startsWith('/settings');
 
-  useEffect(() => {
-    const targetTheme = isDashboard ? 'dark' : 'light';
-    if (resolvedTheme !== targetTheme) {
-      setTheme(targetTheme);
-    }
-  }, [isDashboard, resolvedTheme, setTheme]);
-
   return (
     <div
       className={cn(
         'relative flex min-h-screen w-full',
-        isDashboard ? 'dark bg-background text-foreground' : 'bg-background text-foreground'
+        theme === 'dark' ? 'dark bg-background text-foreground' : 'bg-background text-foreground'
       )}
     >
       {children}
