@@ -28,11 +28,8 @@ export function LoginForm() {
       router.push('/welcome');
     } catch (error: any) {
       if (error.code === 'auth/invalid-credential' || error.code === 'auth/user-not-found') {
-        // If user does not exist, create it and then sign in.
         try {
           await createUserWithEmailAndPassword(auth, testUser.email, testUser.password);
-          // The onAuthStateChanged listener in the provider will handle the redirect.
-          // For immediate feedback, we can push to welcome.
           router.push('/welcome');
         } catch (creationError: any) {
           toast({
@@ -55,17 +52,17 @@ export function LoginForm() {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
        <div className="space-y-2">
           <Label htmlFor="email">Email</Label>
-          <Input id="email" type="email" placeholder="m@example.com" readOnly value={testUser.email} />
+          <Input id="email" type="email" placeholder="Enter your email" defaultValue={testUser.email} />
         </div>
         <div className="space-y-2">
           <Label htmlFor="password">Password</Label>
-          <Input id="password" type="password" readOnly value={testUser.password} />
+          <Input id="password" type="password" placeholder="Enter your password" defaultValue={testUser.password} />
         </div>
-      <Button onClick={handleSignIn} className="w-full" disabled={loading}>
-        {loading ? 'Signing In...' : 'Sign In'}
+      <Button onClick={handleSignIn} className="w-full h-12 text-lg" disabled={loading}>
+        {loading ? 'Signing In...' : 'LOGIN'}
       </Button>
     </div>
   );

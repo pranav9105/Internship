@@ -69,24 +69,24 @@ export function SignupForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       <div className="space-y-2">
         <Label htmlFor="name">Name</Label>
-        <Input id="name" type="text" placeholder="John Doe" {...register('name')} readOnly/>
+        <Input id="name" type="text" placeholder="Enter your name" {...register('name')} />
         {errors.name && <p className="text-sm text-destructive">{errors.name.message}</p>}
       </div>
       <div className="space-y-2">
         <Label htmlFor="email">Email</Label>
-        <Input id="email" type="email" placeholder="m@example.com" {...register('email')} readOnly/>
+        <Input id="email" type="email" placeholder="Enter your email" {...register('email')} />
         {errors.email && <p className="text-sm text-destructive">{errors.email.message}</p>}
       </div>
       <div className="space-y-2">
         <Label htmlFor="password">Password</Label>
-        <Input id="password" type="password" {...register('password')} readOnly/>
+        <Input id="password" type="password" placeholder="Enter your password" {...register('password')} />
         {errors.password && <p className="text-sm text-destructive">{errors.password.message}</p>}
       </div>
-      <Button type="submit" className="w-full" disabled={loading}>
-        {loading ? 'Creating Account...' : 'Create Account'}
+      <Button type="submit" className="w-full h-12 text-lg" disabled={loading}>
+        {loading ? 'Creating Account...' : 'SIGN UP'}
       </Button>
     </form>
   );
