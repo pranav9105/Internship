@@ -47,11 +47,11 @@ export default function DashboardPage() {
               
               <div className="lg:col-span-8 xl:col-span-9 space-y-8">
                 <AnimateOnScroll delay={100}>
-                  <WelcomeCard userName={user.displayName || 'Traveler'} />
-                </AnimateOnScroll>
-
-                <AnimateOnScroll delay={150}>
                   <TripSearch />
+                </AnimateOnScroll>
+                
+                <AnimateOnScroll delay={150}>
+                  <WelcomeCard userName={user.displayName || 'Traveler'} />
                 </AnimateOnScroll>
                 
                 <AnimateOnScroll delay={200}>
