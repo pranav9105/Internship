@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from 'react';
@@ -71,18 +72,18 @@ export function SignupForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       <div className="space-y-2">
-        <Label htmlFor="name">Name</Label>
-        <Input id="name" type="text" placeholder="Enter your name" {...register('name')} />
+        <Label htmlFor="name" className="text-gray-300">Name</Label>
+        <Input id="name" type="text" placeholder="Enter your name" {...register('name')} className="bg-gray-800/50 border-gray-700 text-white" />
         {errors.name && <p className="text-sm text-destructive">{errors.name.message}</p>}
       </div>
       <div className="space-y-2">
-        <Label htmlFor="email">Email</Label>
-        <Input id="email" type="email" placeholder="Enter your email" {...register('email')} />
+        <Label htmlFor="email" className="text-gray-300">Email</Label>
+        <Input id="email" type="email" placeholder="Enter your email" {...register('email')} className="bg-gray-800/50 border-gray-700 text-white" />
         {errors.email && <p className="text-sm text-destructive">{errors.email.message}</p>}
       </div>
       <div className="space-y-2">
-        <Label htmlFor="password">Password</Label>
-        <Input id="password" type="password" placeholder="Enter your password" {...register('password')} />
+        <Label htmlFor="password" className="text-gray-300">Password</Label>
+        <Input id="password" type="password" placeholder="Enter your password" {...register('password')} className="bg-gray-800/50 border-gray-700 text-white" />
         {errors.password && <p className="text-sm text-destructive">{errors.password.message}</p>}
       </div>
       <Button type="submit" className="w-full h-12 text-lg" disabled={loading}>

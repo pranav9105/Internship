@@ -22,13 +22,13 @@ export default function SignupPage() {
       )}
       <div className="absolute inset-0 bg-black/60" />
       <div className="relative z-10 flex min-h-screen items-center justify-center p-8">
-        <Card className="w-full max-w-md mx-auto bg-card/80 backdrop-blur-sm">
+        <Card className="w-full max-w-md mx-auto bg-black/70 border-gray-700">
             <CardHeader className="text-center">
                 <div className="mb-4 flex justify-center">
                     <Logo />
                 </div>
-                <CardTitle className="font-headline text-4xl">Create an Account</CardTitle>
-                <CardDescription>Let&apos;s get you started.</CardDescription>
+                <CardTitle className="font-headline text-4xl text-white">Create an Account</CardTitle>
+                <CardDescription className="text-gray-300">Let&apos;s get you started.</CardDescription>
             </CardHeader>
             <CardContent>
             <SignupForm />

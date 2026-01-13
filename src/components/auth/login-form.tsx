@@ -54,12 +54,12 @@ export function LoginForm() {
   return (
     <div className="space-y-6">
        <div className="space-y-2">
-          <Label htmlFor="email">Email</Label>
-          <Input id="email" type="email" placeholder="Enter your email" defaultValue={testUser.email} />
+          <Label htmlFor="email" className="text-gray-300">Email</Label>
+          <Input id="email" type="email" placeholder="Enter your email" defaultValue={testUser.email} className="bg-gray-800/50 border-gray-700 text-white" />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="password">Password</Label>
-          <Input id="password" type="password" placeholder="Enter your password" defaultValue={testUser.password} />
+          <Label htmlFor="password"  className="text-gray-300">Password</Label>
+          <Input id="password" type="password" placeholder="Enter your password" defaultValue={testUser.password} className="bg-gray-800/50 border-gray-700 text-white" />
         </div>
       <Button onClick={handleSignIn} className="w-full h-12 text-lg" disabled={loading}>
         {loading ? 'Signing In...' : 'LOGIN'}
