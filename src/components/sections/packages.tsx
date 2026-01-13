@@ -10,21 +10,21 @@ import Link from 'next/link';
 const packages = [
   {
     title: 'Heritage Rajasthan',
-    price: '₹48,000',
+    price: '₹20,000',
     duration: '9 Days / 8 Nights',
     features: ['Stay in Heritage Hotels', 'Desert Safari', 'Fort & Palace Tours'],
     image: PlaceHolderImages.find((img) => img.id === 'package-heritage-rajasthan'),
   },
   {
     title: 'Kerala Backwaters',
-    price: '₹45,000',
+    price: '₹16,000',
     duration: '6 Days / 5 Nights',
     features: ['Private Houseboat Stay', 'Ayurvedic Massage', 'Spice Plantation Visit'],
     image: PlaceHolderImages.find((img) => img.id === 'package-kerala-backwaters'),
   },
   {
     title: 'Himalayan Escape',
-    price: '₹49,500',
+    price: '₹25,000',
     duration: '10 Days / 9 Nights',
     features: ['Monastery Visits', 'High-Altitude Trekking', 'River Rafting'],
     image: PlaceHolderImages.find((img) => img.id === 'package-himalayan-escape'),
