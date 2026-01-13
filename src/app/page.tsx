@@ -8,6 +8,7 @@ import { Faq } from '@/components/sections/faq';
 import { Gallery } from '@/components/sections/gallery';
 import { Contact } from '@/components/sections/contact';
 import { Popular } from '@/components/sections/popular';
+import { Collections } from '@/components/sections/collections';
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <main className="flex-grow">
         <Hero />
         <Destinations />
+        <Collections />
         <Popular />
         <Packages />
         <About />
