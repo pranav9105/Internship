@@ -14,27 +14,27 @@ import { AnimateOnScroll } from '@/components/animate-on-scroll';
 const initialWishlistItems = [
   {
     id: 1,
-    name: 'Kyoto, Japan',
-    description: 'Ancient temples and serene gardens.',
-    image: PlaceHolderImages.find((img) => img.id === 'destination-kyoto'),
+    name: 'Jaipur, Rajasthan',
+    description: 'The Pink City, full of heritage forts.',
+    image: PlaceHolderImages.find((img) => img.id === 'destination-jaipur'),
   },
   {
     id: 2,
-    name: 'Santorini, Greece',
-    description: 'Iconic sunsets and whitewashed villages.',
-    image: PlaceHolderImages.find((img) => img.id === 'destination-santorini'),
+    name: 'Goa',
+    description: 'Pristine beaches and vibrant nightlife.',
+    image: PlaceHolderImages.find((img) => img.id === 'destination-goa'),
   },
   {
     id: 3,
-    name: 'Bora Bora',
-    description: 'Ultimate tropical paradise with overwater bungalows.',
-    image: PlaceHolderImages.find((img) => img.id === 'destination-bora-bora'),
+    name: 'Alleppey, Kerala',
+    description: 'Serene backwaters and lush greenery.',
+    image: PlaceHolderImages.find((img) => img.id === 'destination-kerala'),
   },
   {
     id: 4,
-    name: 'Paris, France',
-    description: 'The city of love, lights, and art.',
-    image: PlaceHolderImages.find((img) => img.id === 'destination-paris'),
+    name: 'Ladakh',
+    description: 'High-altitude desert and stunning vistas.',
+    image: PlaceHolderImages.find((img) => img.id === 'destination-ladakh'),
   },
 ];
 

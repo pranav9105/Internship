@@ -6,24 +6,24 @@ import { MapPin } from 'lucide-react';
 
 const destinations = [
   {
-    name: 'Paris, France',
-    description: 'The city of love, lights, and art.',
-    image: PlaceHolderImages.find((img) => img.id === 'destination-paris'),
+    name: 'Jaipur, Rajasthan',
+    description: 'The Pink City, full of heritage forts.',
+    image: PlaceHolderImages.find((img) => img.id === 'destination-jaipur'),
   },
   {
-    name: 'Kyoto, Japan',
-    description: 'Ancient temples and serene gardens.',
-    image: PlaceHolderImages.find((img) => img.id === 'destination-kyoto'),
+    name: 'Goa',
+    description: 'Pristine beaches and vibrant nightlife.',
+    image: PlaceHolderImages.find((img) => img.id === 'destination-goa'),
   },
   {
-    name: 'Santorini, Greece',
-    description: 'Iconic sunsets and whitewashed villages.',
-    image: PlaceHolderImages.find((img) => img.id === 'destination-santorini'),
+    name: 'Alleppey, Kerala',
+    description: 'Serene backwaters and lush greenery.',
+    image: PlaceHolderImages.find((img) => img.id === 'destination-kerala'),
   },
   {
-    name: 'Bora Bora',
-    description: 'Ultimate tropical paradise with overwater bungalows.',
-    image: PlaceHolderImages.find((img) => img.id === 'destination-bora-bora'),
+    name: 'Ladakh',
+    description: 'High-altitude desert and stunning vistas.',
+    image: PlaceHolderImages.find((img) => img.id === 'destination-ladakh'),
   },
 ];
 
@@ -35,7 +35,7 @@ export function Destinations() {
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="font-headline text-4xl font-bold md:text-5xl">Featured Destinations</h2>
             <p className="mt-4 text-lg text-muted-foreground">
-              Explore our handpicked selection of the world's most captivating places.
+              Explore our handpicked selection of India's most captivating places.
             </p>
           </div>
         </AnimateOnScroll>

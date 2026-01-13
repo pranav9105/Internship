@@ -7,28 +7,28 @@
       "imageHint": "mountain lake"
     },
     {
-      "id": "destination-paris",
-      "description": "The Eiffel Tower in Paris, France.",
-      "imageUrl": "https://images.unsplash.com/photo-1604175287072-b5e71423060c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxFaWZmZWwlMjBUb3dlcnxlbnwwfHx8fDE3Njc5OTkyNTd8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "Eiffel Tower"
+      "id": "destination-jaipur",
+      "description": "Hawa Mahal in Jaipur, the Pink City.",
+      "imageUrl": "https://images.unsplash.com/photo-1617158852389-697321a71caf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxKYWlwdXJ8ZW58MHx8fHwxNzI1NDE3NzU3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Jaipur palace"
     },
     {
-      "id": "destination-kyoto",
-      "description": "A traditional temple in Kyoto, Japan.",
-      "imageUrl": "https://images.unsplash.com/photo-1706132604889-eaec56922a73?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxLeW90byUyMHRlbXBsZXxlbnwwfHx8fDE3Njc5OTkyNTd8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "Kyoto temple"
+      "id": "destination-goa",
+      "description": "A beautiful sandy beach in Goa with palm trees.",
+      "imageUrl": "https://images.unsplash.com/photo-1590374504364-0551e36f6d63?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxHb2ElMjBiZWFjaHxlbnwwfHx8fDE3MjQ3NTI1MDB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Goa beach"
     },
     {
-      "id": "destination-santorini",
-      "description": "White buildings with blue domes in Santorini, Greece.",
-      "imageUrl": "https://images.unsplash.com/photo-1722581174702-706197ded63d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxTYW50b3JpbmklMjBHcmVlY2V8ZW58MHx8fHwxNzY4MDQxNjUxfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "Santorini Greece"
+      "id": "destination-kerala",
+      "description": "A traditional houseboat on the serene backwaters of Kerala.",
+      "imageUrl": "https://images.unsplash.com/photo-1603939512397-5c5a0455a711?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxLZXJhbGElMjBiYWNrd2F0ZXJzfGVufDB8fHx8MTcyNDc1MjQzOXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Kerala backwaters"
     },
     {
-      "id": "destination-bora-bora",
-      "description": "Overwater bungalows in Bora Bora.",
-      "imageUrl": "https://images.unsplash.com/photo-1676405328043-85738f8473ba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxCb3JhJTIwQm9yYXxlbnwwfHx8fDE3NjgwNTc3ODJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "Bora Bora"
+      "id": "destination-ladakh",
+      "description": "A Buddhist monastery in the high-altitude desert of Ladakh.",
+      "imageUrl": "https://images.unsplash.com/photo-1588033282283-3d02a5542289?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxMYWRha2glMjBtb25hc3Rlcnl8ZW58MHx8fHwxNzI1NDE3OTE1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Ladakh monastery"
     },
     {
       "id": "package-tropical",
