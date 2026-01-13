@@ -14,7 +14,7 @@ export function ScheduleCalendar({ selectedDate, onDateChange }: ScheduleCalenda
     <Card>
       <CardHeader>
         <CardTitle>Full Trip Schedule</CardTitle>
-        <CardDescription>Select a date to see the schedule.</CardDescription>
+        <CardDescription>Select a date to see your itinerary.</CardDescription>
       </CardHeader>
       <CardContent className="flex justify-center">
         <Calendar
@@ -22,10 +22,6 @@ export function ScheduleCalendar({ selectedDate, onDateChange }: ScheduleCalenda
           selected={selectedDate}
           onSelect={onDateChange}
           className="p-0"
-          classNames={{
-            day_selected: "bg-primary text-primary-foreground hover:bg-primary/90 focus:bg-primary/90",
-            day_today: "bg-accent text-accent-foreground",
-          }}
         />
       </CardContent>
     </Card>

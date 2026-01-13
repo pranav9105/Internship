@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useUser } from '@/firebase';
 import { UserSummaryPanel } from '@/components/dashboard/user-summary-panel';
@@ -12,10 +12,19 @@ import { Recommendations } from '@/components/dashboard/recommendations';
 import { RoamingChart } from '@/components/dashboard/roaming-chart';
 import { Header } from '@/components/layout/header';
 import { TripSearch } from '@/components/dashboard/trip-search';
+import { ScheduleCalendar } from '@/components/schedule/schedule-calendar';
+import { ScheduleDetails } from '@/components/schedule/schedule-details';
+import { QuickActions } from '@/components/schedule/quick-actions';
 
 export default function DashboardPage() {
   const { user, isUserLoading } = useUser();
   const router = useRouter();
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   useEffect(() => {
     if (!isUserLoading && !user) {
@@ -51,6 +60,31 @@ export default function DashboardPage() {
                 <AnimateOnScroll delay={150}>
                   <WelcomeCard userName={user.displayName || 'Traveler'} />
                 </AnimateOnScroll>
+
+                <div className="grid grid-cols-1 gap-8 xl:grid-cols-3">
+                  {isClient ? (
+                    <>
+                      <AnimateOnScroll className="xl:col-span-2">
+                        <ScheduleCalendar
+                          selectedDate={selectedDate}
+                          onDateChange={setSelectedDate}
+                        />
+                      </AnimateOnScroll>
+                      <div className="space-y-8">
+                        <AnimateOnScroll delay={100}>
+                          <ScheduleDetails selectedDate={selectedDate} />
+                        </AnimateOnScroll>
+                        <AnimateOnScroll delay={200}>
+                          <QuickActions />
+                        </AnimateOnScroll>
+                      </div>
+                    </>
+                  ) : (
+                    <div className="lg:col-span-3 text-center p-8 text-muted-foreground">
+                      Loading schedule...
+                    </div>
+                  )}
+                </div>
                 
                 <AnimateOnScroll delay={200}>
                   <RoamingChart />
@@ -72,3 +106,4 @@ export default function DashboardPage() {
     </div>
   );
 }
+

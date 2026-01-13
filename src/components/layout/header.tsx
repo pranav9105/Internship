@@ -23,7 +23,6 @@ const homeNavLinks = [
 
 const appNavLinks = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
-  { href: '/schedule', label: 'Schedule', icon: Calendar },
   { href: '/my-trips', label: 'My Trips', icon: Briefcase },
   { href: '/wishlist', label: 'Wishlist', icon: Heart },
   { href: '/bookings', label: 'Bookings', icon: Hotel },
@@ -160,10 +159,6 @@ export function Header() {
                   
                   <DropdownMenuSeparator />
                   
-                  <DropdownMenuItem onClick={() => router.push('/dashboard')}>
-                    <UserIcon className="mr-2 h-4 w-4" />
-                    <span>Profile</span>
-                  </DropdownMenuItem>
                   <DropdownMenuItem onClick={() => router.push('/dashboard')}>
                     <LayoutDashboard className="mr-2 h-4 w-4" />
                     <span>Dashboard</span>
