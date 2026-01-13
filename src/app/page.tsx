@@ -1,7 +1,6 @@
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { Hero } from '@/components/sections/hero';
-import { Destinations } from '@/components/sections/destinations';
 import { Packages } from '@/components/sections/packages';
 import { About } from '@/components/sections/about';
 import { Faq } from '@/components/sections/faq';
@@ -16,7 +15,6 @@ export default function Home() {
       <Header />
       <main className="flex-grow">
         <Hero />
-        <Destinations />
         <Collections />
         <Popular />
         <Packages />

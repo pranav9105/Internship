@@ -7,6 +7,12 @@
       "imageHint": "beach sunset"
     },
     {
+      "id": "hero-background-2",
+      "description": "Abstract blurred gradient background of a sunset over the ocean.",
+      "imageUrl": "https://images.unsplash.com/photo-1590001213161-5a1a6c0c2e1b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGJsdXJyZWQlMjBncmFkaWVudCUyMHN1bnNldCUyMG9jZWFufGVufDB8fHx8MTcyNjA0MDM5Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "abstract sunset gradient"
+    },
+    {
       "id": "destination-jaipur",
       "description": "Amber Fort in Jaipur, India.",
       "imageUrl": "https://a.storyblok.com/f/95452/5539x4309/8cf13d91fc/india-jaipur-amber-fort.jpg",
