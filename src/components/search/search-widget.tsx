@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from 'react';
@@ -6,11 +7,14 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Hotel, Plane, Car, Sailboat } from 'lucide-react';
 import { StaySearchForm } from './stay-search-form';
 import { cn } from '@/lib/utils';
+import { TrainIcon } from '../icons/train-icon';
+import { BusIcon } from '../icons/bus-icon';
 
 const searchTabs = [
   { value: 'stays', label: 'Stays', icon: Hotel },
   { value: 'flights', label: 'Flights', icon: Plane },
-  { value: 'cars', label: 'Cars', icon: Car },
+  { value: 'trains', label: 'Trains', icon: TrainIcon },
+  { value: 'bus', label: 'Bus', icon: BusIcon },
   { value: 'tours', label: 'Tours', icon: Sailboat },
 ];
 

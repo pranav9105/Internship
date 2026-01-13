@@ -1,7 +1,9 @@
+
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { AnimateOnScroll } from '../animate-on-scroll';
 import { SearchWidget } from '../search/search-widget';
+import { Header } from '../layout/header';
 
 export function Hero() {
   const heroImage = PlaceHolderImages.find((img) => img.id === 'hero-background');
@@ -19,6 +21,10 @@ export function Hero() {
         />
       )}
       <div className="absolute inset-0 bg-black/50" />
+
+      {/* Pass isHomePage to Header */}
+      <Header isHomePage={true} />
+
       <div className="relative z-10 container mx-auto px-4 md:px-6 flex flex-col items-center text-center">
         <AnimateOnScroll className="flex flex-col items-center">
             <h1 className="font-headline text-5xl md:text-7xl font-bold">
