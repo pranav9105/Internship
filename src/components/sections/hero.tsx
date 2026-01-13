@@ -3,13 +3,12 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { AnimateOnScroll } from '../animate-on-scroll';
-import { StaySearchForm } from '@/components/search/stay-search-form';
 
 export function Hero() {
   const heroImage = PlaceHolderImages.find((img) => img.id === 'hero-background');
 
   return (
-    <section id="hero" className="relative h-screen w-full">
+    <section id="hero" className="relative h-[60vh] w-full flex items-center justify-center">
       {heroImage && (
         <Image
           src={heroImage.imageUrl}
@@ -31,9 +30,6 @@ export function Hero() {
           <p className="mt-4 max-w-2xl text-lg md:text-xl text-white/90">
             Search deals on hotels, homes, and much more...
           </p>
-        </AnimateOnScroll>
-        <AnimateOnScroll delay={300} className="w-full max-w-5xl mt-8">
-            <StaySearchForm />
         </AnimateOnScroll>
       </div>
     </section>

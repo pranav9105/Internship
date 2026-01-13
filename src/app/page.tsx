@@ -7,6 +7,8 @@ import { About } from '@/components/sections/about';
 import { Faq } from '@/components/sections/faq';
 import { Gallery } from '@/components/sections/gallery';
 import { Contact } from '@/components/sections/contact';
+import { StaySearchForm } from '@/components/search/stay-search-form';
+import { AnimateOnScroll } from '@/components/animate-on-scroll';
 
 export default function Home() {
   return (
@@ -14,6 +16,11 @@ export default function Home() {
       <Header />
       <main className="flex-grow">
         <Hero />
+        <section className="bg-background -mt-16 relative z-20 container mx-auto px-4 md:px-6">
+            <AnimateOnScroll>
+                <StaySearchForm />
+            </AnimateOnScroll>
+        </section>
         <Destinations />
         <Packages />
         <About />
