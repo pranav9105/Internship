@@ -1,4 +1,3 @@
-import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { Hero } from '@/components/sections/hero';
 import { Packages } from '@/components/sections/packages';
@@ -8,6 +7,7 @@ import { Gallery } from '@/components/sections/gallery';
 import { Contact } from '@/components/sections/contact';
 import { Popular } from '@/components/sections/popular';
 import { Collections } from '@/components/sections/collections';
+import { Header } from '@/components/layout/header';
 
 export default function Home() {
   return (

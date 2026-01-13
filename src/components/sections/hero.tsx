@@ -4,10 +4,10 @@ import { AnimateOnScroll } from '../animate-on-scroll';
 import { SearchWidget } from '../search/search-widget';
 
 export function Hero() {
-  const heroImage = PlaceHolderImages.find((img) => img.id === 'hero-background-2');
+  const heroImage = PlaceHolderImages.find((img) => img.id === 'hero-background');
 
   return (
-    <section id="hero" className="relative h-[70vh] w-full flex items-center justify-center">
+    <section id="hero" className="relative h-screen w-full flex items-center justify-center text-white">
       {heroImage && (
         <Image
           src={heroImage.imageUrl}
@@ -18,9 +18,17 @@ export function Hero() {
           data-ai-hint={heroImage.imageHint}
         />
       )}
-      <div className="absolute inset-0 bg-black/30" />
-      <div className="relative z-10 container mx-auto px-4 md:px-6 -mt-24">
-        <AnimateOnScroll delay={400}>
+      <div className="absolute inset-0 bg-black/50" />
+      <div className="relative z-10 container mx-auto px-4 md:px-6 flex flex-col items-center text-center">
+        <AnimateOnScroll className="flex flex-col items-center">
+            <h1 className="font-headline text-5xl md:text-7xl font-bold">
+                Let's Make Your Best Trip Ever
+            </h1>
+            <p className="mt-4 max-w-2xl text-lg md:text-xl text-white/90">
+                Plan and book your perfect trip with expert advice, travel tips, destination information and inspiration from us.
+            </p>
+        </AnimateOnScroll>
+        <AnimateOnScroll delay={200} className="w-full mt-12">
           <SearchWidget />
         </AnimateOnScroll>
       </div>
