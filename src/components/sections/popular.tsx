@@ -16,17 +16,12 @@ const domesticCities = [
   'Ahmedabad hotels', 'Ayodhya hotels', 'Kolkata hotels', 'Alibaug hotels', 'Tiruvannamalai hotels',
 ];
 
-const internationalCities = [
-    'Dubai hotels', 'Singapore hotels', 'Paris hotels', 'London hotels', 'New York hotels',
-    'Bangkok hotels', 'Rome hotels', 'Tokyo hotels', 'Sydney hotels', 'Amsterdam hotels',
-];
-
 const regions = [
     'Goa', 'Kerala', 'Rajasthan', 'Himachal Pradesh', 'Uttarakhand',
 ];
 
 const countries = [
-    'India', 'USA', 'Thailand', 'United Arab Emirates', 'United Kingdom',
+    'India',
 ];
 
 const placesToStay = [
@@ -43,13 +38,12 @@ export function Popular() {
         <AnimateOnScroll>
           <Card>
             <CardHeader>
-              <CardTitle className="font-headline text-3xl">Popular with travelers from India</CardTitle>
+              <CardTitle className="font-headline text-3xl">Popular with travelers in India</CardTitle>
             </CardHeader>
             <CardContent>
               <Tabs defaultValue="domestic" className="w-full">
-                <TabsList className="grid w-full grid-cols-2 md:grid-cols-5">
+                <TabsList className="grid w-full grid-cols-2 md:grid-cols-4">
                   <TabsTrigger value="domestic">Domestic cities</TabsTrigger>
-                  <TabsTrigger value="international">International cities</TabsTrigger>
                   <TabsTrigger value="regions">Regions</TabsTrigger>
                   <TabsTrigger value="countries">Countries</TabsTrigger>
                   <TabsTrigger value="places">Places to stay</TabsTrigger>
@@ -67,15 +61,6 @@ export function Popular() {
                       + Show more
                     </Button>
                   )}
-                </TabsContent>
-                <TabsContent value="international" className="mt-6">
-                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-4 gap-y-2">
-                    {internationalCities.map((city, index) => (
-                        <Link key={index} href="#" className="text-sm text-muted-foreground hover:text-primary hover:underline" prefetch={false}>
-                            {city}
-                        </Link>
-                    ))}
-                  </div>
                 </TabsContent>
                 <TabsContent value="regions" className="mt-6">
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-4 gap-y-2">
