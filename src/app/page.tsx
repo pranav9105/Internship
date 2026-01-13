@@ -9,6 +9,7 @@ import { Gallery } from '@/components/sections/gallery';
 import { Contact } from '@/components/sections/contact';
 import { StaySearchForm } from '@/components/search/stay-search-form';
 import { AnimateOnScroll } from '@/components/animate-on-scroll';
+import { Popular } from '@/components/sections/popular';
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
             </AnimateOnScroll>
         </section>
         <Destinations />
+        <Popular />
         <Packages />
         <About />
         <Faq />

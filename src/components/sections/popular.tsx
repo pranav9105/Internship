@@ -1,0 +1,114 @@
+
+'use client';
+
+import { useState } from 'react';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import { AnimateOnScroll } from '../animate-on-scroll';
+
+const domesticCities = [
+  'Ooty hotels', 'Hyderabad hotels', 'Jaipur hotels', 'Puri hotels', 'Cochin hotels',
+  'Munnar hotels', 'Mumbai hotels', 'Bangalore hotels', 'Udaipur hotels', 'Varanasi hotels',
+  'Srinagar hotels', 'Rishikesh hotels', 'Hampi hotels', 'Pondicherry hotels', 'Varkala hotels',
+  'Alleppey hotels', 'Shimla hotels', 'Nainital hotels', 'Mangalore hotels', 'Lonavala hotels',
+  'Ahmedabad hotels', 'Ayodhya hotels', 'Kolkata hotels', 'Alibaug hotels', 'Tiruvannamalai hotels',
+];
+
+const internationalCities = [
+    'Dubai hotels', 'Singapore hotels', 'Paris hotels', 'London hotels', 'New York hotels',
+    'Bangkok hotels', 'Rome hotels', 'Tokyo hotels', 'Sydney hotels', 'Amsterdam hotels',
+];
+
+const regions = [
+    'Goa', 'Kerala', 'Rajasthan', 'Himachal Pradesh', 'Uttarakhand',
+];
+
+const countries = [
+    'India', 'USA', 'Thailand', 'United Arab Emirates', 'United Kingdom',
+];
+
+const placesToStay = [
+    'Hotels', 'Apartments', 'Resorts', 'Villas', 'Guest houses',
+];
+
+export function Popular() {
+  const [showAll, setShowAll] = useState(false);
+  const displayedCities = showAll ? domesticCities : domesticCities.slice(0, 15);
+
+  return (
+    <section id="popular" className="py-20 md:py-32 bg-background">
+      <div className="container mx-auto px-4 md:px-6">
+        <AnimateOnScroll>
+          <Card>
+            <CardHeader>
+              <CardTitle className="font-headline text-3xl">Popular with travelers from India</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Tabs defaultValue="domestic" className="w-full">
+                <TabsList className="grid w-full grid-cols-2 md:grid-cols-5">
+                  <TabsTrigger value="domestic">Domestic cities</TabsTrigger>
+                  <TabsTrigger value="international">International cities</TabsTrigger>
+                  <TabsTrigger value="regions">Regions</TabsTrigger>
+                  <TabsTrigger value="countries">Countries</TabsTrigger>
+                  <TabsTrigger value="places">Places to stay</TabsTrigger>
+                </TabsList>
+                <TabsContent value="domestic" className="mt-6">
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-4 gap-y-2">
+                    {displayedCities.map((city, index) => (
+                      <Link key={index} href="#" className="text-sm text-muted-foreground hover:text-primary hover:underline" prefetch={false}>
+                        {city}
+                      </Link>
+                    ))}
+                  </div>
+                   {!showAll && (
+                    <Button variant="link" className="px-0 mt-4" onClick={() => setShowAll(true)}>
+                      + Show more
+                    </Button>
+                  )}
+                </TabsContent>
+                <TabsContent value="international" className="mt-6">
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-4 gap-y-2">
+                    {internationalCities.map((city, index) => (
+                        <Link key={index} href="#" className="text-sm text-muted-foreground hover:text-primary hover:underline" prefetch={false}>
+                            {city}
+                        </Link>
+                    ))}
+                  </div>
+                </TabsContent>
+                <TabsContent value="regions" className="mt-6">
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-4 gap-y-2">
+                        {regions.map((region, index) => (
+                            <Link key={index} href="#" className="text-sm text-muted-foreground hover:text-primary hover:underline" prefetch={false}>
+                                {region}
+                            </Link>
+                        ))}
+                    </div>
+                </TabsContent>
+                <TabsContent value="countries" className="mt-6">
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-4 gap-y-2">
+                        {countries.map((country, index) => (
+                            <Link key={index} href="#" className="text-sm text-muted-foreground hover:text-primary hover:underline" prefetch={false}>
+                                {country}
+                            </Link>
+                        ))}
+                    </div>
+                </TabsContent>
+                <TabsContent value="places" className="mt-6">
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-4 gap-y-2">
+                        {placesToStay.map((place, index) => (
+                            <Link key={index} href="#" className="text-sm text-muted-foreground hover:text-primary hover:underline" prefetch={false}>
+                                {place}
+                            </Link>
+                        ))}
+                    </div>
+                </TabsContent>
+              </Tabs>
+            </CardContent>
+          </Card>
+        </AnimateOnScroll>
+      </div>
+    </section>
+  );
+}
