@@ -44,15 +44,15 @@
     },
     {
       "id": "gallery-3",
-      "description": "The Northern Lights in the sky.",
-      "imageUrl": "https://images.unsplash.com/photo-1504858700536-882c978a3464?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxhdXJvcmElMjBib3JlYWxpc3xlbnwwfHx8fDE3NjgwNTc3NDN8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "aurora borealis"
+      "description": "Boats on the Ganges River in Varanasi at sunrise.",
+      "imageUrl": "https://images.unsplash.com/photo-1524293581917-878a6d017c71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxWYXJhbmFzaSUyMGdoYXRzJTIwc3VucmlzZXxlbnwwfHx8fDE3MjQ4OTg2ODJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Varanasi sunrise"
     },
     {
       "id": "gallery-4",
-      "description": "A coral reef underwater.",
-      "imageUrl": "https://images.unsplash.com/photo-1546500840-ae38253aba9b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjb3JhbCUyMHJlZWZ8ZW58MHx8fHwxNzY4MDE4MTIzfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "coral reef"
+      "description": "People celebrating the Holi festival with colored powders.",
+      "imageUrl": "https://images.unsplash.com/photo-1616424508781-a67e2a90b6a5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxIb2xpJTIwZmVzdGl2YWwlMjBJbmRpYXxlbnwwfHx8fDE3MjQ4OTg3MTd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Holi festival"
     },
     {
       "id": "gallery-5",
