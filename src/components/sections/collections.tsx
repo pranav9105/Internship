@@ -66,7 +66,7 @@ export function Collections() {
               {collections.map((collection, index) => collection.image && (
                 <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/4">
                     <Card className="overflow-hidden relative group">
-                        <div className="aspect-[3/4]">
+                        <div className="aspect-[3/4] rounded-2xl overflow-hidden">
                             <Image
                                 src={collection.image.imageUrl}
                                 alt={collection.image.description}

@@ -6,14 +6,15 @@ import { usePathname } from 'next/navigation';
 import { Logo } from '@/components/logo';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Search } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useUser } from '@/firebase';
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 
 const navLinks = [
-  { href: '/deals', label: 'Deals' },
-  { href: '/help', label: 'Help' },
-  { href: '/feedback', label: 'Feedback' },
+  { href: '/deals', label: 'Destinations' },
+  { href: '/help', label: 'Blog' },
+  { href: '/feedback', label: 'Contact' },
 ];
 
 export function Header() {
@@ -42,13 +43,18 @@ export function Header() {
     setIsMenuOpen(false);
   }, [pathname]);
 
+  const getInitials = (name: string | null | undefined) => {
+    if (!name) return 'U';
+    return name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+  };
+
   return (
     <header
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
         isScrolled
           ? 'bg-background/80 backdrop-blur-sm shadow-sm'
-          : 'bg-transparent'
+          : isHomePage ? 'bg-black/20' : 'bg-transparent'
       )}
     >
       <div className="container mx-auto px-4 md:px-6">
@@ -61,7 +67,10 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="font-medium text-foreground hover:text-primary transition-colors"
+                className={cn(
+                    "font-medium  transition-colors",
+                    isHomePage && !isScrolled ? 'text-white hover:text-primary' : 'text-foreground hover:text-primary'
+                )}
               >
                 {link.label}
               </Link>
@@ -69,13 +78,20 @@ export function Header() {
           </nav>
 
           <div className="hidden md:flex items-center gap-4">
+            <Button variant="ghost" size="icon" className={isHomePage && !isScrolled ? 'text-white' : ''}>
+                <Search />
+            </Button>
             {user ? (
-                <Button asChild>
-                    <Link href="/dashboard">Dashboard</Link>
-                </Button>
+                <div className="flex items-center gap-2">
+                    <Avatar className="h-9 w-9">
+                        {user.photoURL && <AvatarImage src={user.photoURL} alt={user.displayName || ''} />}
+                        <AvatarFallback>{getInitials(user.displayName)}</AvatarFallback>
+                    </Avatar>
+                     <span className={cn(isHomePage && !isScrolled ? 'text-white' : '')}>Hello, {user.displayName?.split(' ')[0]}</span>
+                </div>
             ) : (
                 <>
-                    <Button asChild variant="ghost">
+                    <Button asChild variant="ghost" className={isHomePage && !isScrolled ? 'text-white' : ''}>
                         <Link href="/login">Sign In</Link>
                     </Button>
                     <Button asChild>
@@ -89,7 +105,7 @@ export function Header() {
           <div className="md:hidden">
             <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon">
+                <Button variant="ghost" size="icon" className={isHomePage && !isScrolled ? 'text-white' : ''}>
                   {isMenuOpen ? <X /> : <Menu />}
                   <span className="sr-only">Toggle Menu</span>
                 </Button>
