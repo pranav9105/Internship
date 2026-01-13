@@ -11,7 +11,6 @@ import { Calendar } from '../ui/calendar';
 import { OccupancyPicker } from './occupancy-picker';
 import { Input } from '../ui/input';
 import { format } from 'date-fns';
-import { cn } from '@/lib/utils';
 
 export interface Occupancy {
     adults: number;
@@ -36,57 +35,59 @@ export function StaySearchForm() {
     ) : "Select your dates";
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-12 gap-0.5 bg-white/10 rounded-lg p-2 text-white">
+    <div className="space-y-4">
         {/* Location */}
-        <div className="lg:col-span-4 p-3 flex items-center gap-3">
-            <MapPin className="h-6 w-6 text-white/80" />
+        <div className="p-3 flex items-center gap-3 rounded-lg bg-muted/50">
+            <MapPin className="h-6 w-6 text-muted-foreground" />
             <div className="flex-grow">
-                <Label htmlFor="location" className="text-xs font-light">Where are you going?</Label>
+                <Label htmlFor="location" className="text-xs font-light text-muted-foreground">Where are you going?</Label>
                 <Input 
                     id="location" 
                     value={destination}
                     onChange={(e) => setDestination(e.target.value)}
-                    className="text-lg font-bold bg-transparent border-0 p-0 h-auto focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-white/50"
+                    className="text-lg font-bold bg-transparent border-0 p-0 h-auto focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-muted-foreground"
                     placeholder="Search destinations"
                 />
             </div>
         </div>
         
-        {/* Dates */}
-        <Popover>
-            <PopoverTrigger asChild>
-                <button className="lg:col-span-3 p-3 flex items-center gap-3 text-left w-full">
-                     <CalendarDays className="h-6 w-6 text-white/80" />
-                     <div className="flex-grow">
-                        <Label className="text-xs font-light">Dates</Label>
-                        <p className="text-lg font-bold whitespace-nowrap">{dateDisplay}</p>
-                     </div>
-                </button>
-            </PopoverTrigger>
-            <PopoverContent className="w-auto p-0" align="start">
-                <Calendar mode="range" selected={dates} onSelect={setDates} numberOfMonths={2} />
-            </PopoverContent>
-        </Popover>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Dates */}
+            <Popover>
+                <PopoverTrigger asChild>
+                    <button className="p-3 flex items-center gap-3 text-left w-full rounded-lg bg-muted/50">
+                        <CalendarDays className="h-6 w-6 text-muted-foreground" />
+                        <div className="flex-grow">
+                            <Label className="text-xs font-light text-muted-foreground">Dates</Label>
+                            <p className="text-lg font-bold whitespace-nowrap">{dateDisplay}</p>
+                        </div>
+                    </button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0" align="start">
+                    <Calendar mode="range" selected={dates} onSelect={setDates} numberOfMonths={2} />
+                </PopoverContent>
+            </Popover>
 
-        {/* Guests */}
-         <Popover>
-            <PopoverTrigger asChild>
-                <button className="lg:col-span-3 p-3 flex items-center gap-3 text-left w-full">
-                    <Users className="h-6 w-6 text-white/80" />
-                     <div className="flex-grow">
-                        <Label className="text-xs font-light">Guests</Label>
-                        <p className="text-lg font-bold">{occupancy.adults} Adults, {occupancy.children} Children</p>
-                     </div>
-                </button>
-            </PopoverTrigger>
-            <PopoverContent className="w-80 p-4">
-                <OccupancyPicker value={occupancy} onChange={setOccupancy} />
-            </PopoverContent>
-         </Popover>
+            {/* Guests */}
+            <Popover>
+                <PopoverTrigger asChild>
+                    <button className="p-3 flex items-center gap-3 text-left w-full rounded-lg bg-muted/50">
+                        <Users className="h-6 w-6 text-muted-foreground" />
+                        <div className="flex-grow">
+                            <Label className="text-xs font-light text-muted-foreground">Guests</Label>
+                            <p className="text-lg font-bold">{occupancy.adults} Adults, {occupancy.children} Children</p>
+                        </div>
+                    </button>
+                </PopoverTrigger>
+                <PopoverContent className="w-80 p-4">
+                    <OccupancyPicker value={occupancy} onChange={setOccupancy} />
+                </PopoverContent>
+            </Popover>
+        </div>
 
          {/* Search Button */}
-         <div className="lg:col-span-2 p-2">
-            <Button size="lg" className="w-full h-full text-lg font-bold rounded-md shadow-lg hover:shadow-xl transition-shadow">
+         <div className="pt-2">
+            <Button size="lg" className="w-full h-14 text-lg font-bold rounded-lg shadow-lg hover:shadow-xl transition-shadow">
                 <Search className="mr-2 h-5 w-5"/>
                 Search
             </Button>

@@ -5,10 +5,9 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Logo } from '@/components/logo';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetHeader, SheetTrigger } from '@/components/ui/sheet';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { SheetHeader } from '../ui/sheet';
 
 const navLinks = [
   { href: '/deals', label: 'Deals' },
@@ -21,25 +20,24 @@ export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
 
+  const isHomePage = pathname === '/';
+
   useEffect(() => {
     const handleScroll = () => {
-      // For the homepage, we want a different scroll behavior
-      if (pathname === '/') {
-        setIsScrolled(window.scrollY > 50);
-      } else {
-        setIsScrolled(true); // For other pages, the header is always "scrolled"
-      }
+      setIsScrolled(window.scrollY > 50);
     };
-    handleScroll(); // set initial state
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [pathname]);
+
+    if (isHomePage) {
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      return () => window.removeEventListener('scroll', handleScroll);
+    } else {
+      setIsScrolled(true);
+    }
+  }, [isHomePage]);
 
   useEffect(() => {
     setIsMenuOpen(false);
   }, [pathname]);
-  
-  const isHomePage = pathname === '/';
 
   return (
     <header

@@ -4,7 +4,7 @@
 import { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
-import { Hotel, Plane, Car, Sailboat } from 'lucide-react';
+import { Hotel, Plane, Sailboat } from 'lucide-react';
 import { StaySearchForm } from './stay-search-form';
 import { cn } from '@/lib/utils';
 import { TrainIcon } from '../icons/train-icon';
@@ -21,17 +21,16 @@ const searchTabs = [
 export function SearchWidget() {
   const [activeTab, setActiveTab] = useState('stays');
   return (
-    <Card className="w-full max-w-5xl mx-auto shadow-2xl rounded-xl bg-white/20 backdrop-blur-lg border-white/30">
-      <CardContent className="p-4">
+    <Card className="w-full max-w-5xl mx-auto shadow-2xl rounded-2xl bg-card/80 backdrop-blur-lg border-white/20">
+      <CardContent className="p-4 sm:p-6">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="bg-transparent p-0 h-auto mb-4">
+          <TabsList className="bg-muted/50 p-1 h-auto mb-6 rounded-lg">
             {searchTabs.map((tab) => (
               <TabsTrigger
                 key={tab.value}
                 value={tab.value}
                 className={cn(
-                  "flex-row items-center gap-2 h-auto p-3 text-sm font-semibold text-white/80 data-[state=active]:text-white data-[state=active]:bg-white/20 data-[state=active]:shadow-none rounded-lg",
-                  activeTab === tab.value ? "bg-white/20 text-white" : ""
+                  "flex-1 flex-row items-center gap-2 h-auto p-2 text-sm font-semibold text-muted-foreground data-[state=active]:text-foreground data-[state=active]:bg-card data-[state=active]:shadow-md rounded-md"
                 )}
               >
                 <tab.icon className="h-5 w-5" />
@@ -44,7 +43,7 @@ export function SearchWidget() {
           </TabsContent>
           {searchTabs.filter(t => t.value !== 'stays').map(tab => (
              <TabsContent key={tab.value} value={tab.value} className="mt-0">
-                <div className="text-center p-16 text-white/80">
+                <div className="text-center p-16 text-muted-foreground">
                     <tab.icon className="mx-auto h-12 w-12 mb-4" />
                     <h2 className="text-xl font-bold">Search for {tab.label}</h2>
                     <p>This feature is not yet available.</p>
