@@ -28,7 +28,7 @@ const appNavLinks = [
   { href: '/my-trips', label: 'My Trips', icon: Briefcase },
   { href: '/wishlist', label: 'Wishlist', icon: Heart },
   { href: '/bookings', label: 'Bookings', icon: Hotel },
-]
+];
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -58,6 +58,8 @@ export function Header() {
     if (!name) return 'U';
     return name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
   };
+
+  const MobileNavLinks = isAppPage ? appNavLinks : homeNavLinks;
 
   return (
     <header
@@ -202,7 +204,7 @@ export function Header() {
               </SheetTrigger>
             </div>
             <nav className="flex-1 space-y-2 p-4">
-              {(isAppPage ? appNavLinks : homeNavLinks).map((link) => (
+              {MobileNavLinks.map((link) => (
                 <Button
                   key={link.href}
                   asChild
