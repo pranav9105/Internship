@@ -4,7 +4,13 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useUser } from '@/firebase';
-import { Header } from '@/components/layout/header';
+import { AnimateOnScroll } from '@/components/animate-on-scroll';
+import { Sidebar } from '@/components/layout/sidebar';
+import { DashboardHeader } from '@/components/dashboard/header';
+import { DashboardCalendar } from '@/components/dashboard/calendar';
+import { EasyVisa } from '@/components/dashboard/easy-visa';
+import { MostPopular } from '@/components/dashboard/most-popular';
+import { Bookings } from '@/components/dashboard/bookings';
 
 export default function DashboardPage() {
   const { user, isUserLoading } = useUser();
@@ -25,15 +31,38 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="flex min-h-screen bg-muted/30">
-      <div className="flex-grow flex flex-col w-full">
-        <Header />
-        <main className="flex-grow pt-20">
-          <div className="container mx-auto px-4 py-8 md:px-6">
-            {/* All dashboard content has been removed as requested. */}
-          </div>
+    <div className="flex w-full">
+        <Sidebar />
+        <main className="flex-grow p-8 bg-background overflow-y-auto">
+            <div className="grid grid-cols-12 gap-8">
+                {/* Main content */}
+                <div className="col-span-12 lg:col-span-8">
+                    <DashboardHeader />
+                    <div className="mt-8">
+                        <AnimateOnScroll>
+                          <EasyVisa />
+                        </AnimateOnScroll>
+                    </div>
+                     <div className="mt-8">
+                        <AnimateOnScroll>
+                          <MostPopular />
+                        </AnimateOnScroll>
+                    </div>
+                </div>
+
+                {/* Right sidebar */}
+                <div className="col-span-12 lg:col-span-4">
+                    <AnimateOnScroll>
+                        <DashboardCalendar />
+                    </AnimateOnScroll>
+                     <div className="mt-8">
+                         <AnimateOnScroll>
+                            <Bookings />
+                         </AnimateOnScroll>
+                    </div>
+                </div>
+            </div>
         </main>
-      </div>
     </div>
   );
 }

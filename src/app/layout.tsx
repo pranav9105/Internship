@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Toaster } from '@/components/ui/toaster';
 import { ThemeProvider } from '@/context/theme-provider';
 import { FirebaseClientProvider } from '@/firebase';
+import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = {
   title: 'RoamReady',
@@ -24,15 +25,15 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="font-body antialiased">
+      <body className={cn("font-body antialiased", "dark")}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >
           <FirebaseClientProvider>
-            <div className="relative flex min-h-screen">
+            <div className="relative flex min-h-screen w-full">
               {children}
             </div>
             <Toaster />

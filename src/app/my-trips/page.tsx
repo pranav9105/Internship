@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { Header } from '@/components/layout/header';
+import { Sidebar } from '@/components/layout/sidebar';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -41,10 +41,9 @@ export default function MyTripsPage() {
   };
 
   return (
-    <div className="flex min-h-screen bg-muted/40 w-full">
-      <div className="flex flex-col flex-grow w-full">
-        <Header />
-        <main className="flex-grow pt-24 pb-8">
+    <div className="flex w-full">
+      <Sidebar />
+      <main className="flex-grow p-8">
           <div className="container mx-auto px-4 md:px-6">
             <AnimateOnScroll>
               <header className="mb-8">
@@ -134,8 +133,7 @@ export default function MyTripsPage() {
               </Tabs>
             </AnimateOnScroll>
           </div>
-        </main>
-      </div>
+      </main>
     </div>
   );
 }

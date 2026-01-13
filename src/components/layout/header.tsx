@@ -1,188 +1,105 @@
-
 "use client";
 
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Menu, X, LogOut, LayoutDashboard, Settings, User as UserIcon, LifeBuoy, MessageSquareQuote, Palette, Calendar, Landmark, Package, Briefcase, Heart, Hotel } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { usePathname } from 'next/navigation';
 import { Logo } from '@/components/logo';
-import { useAuth, useUser } from '@/firebase';
-import { useRouter, usePathname } from 'next/navigation';
-import { ThemeToggle } from '../theme-toggle';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
+import { Sheet, SheetContent, SheetTrigger, SheetHeader } from '@/components/ui/sheet';
+import { Menu, X } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
-const homeNavLinks = [
-  { href: '/#destinations', label: 'Destinations', icon: Landmark },
-  { href: '/deals', label: 'Deals', icon: Package },
-  { href: '/#gallery', label: 'Inspiration', icon: Palette },
-  { href: '/#contact', label: 'Contact', icon: MessageSquareQuote },
-];
-
-const appNavLinks = [
-  { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
-  { href: '/my-trips', label: 'My Trips', icon: Briefcase },
-  { href: '/wishlist', label: 'Wishlist', icon: Heart },
-  { href: '/bookings', label: 'Bookings', icon: Hotel },
-  { href: '/settings', label: 'Settings', icon: Settings },
+const navLinks = [
+  { href: '/deals', label: 'Deals' },
+  { href: '/help', label: 'Help' },
+  { href: '/feedback', label: 'Feedback' },
 ];
 
 export function Header() {
-  const [scrolled, setScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { user, isUserLoading } = useUser();
-  const auth = useAuth();
-  const router = useRouter();
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
-
-  const isAppPage = appNavLinks.some(link => pathname.startsWith(link.href));
-  const isHomePage = pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 10);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleLogout = async () => {
-    await auth.signOut();
-    router.push('/');
-  };
-
-  const getInitials = (name: string | null | undefined) => {
-    if (!name) return 'U';
-    return name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
-  };
-
-  const NavLinks = isAppPage ? appNavLinks : homeNavLinks;
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [pathname]);
 
   return (
     <header
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out',
-        scrolled || !isHomePage ? 'bg-background/80 shadow-md backdrop-blur-sm' : 'bg-transparent'
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+        isScrolled ? 'bg-background/80 backdrop-blur-sm shadow-md' : 'bg-transparent'
       )}
     >
-      <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6">
-        <div className="flex items-center gap-4">
-            {isAppPage && (
-                 <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
-                    <SheetTrigger asChild>
-                        <Button variant="ghost" size="icon">
-                            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-                            <span className="sr-only">Toggle navigation menu</span>
-                        </Button>
-                    </SheetTrigger>
-                    <SheetContent side="left" className="w-full max-w-xs p-0 flex flex-col">
-                         <SheetHeader className="flex h-20 items-center justify-between border-b px-6">
-                            <SheetTitle><Logo /></SheetTitle>
-                         </SheetHeader>
-                         <nav className="flex-1 space-y-2 p-4">
-                            {NavLinks.map((link) => (
-                                <Button
-                                key={link.href}
-                                asChild
-                                variant={pathname.startsWith(link.href) ? 'secondary' : 'ghost'}
-                                className="w-full justify-start text-base"
-                                onClick={() => setIsMobileMenuOpen(false)}
-                                >
-                                <Link href={link.href}>
-                                    <link.icon className="mr-3 h-5 w-5" />
-                                    {link.label}
-                                </Link>
-                                </Button>
-                            ))}
-                         </nav>
-                         <div className="mt-auto border-t p-4 space-y-2">
-                             <Button variant="ghost" className="w-full justify-start text-base" onClick={handleLogout}>
-                                 <LogOut className="mr-3 h-5 w-5" />
-                                 Logout
-                             </Button>
-                         </div>
-                    </SheetContent>
-                </Sheet>
-            )}
-            <Logo />
-        </div>
-
-        <nav className="hidden items-center gap-1 md:flex">
-          {!isAppPage && homeNavLinks.map((link) => (
-            <Button key={link.href} asChild variant="link" className={cn("text-lg", isHomePage && !scrolled ? "text-white" : "text-foreground/80")}>
-               <Link
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="flex items-center justify-between h-20">
+          <Logo />
+          
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-6">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
                 href={link.href}
-                className="group font-medium transition-colors hover:text-primary"
+                className="font-medium text-foreground hover:text-primary transition-colors"
               >
                 {link.label}
-                 <span className="block max-w-0 group-hover:max-w-full transition-all duration-300 h-0.5 bg-primary"></span>
               </Link>
-            </Button>
-          ))}
-        </nav>
-        <div className="flex items-center gap-2">
-          <ThemeToggle />
-          {!isUserLoading && (
-            user ? (
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="relative h-10 w-10 rounded-full">
-                    <Avatar className="h-10 w-10 border-2 border-primary/50">
-                      {user.photoURL ? (
-                        <AvatarImage src={user.photoURL} alt={user.displayName || 'User'}/>
-                      ) : (
-                        <AvatarFallback>{getInitials(user.displayName)}</AvatarFallback>
-                      )}
-                    </Avatar>
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-64" align="end" forceMount>
-                  <DropdownMenuLabel className="font-normal">
-                    <div className="flex items-center gap-3">
-                       <Avatar className="h-10 w-10">
-                         {user.photoURL ? (
-                            <AvatarImage src={user.photoURL} alt={user.displayName || 'User'}/>
-                          ) : (
-                            <AvatarFallback>{getInitials(user.displayName)}</AvatarFallback>
-                          )}
-                      </Avatar>
-                      <div className="flex flex-col space-y-1">
-                        <p className="text-sm font-medium leading-none">{user.displayName || 'Traveler'}</p>
-                        <p className="text-xs leading-none text-muted-foreground">
-                          {user.email}
-                        </p>
-                      </div>
-                    </div>
-                  </DropdownMenuLabel>
-                  
-                  <DropdownMenuSeparator />
-                  
-                  <DropdownMenuItem onClick={() => router.push('/dashboard')}>
-                    <LayoutDashboard className="mr-2 h-4 w-4" />
-                    <span>Dashboard</span>
-                  </DropdownMenuItem>
+            ))}
+          </nav>
 
-                  <DropdownMenuSeparator />
-                  
-                  <DropdownMenuItem onClick={handleLogout}>
-                    <LogOut className="mr-2 h-4 w-4" />
-                    <span>Logout</span>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            ) : (
-              <>
-                <Button asChild variant={isHomePage && !scrolled ? "secondary" : "ghost"}>
-                  <Link href="/login">Login</Link>
+          <div className="hidden md:flex items-center gap-4">
+            <Button asChild variant="ghost">
+              <Link href="/login">Sign In</Link>
+            </Button>
+            <Button asChild>
+              <Link href="/signup">Sign Up</Link>
+            </Button>
+          </div>
+
+          {/* Mobile Navigation */}
+          <div className="md:hidden">
+            <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  {isMenuOpen ? <X /> : <Menu />}
+                  <span className="sr-only">Toggle Menu</span>
                 </Button>
-                <Button asChild>
-                  <Link href="/signup">Sign Up</Link>
-                </Button>
-              </>
-            )
-          )}
+              </SheetTrigger>
+              <SheetContent side="left">
+                <SheetHeader>
+                    <Logo />
+                </SheetHeader>
+                <div className="mt-8 flex flex-col gap-4">
+                  {navLinks.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className="font-medium text-lg text-foreground hover:text-primary transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                   <div className="border-t pt-4 flex flex-col gap-4">
+                        <Button asChild variant="outline" className="w-full">
+                            <Link href="/login">Sign In</Link>
+                        </Button>
+                        <Button asChild className="w-full">
+                            <Link href="/signup">Sign Up</Link>
+                        </Button>
+                    </div>
+                </div>
+              </SheetContent>
+            </Sheet>
+          </div>
         </div>
       </div>
     </header>
