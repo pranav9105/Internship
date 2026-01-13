@@ -74,21 +74,27 @@
     },
     {
       "id": "gallery-5",
-      "description": "Hot air balloons over a landscape.",
-      "imageUrl": "https://images.unsplash.com/photo-1519659528534-7fd733a832a0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxob3QlMjBhaXIlMjBiYWxsb29uc3xlbnwwfHx8fDE3Njc5NjYxMTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "hot air balloons"
+      "description": "A hot air balloon festival.",
+      "imageUrl": "https://images.unsplash.com/photo-1528458873991-8b4d8c2d583e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxob3QlMjBhaXIlMjBiYWxsb29uJTIwZmVzdGl2YWx8ZW58MHx8fHwxNzY4MDI3MDM2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "balloon festival"
     },
     {
       "id": "gallery-6",
-      "description": "A historic castle.",
-      "imageUrl": "https://images.unsplash.com/photo-1678038069938-cb449132a9ba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxoaXN0b3JpYyUyMGNhc3RsZXxlbnwwfHx8fDE3Njc5NjIxMDd8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "historic castle"
+      "description": "A winding road through a forest.",
+      "imageUrl": "https://images.unsplash.com/photo-1499591934245-4a6a8d6b1a13?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3aW5kaW5nJTIwcm9hZCUyMGZvcmVzdHxlbnwwfHx8fDE3NjgwNTc3MDl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "winding road"
+    },
+    {
+      "id": "about-us-team",
+      "description": "A diverse group of happy people planning a trip together around a map.",
+      "imageUrl": "https://afar.brightspotcdn.com/dims4/default/4a89248/2147483647/strip/true/crop/2400x1600+0+0/resize/900x600!/quality/90/?url=https%3A%2F%2Fk3-prod-afar-media.s3.us-west-2.amazonaws.com%2Fbrightspot%2F55%2Ff3%2Fd08211844fcf80514067f815b02d%2Fshutterstock-1668562333.jpg",
+      "imageHint": "people planning trip"
     },
     {
       "id": "auth-background",
-      "description": "A person looking at a travel map.",
-      "imageUrl": "https://www.heart.org/en/-/media/AHA/H4GM/Article-Images/travel.jpg?sc_lang=en",
-      "imageHint": "travel map"
+      "description": "A scenic view of a tropical beach at sunset.",
+      "imageUrl": "https://images.unsplash.com/photo-1507525428034-b723a996f329?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0cm9waWNhbCUyMGJlYWNoJTIwc3Vuc2V0fGVufDB8fHx8MTc2ODAzNTE3Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "beach sunset"
     },
     {
       "id": "package-heritage-rajasthan",
@@ -98,45 +104,39 @@
     },
     {
       "id": "package-kerala-backwaters",
-      "description": "A traditional houseboat on the Kerala backwaters.",
-      "imageUrl": "https://images.unsplash.com/photo-1622762831572-87a4126c7d23?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxLZXJhbGElMjBiYWNrd2F0ZXJzfGVufDB8fHx8MTcyNTAyNDk3Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "A houseboat on the serene backwaters of Kerala.",
+      "imageUrl": "https://images.unsplash.com/photo-1603939512397-5c5a0455a711?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxLZXJhbGElMjBiYWNrd2F0ZXJzfGVufDB8fHx8MTcyNDc1MjQzOXww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "Kerala backwaters"
     },
     {
       "id": "package-himalayan-escape",
-      "description": "Snow-capped peaks in the Himalayas.",
-      "imageUrl": "https://images.unsplash.com/photo-1551632811-561732d1e306?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxIaW1hbGF5YXMlMjB0cmVrfGVufDB8fHx8MTcyNTAyNDk5NXww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "Himalayas trek"
+      "description": "Snow-capped Himalayan mountains.",
+      "imageUrl": "https://images.unsplash.com/photo-1588033282283-3d02a5542289?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxIaW1hbGF5YXMlMjBtb3VudGFpbnN8ZW58MHx8fHwxNzI0NzUyNDc2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Himalayan mountains"
     },
     {
       "id": "package-goa-beach",
-      "description": "A sunny beach in Goa, India.",
-      "imageUrl": "https://images.unsplash.com/photo-1590393430342-e633a6b83f06?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxHb2ElMjBiZWFjaHxlbnwwfHx8fDE3MjQ2MTI0Njl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "A beautiful sandy beach in Goa.",
+      "imageUrl": "https://images.unsplash.com/photo-1590374504364-0551e36f6d63?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxHb2ElMjBiZWFjaHxlbnwwfHx8fDE3MjQ3NTI1MDB8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "Goa beach"
     },
     {
       "id": "package-golden-triangle",
-      "description": "The Taj Mahal in Agra, India.",
-      "imageUrl": "https://images.unsplash.com/photo-1564507592333-c60657eea523?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxUYWolMjBNYWhhbHxlbnwwfHx8fDE3MjQ2MTI0ODh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "The Taj Mahal in Agra, a key part of the Golden Triangle tour.",
+      "imageUrl": "https://images.unsplash.com/photo-1564507592333-c60657eea523?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxUYWolMjBNYWhhbHxlbnwwfHx8fDE3MjQ3NTI1MjV8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "Taj Mahal"
     },
     {
       "id": "package-andaman-islands",
-      "description": "Clear turquoise water and white sand beach in the Andaman Islands.",
-      "imageUrl": "https://images.unsplash.com/photo-1609122394541-e63d373a0a4a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxBbmRhbWFuJTIwSXNsYW5kc3xlbnwwfHx8fDE3MjQ2MTI1MDh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "Clear turquoise waters and white sand beach in the Andaman Islands.",
+      "imageUrl": "https://images.unsplash.com/photo-1626815243403-45a9143a5b02?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxBbmRhbWFuJTIwSXNsYW5kc3xlbnwwfHx8fDE3MjQ3NTI1NTd8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "Andaman Islands"
     },
     {
       "id": "package-wildlife-safari",
       "description": "A tiger in a national park in India.",
-      "imageUrl": "https://images.unsplash.com/photo-1589530403318-774e4c2f21a4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0aWdlciUyMHNhZmFyaSUyMEluZGlnfGVufDB8fHx8MTcyNDYxMjUzMnww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "tiger safari"
-    },
-    {
-      "id": "about-us-team",
-      "description": "A diverse group of happy people planning a trip together around a map.",
-      "imageUrl": "https://images.unsplash.com/photo-1521737852577-6864c9292671?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0cmF2ZWwlMjB0ZWFtJTIwbWFwfGVufDB8fHx8MTcyNTAyNTI4Nnww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "travel team"
+      "imageUrl": "https://images.unsplash.com/photo-1589921232890-a7d594326157?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3aWxkbGlmZSUyMHNhZmFyaSUyMEluZGlafGVufDB8fHx8MTcyNDc1MjU4NXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "wildlife safari"
     }
   ]
 }
