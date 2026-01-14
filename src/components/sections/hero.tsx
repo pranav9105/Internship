@@ -1,3 +1,4 @@
+
 'use client';
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
@@ -119,7 +120,7 @@ export function Hero() {
             </div>
             {/* Right Content - Carousel */}
             <div>
-              <AnimateOnScroll delay={200} className="md:mt-16">
+              <AnimateOnScroll delay={200} className="md:mt-32">
                 <Carousel
                     setApi={setApi}
                     opts={{
