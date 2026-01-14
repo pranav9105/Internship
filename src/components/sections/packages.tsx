@@ -20,6 +20,11 @@ import {
 } from '@/components/ui/dialog';
 import { Calendar } from '../ui/calendar';
 import { DateRange } from 'react-day-picker';
+import { Label } from '../ui/label';
+import { Input } from '../ui/input';
+import { Separator } from '../ui/separator';
+import { OccupancyPicker } from '../search/occupancy-picker';
+import type { Occupancy } from '../search/stay-search-form';
 
 const packages = [
   {
@@ -89,6 +94,8 @@ function BookingDialog({ pkgTitle }: { pkgTitle: string }) {
     from: new Date(),
     to: new Date(new Date().setDate(new Date().getDate() + 7)),
   });
+  const [occupancy, setOccupancy] = useState<Occupancy>({ adults: 2, children: 0, rooms: 1 });
+
 
   return (
     <Dialog>
@@ -101,16 +108,40 @@ function BookingDialog({ pkgTitle }: { pkgTitle: string }) {
         <DialogHeader>
           <DialogTitle>Book Your Trip: {pkgTitle}</DialogTitle>
           <DialogDescription>
-            Select your desired dates for this adventure.
+            Select your desired dates and provide your information for this adventure.
           </DialogDescription>
         </DialogHeader>
-        <div className="flex justify-center">
-          <Calendar
-            mode="range"
-            selected={date}
-            onSelect={setDate}
-            className="rounded-md border"
-          />
+        <div className="space-y-4">
+            <div>
+                <Label className="text-base font-semibold">Select Dates</Label>
+                <div className="flex justify-center mt-2">
+                    <Calendar
+                        mode="range"
+                        selected={date}
+                        onSelect={setDate}
+                        className="rounded-md border"
+                    />
+                </div>
+            </div>
+            <Separator />
+            <div>
+                <Label className="text-base font-semibold">Who is going?</Label>
+                <OccupancyPicker value={occupancy} onChange={setOccupancy} />
+            </div>
+            <Separator />
+             <div>
+                <Label className="text-base font-semibold">Your Information</Label>
+                 <div className="space-y-4 mt-2">
+                     <div className="space-y-2">
+                        <Label htmlFor="name">Name</Label>
+                        <Input id="name" placeholder="Enter your name" />
+                    </div>
+                     <div className="space-y-2">
+                        <Label htmlFor="email">Email</Label>
+                        <Input id="email" type="email" placeholder="Enter your email" />
+                    </div>
+                 </div>
+            </div>
         </div>
         <DialogFooter>
           <Button type="button" variant="secondary">
