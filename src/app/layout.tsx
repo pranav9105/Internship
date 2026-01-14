@@ -1,5 +1,6 @@
 import './globals.css';
 import type { Metadata } from 'next';
+import { headers } from 'next/headers';
 import { Toaster } from '@/components/ui/toaster';
 import { ThemeProvider } from '@/context/theme-provider';
 import { FirebaseClientProvider } from '@/firebase';
@@ -15,6 +16,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pathname = headers().get('x-next-pathname') || '';
+
+  const isDashboardLayout = [
+    '/dashboard',
+    '/my-trips',
+    '/wishlist',
+    '/bookings',
+    '/transactions',
+    '/settings',
+    '/schedule',
+    '/rewards',
+  ].some((path) => pathname.startsWith(path));
+
   return (
     <html lang="en" className="!scroll-smooth" suppressHydrationWarning>
       <head>
@@ -33,7 +47,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <FirebaseClientProvider>
-            <RootLayoutClient>
+            <RootLayoutClient isDashboard={isDashboardLayout}>
               {children}
             </RootLayoutClient>
             <Toaster />

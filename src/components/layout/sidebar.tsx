@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Logo } from '@/components/logo';
 import { useAuth } from '@/firebase';
-import { LayoutDashboard, Briefcase, Heart, Repeat, Settings, LogOut, Ticket } from 'lucide-react';
+import { LayoutDashboard, Briefcase, Heart, Repeat, Settings, LogOut, Ticket, Award } from 'lucide-react';
 import { Card, CardContent } from '../ui/card';
 
 const navLinks = [
@@ -15,6 +15,7 @@ const navLinks = [
   { href: '/my-trips', label: 'My Trips', icon: Briefcase },
   { href: '/wishlist', label: 'Wishlist', icon: Heart },
   { href: '/bookings', label: 'Bookings', icon: Ticket },
+  { href: '/rewards', label: 'Rewards', icon: Award },
   { href: '/transactions', label: 'Transactions', icon: Repeat },
   { href: '/settings', label: 'Settings', icon: Settings },
 ];
@@ -39,7 +40,7 @@ export function Sidebar({ onLinkClick }: SidebarProps) {
   };
 
   return (
-    <aside className="h-full w-full bg-gradient-to-b from-card to-background p-6 flex flex-col justify-between">
+    <aside className="h-full bg-gradient-to-b from-card to-background p-6 flex flex-col justify-between">
       <div>
         <div className="mb-10">
           <Logo />
