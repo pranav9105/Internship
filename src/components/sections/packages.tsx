@@ -8,7 +8,7 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { AnimateOnScroll } from '../animate-on-scroll';
-import { CheckCircle, ArrowRight, ArrowLeft } from 'lucide-react';
+import { CheckCircle, ArrowRight, ArrowLeft, Heart } from 'lucide-react';
 import Link from 'next/link';
 import {
   Dialog,
@@ -505,6 +505,10 @@ function BookingDialog({ pkg }: { pkg: PackageDetails }) {
 }
 
 export function Packages({ isPage = false }: PackagesProps) {
+  const { user, isUserLoading } = useUser();
+  const firestore = useFirestore();
+  const { toast } = useToast();
+
   const originalPackages = [
     packages.find(p => p.title === 'Rajasthan'),
     packages.find(p => p.title === 'Kerala'),
@@ -512,6 +516,26 @@ export function Packages({ isPage = false }: PackagesProps) {
   ].filter(Boolean) as typeof packages;
   
   const displayedPackages = isPage ? packages : originalPackages;
+
+  const handleAddToWishlist = (pkg: (typeof packages)[0]) => {
+    if (!user || !firestore) {
+      toast({
+        title: "Please sign in",
+        description: "You need to be logged in to add items to your wishlist.",
+        variant: "destructive",
+      });
+      return;
+    }
+    const wishlistCollection = collection(firestore, 'users', user.uid, 'wishlist');
+    addDocumentNonBlocking(wishlistCollection, {
+      name: pkg.title,
+      description: pkg.duration,
+    });
+    toast({
+      title: "Added to Wishlist!",
+      description: `${pkg.title} has been added to your wishlist.`,
+    });
+  };
 
   return (
     <section id="packages" className="py-20 md:py-32 bg-muted/50">
@@ -527,7 +551,7 @@ export function Packages({ isPage = false }: PackagesProps) {
         <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {displayedPackages.map((pkg, index) => (
             <AnimateOnScroll key={pkg.title} delay={index * 100}>
-              <Card className="flex flex-col h-full overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
+              <Card className="flex flex-col h-full overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 group">
                 <CardHeader className="p-0">
                     <div className="relative h-60 w-full">
                         {pkg.image && (
@@ -539,6 +563,16 @@ export function Packages({ isPage = false }: PackagesProps) {
                                 data-ai-hint={pkg.image.imageHint}
                             />
                         )}
+                        <Button 
+                          size="icon" 
+                          variant="secondary" 
+                          className="absolute top-4 right-4 rounded-full h-10 w-10 opacity-0 group-hover:opacity-100 transition-opacity"
+                          onClick={() => handleAddToWishlist(pkg)}
+                          disabled={isUserLoading}
+                        >
+                            <Heart className="text-destructive fill-current" />
+                            <span className="sr-only">Add to wishlist</span>
+                        </Button>
                     </div>
                 </CardHeader>
                 <CardContent className="p-6 flex-grow flex flex-col">
