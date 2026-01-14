@@ -2,7 +2,7 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
@@ -274,8 +274,8 @@ function BookingDialog({ pkg }: { pkg: PackageDetails }) {
   
   const [bookingData, setBookingData] = useState<BookingData>({
     date: {
-        from: new Date(),
-        to: new Date(new Date().setDate(new Date().getDate() + 7)),
+        from: undefined,
+        to: undefined,
     },
     occupancy: { adults: 2, children: 0, rooms: 1 },
     name: user?.displayName || '',
@@ -367,7 +367,7 @@ function BookingDialog({ pkg }: { pkg: PackageDetails }) {
   const resetFlow = () => {
     setStep(1);
     setBookingData({
-        date: { from: new Date(), to: new Date(new Date().setDate(new Date().getDate() + 7)) },
+        date: { from: undefined, to: undefined },
         occupancy: { adults: 2, children: 0, rooms: 1 },
         name: user?.displayName || '',
         email: user?.email || '',
@@ -388,22 +388,31 @@ function BookingDialog({ pkg }: { pkg: PackageDetails }) {
           Book Now
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-2xl max-h-[90vh] overflow-y-auto p-0">
+      <DialogContent className="sm:max-w-4xl max-h-[90vh] overflow-y-auto p-0">
         {step === 1 && (
             <>
                 <DialogHeader className="p-6 pb-0">
-                    <DialogTitle>Step 1: Traveller Details</DialogTitle>
-                    <DialogDescription>Please provide information for the primary traveler.</DialogDescription>
+                    <DialogTitle>Step 1: Select Dates &amp; Guests</DialogTitle>
+                    <DialogDescription>Choose your travel dates and specify the number of travelers.</DialogDescription>
                 </DialogHeader>
-                 <div className="p-6 space-y-4">
-                    <div>
-                        <Label className="text-base font-semibold">Who is going?</Label>
-                        <OccupancyPicker value={bookingData.occupancy} onChange={(occupancy) => handleDataChange({ occupancy })} />
+                 <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="flex justify-center">
+                        <Calendar
+                            mode="range"
+                            selected={bookingData.date}
+                            onSelect={(date) => handleDataChange({ date })}
+                            numberOfMonths={2}
+                            disabled={{ before: new Date() }}
+                        />
                     </div>
-                    <Separator />
-                    <div className="space-y-4">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div className="space-y-2">
+                    <div className="space-y-6">
+                        <div>
+                            <Label className="text-base font-semibold">Who is going?</Label>
+                            <OccupancyPicker value={bookingData.occupancy} onChange={(occupancy) => handleDataChange({ occupancy })} />
+                        </div>
+                        <Separator />
+                        <div className="space-y-4">
+                             <div className="space-y-2">
                                 <Label htmlFor="name">Full Name</Label>
                                 <Input id="name" value={bookingData.name} onChange={(e) => handleDataChange({ name: e.target.value })} />
                             </div>
@@ -411,14 +420,6 @@ function BookingDialog({ pkg }: { pkg: PackageDetails }) {
                                 <Label htmlFor="email">Email</Label>
                                 <Input id="email" type="email" value={bookingData.email} onChange={(e) => handleDataChange({ email: e.target.value })} />
                             </div>
-                        </div>
-                        <div className="space-y-2">
-                            <Label htmlFor="phone">Phone Number</Label>
-                            <Input id="phone" type="tel" value={bookingData.phone} onChange={(e) => handleDataChange({ phone: e.target.value })} />
-                        </div>
-                        <div className="space-y-2">
-                            <Label htmlFor="special-requests">Special Requests</Label>
-                            <Textarea id="special-requests" value={bookingData.specialRequests} onChange={(e) => handleDataChange({ specialRequests: e.target.value })} />
                         </div>
                     </div>
                 </div>
