@@ -196,6 +196,42 @@ const nextConfig: NextConfig = {
         hostname: 'www.tusktravel.com',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.jdmagicbox.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'travelfromindia.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'static.wixstatic.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.holidaymonk.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'montaxe.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.holidify.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
@@ -210,5 +246,7 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
+
+    
 
     
