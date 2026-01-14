@@ -178,6 +178,24 @@ const nextConfig: NextConfig = {
         hostname: 'mediaim.expedia.com',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.gujarattourism.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'img.freepik.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.tusktravel.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },

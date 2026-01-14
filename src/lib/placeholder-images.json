@@ -188,33 +188,33 @@
     },
     {
       "id": "state-gujarat",
-      "description": "Great Rann of Kutch in Gujarat.",
-      "imageUrl": "https://images.unsplash.com/photo-1604258079294-f87e5d808451?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "imageHint": "Gujarat Rann Kutch"
+      "description": "Statue of Unity in Gujarat.",
+      "imageUrl": "https://www.gujarattourism.com/content/dam/gujrattourism/images/home_page/SOU.jpg",
+      "imageHint": "Gujarat Statue of Unity"
     },
     {
       "id": "state-haryana",
-      "description": "Sultanpur National Park in Haryana.",
-      "imageUrl": "https://www.revv.co.in/blogs/wp-content/uploads/2020/08/Sultanpur-National-Park.jpg",
-      "imageHint": "Haryana national park"
+      "description": "Tourist carrying luggage.",
+      "imageUrl": "https://img.freepik.com/free-photo/tourist-carrying-luggage_23-2151747354.jpg?semt=ais_hybrid&w=740&q=80",
+      "imageHint": "Haryana tourist"
     },
     {
       "id": "state-jharkhand",
-      "description": "Dassam Falls in Jharkhand.",
-      "imageUrl": "https://www.revv.co.in/blogs/wp-content/uploads/2020/09/Dassam-Falls-Ranchi.jpg",
+      "description": "Jonha Falls in Ranchi, Jharkhand.",
+      "imageUrl": "https://s7ap1.scene7.com/is/image/incredibleindia/jonha-falls-ranchi-jharkhand-new?qlt=82&ts=1727010871094",
       "imageHint": "Jharkhand waterfall"
     },
     {
       "id": "state-karnataka",
       "description": "Hampi in Karnataka.",
-      "imageUrl": "https://images.unsplash.com/photo-1594102220412-24357b98a1a3?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageUrl": "https://www.tusktravel.com/blog/wp-content/uploads/2023/06/Hampi-in-karnataka-min.jpg",
       "imageHint": "Karnataka Hampi"
     },
     {
       "id": "state-madhya-pradesh",
-      "description": "Khajuraho Temples in Madhya Pradesh.",
-      "imageUrl": "https://images.unsplash.com/photo-1582612064879-8809c065a39f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "imageHint": "Madhya Pradesh temple"
+      "description": "Gwalior Fort in Madhya Pradesh.",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZtewTv1nN6H83d34QdgmE5DZ4khfRQ8Irwg&s",
+      "imageHint": "Madhya Pradesh fort"
     },
     {
       "id": "state-maharashtra",
