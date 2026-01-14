@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Logo } from '@/components/logo';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetHeader, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTrigger, SheetHeader } from '@/components/ui/sheet';
 import { Menu, X, Search, Globe, ChevronDown, LayoutDashboard, Briefcase, Heart, Ticket, Repeat, Settings } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useUser } from '@/firebase';

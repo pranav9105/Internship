@@ -1,4 +1,3 @@
-
 'use client';
 
 import { usePathname } from 'next/navigation';
@@ -25,7 +24,7 @@ export default function RootLayoutClient({
   return (
     <div className={cn('relative flex min-h-screen w-full')}>
       {isDashboardLayout && (
-        <div className="hidden md:block">
+        <div className="hidden md:block h-screen w-72">
             <Sidebar />
         </div>
       )}
