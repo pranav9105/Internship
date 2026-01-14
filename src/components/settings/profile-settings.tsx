@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Separator } from '../ui/separator';
+import { UploadCloud } from 'lucide-react';
 
 export function ProfileSettings() {
     const { user } = useUser();
@@ -44,6 +45,38 @@ export function ProfileSettings() {
                         <div className="space-y-2">
                             <Label htmlFor="dob">Date of Birth</Label>
                             <Input id="dob" type="date" />
+                        </div>
+                    </div>
+                </div>
+
+                <Separator />
+
+                {/* ID Verification */}
+                <div className="space-y-4">
+                    <Label className="text-lg font-semibold">ID Verification</Label>
+                    <p className="text-sm text-muted-foreground">For a faster booking process, please verify your identity by uploading your Aadhar card.</p>
+                    <div className="p-4 border-2 border-dashed rounded-lg space-y-4">
+                        <div className="space-y-2">
+                             <Label htmlFor="aadhar-number">Aadhar Card Number</Label>
+                             <Input id="aadhar-number" placeholder="xxxx-xxxx-xxxx" />
+                        </div>
+                        <div className="space-y-2">
+                            <Label htmlFor="aadhar-upload">Upload Document</Label>
+                            <div className="flex items-center justify-center w-full">
+                                <label
+                                    htmlFor="aadhar-upload"
+                                    className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed rounded-lg cursor-pointer bg-muted/50 hover:bg-muted"
+                                >
+                                    <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                                        <UploadCloud className="w-8 h-8 mb-4 text-muted-foreground" />
+                                        <p className="mb-2 text-sm text-muted-foreground">
+                                            <span className="font-semibold">Click to upload</span> or drag and drop
+                                        </p>
+                                        <p className="text-xs text-muted-foreground">PDF, PNG, JPG (MAX. 5MB)</p>
+                                    </div>
+                                    <Input id="aadhar-upload" type="file" className="hidden" />
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </div>
