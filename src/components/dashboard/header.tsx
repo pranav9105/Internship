@@ -4,9 +4,8 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useUser, useAuth } from '@/firebase';
-import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Search, Bell, LogOut, Briefcase, Heart, Settings, Building, Star } from 'lucide-react';
+import { Search, Bell, LogOut, Briefcase, Heart, Settings, Building, Star, MapPin } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import {
   DropdownMenu,
@@ -25,6 +24,14 @@ import {
   CommandItem,
   CommandList,
 } from '@/components/ui/command';
+import { DialogTitle } from '../ui/dialog';
+
+const indianStates = [
+  "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat", "Haryana",
+  "Himachal Pradesh", "Jharkhand", "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur",
+  "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu",
+  "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal", "Jammu and Kashmir"
+];
 
 export function DashboardHeader() {
   const { user } = useUser();
@@ -75,6 +82,7 @@ export function DashboardHeader() {
       </div>
 
       <CommandDialog open={open} onOpenChange={setOpen}>
+        <DialogTitle className="sr-only">Search Destinations</DialogTitle>
         <CommandInput placeholder="Type a command or search..." />
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
@@ -105,6 +113,14 @@ export function DashboardHeader() {
                 <Star className="mr-2 h-4 w-4" />
                 <span>Special Offers</span>
             </CommandItem>
+          </CommandGroup>
+           <CommandGroup heading="States">
+            {indianStates.map(state => (
+              <CommandItem key={state} onSelect={() => navigateTo('/deals')}>
+                <MapPin className="mr-2 h-4 w-4" />
+                <span>{state}</span>
+              </CommandItem>
+            ))}
           </CommandGroup>
         </CommandList>
       </CommandDialog>
