@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Separator } from '../ui/separator';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
+import Link from 'next/link';
 
 export function PaymentSettings() {
     return (
@@ -57,7 +58,9 @@ export function PaymentSettings() {
                 <div className="space-y-2">
                     <Label className="text-lg font-semibold">Download Invoices</Label>
                      <p className="text-sm text-muted-foreground">View and download your past booking invoices.</p>
-                     <Button variant="outline">View Invoices</Button>
+                     <Button variant="outline" asChild>
+                        <Link href="/transactions">View Invoices</Link>
+                     </Button>
                 </div>
 
                  <Separator />
