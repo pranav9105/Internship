@@ -158,33 +158,33 @@
     },
     {
       "id": "state-andhra-pradesh",
-      "description": "Tirupati Temple in Andhra Pradesh.",
-      "imageUrl": "https://images.unsplash.com/photo-1617894921932-9598971d8ea8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "Simhachalam Temple in Visakhapatnam, Andhra Pradesh.",
+      "imageUrl": "https://s7ap1.scene7.com/is/image/incredibleindia/varaha-lakshmi-narasimha-temple-buddhist-complex-visakhapatnam-andhra-pradesh-1-attr-hero?qlt=82&ts=1742150957215",
       "imageHint": "Andhra Pradesh temple"
     },
     {
       "id": "state-arunachal-pradesh",
-      "description": "Tawang Monastery in Arunachal Pradesh.",
-      "imageUrl": "https://images.unsplash.com/photo-1605648437337-ab7a7c5553b3?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "imageHint": "Arunachal Pradesh monastery"
+      "description": "A scenic view of Arunachal Pradesh.",
+      "imageUrl": "https://oddessemania.in/wp-content/uploads/2023/09/Arunachal.jpg",
+      "imageHint": "Arunachal Pradesh landscape"
     },
     {
       "id": "state-assam",
-      "description": "Tea gardens in Assam.",
-      "imageUrl": "https://images.unsplash.com/photo-1582318622143-e6962f9a4e23?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "imageHint": "Assam tea garden"
+      "description": "A trip to Assam with a one-horned rhinoceros.",
+      "imageUrl": "https://www.pobitorawildlifesanctuary.in/images/trip-to-assam.jpg",
+      "imageHint": "Assam wildlife"
     },
     {
       "id": "state-bihar",
-      "description": "Mahabodhi Temple in Bodh Gaya, Bihar.",
-      "imageUrl": "https://images.unsplash.com/photo-1576459349839-a99f1c84134d?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "imageHint": "Bihar temple"
+      "description": "A view of a landmark in Bihar.",
+      "imageUrl": "https://png.pngtree.com/thumb_back/fh260/background/20240704/pngtree-view-of-bihar-image-hd-image_15859248.jpg",
+      "imageHint": "Bihar landmark"
     },
     {
       "id": "state-chhattisgarh",
-      "description": "Chitrakote Falls in Chhattisgarh.",
-      "imageUrl": "https://images.unsplash.com/photo-1627583680106-a8854541e4a3?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "imageHint": "Chhattisgarh waterfall"
+      "description": "A beautiful view in Chhattisgarh.",
+      "imageUrl": "https://mediaim.expedia.com/destination/1/0dabbf6a07689fabeefdbf2f2215670a.jpg",
+      "imageHint": "Chhattisgarh landscape"
     },
     {
       "id": "state-gujarat",
