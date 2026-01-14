@@ -119,7 +119,7 @@ export function Hero() {
             </div>
             {/* Right Content - Carousel */}
             <div>
-              <AnimateOnScroll delay={200}>
+              <AnimateOnScroll delay={200} className="md:mt-16">
                 <Carousel
                     setApi={setApi}
                     opts={{
