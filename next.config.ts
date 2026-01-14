@@ -154,6 +154,30 @@ const nextConfig: NextConfig = {
         hostname: 'www.tourmyindia.com',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'oddessemania.in',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.pobitorawildlifesanctuary.in',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'png.pngtree.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'mediaim.expedia.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
