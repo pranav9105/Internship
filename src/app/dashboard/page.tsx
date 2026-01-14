@@ -9,6 +9,10 @@ import { EasyVisa } from '@/components/dashboard/easy-visa';
 import { MostPopular } from '@/components/dashboard/most-popular';
 import { Bookings } from '@/components/dashboard/bookings';
 import { Header } from '@/components/layout/header';
+import { MyTripsSummary } from '@/components/dashboard/my-trips-summary';
+import { WishlistSummary } from '@/components/dashboard/wishlist-summary';
+import { TransactionsSummary } from '@/components/dashboard/transactions-summary';
+import { RewardsSummary } from '@/components/dashboard/rewards-summary';
 
 export default function DashboardPage() {
   const { user, isUserLoading } = useUser();
@@ -32,28 +36,34 @@ export default function DashboardPage() {
     <div className="flex flex-col w-full">
         <Header />
         <main className="flex-grow pt-24 p-8 bg-background overflow-y-auto">
-            <div className="grid grid-cols-12 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
                 {/* Main content */}
-                <div className="col-span-12 lg:col-span-8">
-                    <div className="mt-8">
-                        <AnimateOnScroll>
-                          <EasyVisa />
-                        </AnimateOnScroll>
-                    </div>
-                     <div className="mt-8">
-                        <AnimateOnScroll>
-                          <MostPopular />
-                        </AnimateOnScroll>
-                    </div>
+                <div className="col-span-12 lg:col-span-8 space-y-8">
+                    <AnimateOnScroll>
+                        <EasyVisa />
+                    </AnimateOnScroll>
+                    <AnimateOnScroll>
+                        <MostPopular />
+                    </AnimateOnScroll>
                 </div>
 
                 {/* Right sidebar */}
-                <div className="col-span-12 lg:col-span-4">
-                     <div className="mt-8">
-                         <AnimateOnScroll>
-                            <Bookings />
-                         </AnimateOnScroll>
-                    </div>
+                <div className="col-span-12 lg:col-span-4 space-y-8">
+                    <AnimateOnScroll>
+                        <MyTripsSummary />
+                    </AnimateOnScroll>
+                     <AnimateOnScroll>
+                        <WishlistSummary />
+                    </AnimateOnScroll>
+                    <AnimateOnScroll>
+                        <RewardsSummary />
+                    </AnimateOnScroll>
+                    <AnimateOnScroll>
+                        <TransactionsSummary />
+                    </AnimateOnScroll>
+                     <AnimateOnScroll>
+                        <Bookings />
+                     </AnimateOnScroll>
                 </div>
             </div>
         </main>
