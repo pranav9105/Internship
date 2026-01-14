@@ -35,14 +35,14 @@ import { Textarea } from '../ui/textarea';
 
 const packages = [
   {
-    title: 'Andhra Pradesh',
+    title: 'Andhra Pradesh (Vishakhapatnam – Araku – Lambasingi)',
     price: '14999',
     duration: '7 Days / 6 Nights',
     features: ['Temple Tours', 'Beach Visits', 'Local Cuisine'],
     image: PlaceHolderImages.find((img) => img.id === 'state-andhra-pradesh'),
   },
   {
-    title: 'Arunachal Pradesh',
+    title: 'Arunachal Pradesh (Tawang – Dirang – Bomdila)',
     price: '26999',
     duration: '8 Days / 7 Nights',
     features: ['Monastery Visits', 'Trekking', 'Scenic Landscapes'],
@@ -77,7 +77,7 @@ const packages = [
     image: PlaceHolderImages.find((img) => img.id === 'package-goa-beach'),
   },
   {
-    title: 'Gujarat',
+    title: 'Gujarat (Kutch–Somnath–Dwarka)',
     price: '16999',
     duration: '7 Days / 6 Nights',
     features: ['Rann of Kutch', 'Temples', 'Wildlife Sanctuaries'],
@@ -91,7 +91,7 @@ const packages = [
     image: PlaceHolderImages.find((img) => img.id === 'state-haryana'),
   },
   {
-    title: 'Himachal Pradesh',
+    title: 'Himachal Pradesh (Manali–Shimla)',
     price: '16499',
     duration: '10 Days / 9 Nights',
     features: ['Monastery Visits', 'High-Altitude Trekking', 'River Rafting'],
@@ -105,21 +105,21 @@ const packages = [
     image: PlaceHolderImages.find((img) => img.id === 'state-jharkhand'),
   },
   {
-    title: 'Karnataka',
+    title: 'Karnataka (Coorg–Chikmagalur)',
     price: '12499',
     duration: '7 Days / 6 Nights',
     features: ['Historical Monuments', 'Hill Stations', 'Beaches'],
     image: PlaceHolderImages.find((img) => img.id === 'state-karnataka'),
   },
   {
-    title: 'Kerala',
+    title: 'Kerala (Munnar–Alleppey Houseboat)',
     price: '16499',
     duration: '6 Days / 5 Nights',
     features: ['Private Houseboat Stay', 'Ayurvedic Massage', 'Spice Plantation Visit'],
     image: PlaceHolderImages.find((img) => img.id === 'package-kerala-backwaters'),
   },
   {
-    title: 'Madhya Pradesh',
+    title: 'Madhya Pradesh (Khajuraho–Bandhavgarh)',
     price: '15499',
     duration: '8 Days / 7 Nights',
     features: ['Wildlife Sanctuaries', 'Temples', 'Historical Forts'],
@@ -140,35 +140,35 @@ const packages = [
     image: PlaceHolderImages.find((img) => img.id === 'state-manipur'),
   },
   {
-    title: 'Mizoram',
+    title: 'Mizoram (Aizawl – Reiek – Hmuifang)',
     price: '22999',
     duration: '8 Days / 7 Nights',
     features: ['Hills', 'Lakes', 'Cultural Experiences'],
     image: PlaceHolderImages.find((img) => img.id === 'state-mizoram'),
   },
   {
-    title: 'Nagaland',
+    title: 'Nagaland (Kohima – Dzükou Valley – Khonoma)',
     price: '23999',
     duration: '9 Days / 8 Nights',
     features: ['Hornbill Festival', 'Tribal Villages', 'Trekking'],
     image: PlaceHolderImages.find((img) => img.id === 'state-nagaland'),
   },
   {
-    title: 'Odisha',
+    title: 'Odisha (Puri–Konark)',
     price: '11999',
     duration: '6 Days / 5 Nights',
     features: ['Temples', 'Beaches', 'Chilika Lake'],
     image: PlaceHolderImages.find((img) => img.id === 'state-odisha'),
   },
   {
-    title: 'Punjab',
+    title: 'Punjab (Amritsar – Wagah – Jalandhar)',
     price: '11999',
     duration: '5 Days / 4 Nights',
     features: ['Golden Temple', 'Wagah Border', 'Punjabi Cuisine'],
     image: PlaceHolderImages.find((img) => img.id === 'state-punjab'),
   },
   {
-    title: 'Rajasthan',
+    title: 'Rajasthan (Jaipur–Udaipur–Jaisalmer)',
     price: '17999',
     duration: '9 Days / 8 Nights',
     features: ['Stay in Heritage Hotels', 'Desert Safari', 'Fort & Palace Tours'],
@@ -182,14 +182,14 @@ const packages = [
     image: PlaceHolderImages.find((img) => img.id === 'state-sikkim'),
   },
   {
-    title: 'Tamil Nadu',
+    title: 'Tamil Nadu (Ooty–Kodaikanal)',
     price: '15999',
     duration: '7 Days / 6 Nights',
     features: ['Temples', 'Hill Stations', 'Beaches'],
     image: PlaceHolderImages.find((img) => img.id === 'state-tamil-nadu'),
   },
   {
-    title: 'Telangana',
+    title: 'Telangana (Hyderabad – Ramoji – Warangal)',
     price: '12999',
     duration: '5 Days / 4 Nights',
     features: ['Historical Sites', 'Charminar', 'Ramoji Film City'],
@@ -210,7 +210,7 @@ const packages = [
     image: PlaceHolderImages.find((img) => img.id === 'state-uttar-pradesh'),
   },
   {
-    title: 'Uttarakhand',
+    title: 'Uttarakhand (Nainital–Mussoorie)',
     price: '14999',
     duration: '7 Days / 6 Nights',
     features: ['Yoga & Meditation', 'Trekking', 'River Rafting'],
@@ -224,7 +224,7 @@ const packages = [
     image: PlaceHolderImages.find((img) => img.id === 'state-west-bengal'),
   },
   {
-    title: 'Jammu & Kashmir',
+    title: 'Jammu & Kashmir (Srinagar – Gulmarg – Pahalgam – Sonmarg)',
     price: '24999',
     duration: '8 Days / 7 Nights',
     features: ['Houseboat Stay', 'Gondola Ride', 'Mughal Gardens'],
@@ -394,14 +394,15 @@ function BookingDialog({ pkg }: { pkg: PackageDetails }) {
                     <DialogDescription>Confirm dates and details for your trip to {pkg.title}.</DialogDescription>
                 </DialogHeader>
                 <div className="space-y-4">
-                    <div>
+                    <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-4 shadow-lg">
                         <Label className="text-base font-semibold">Select Dates</Label>
                          <div className="flex justify-center mt-2">
                             <Calendar
                                 mode="range"
                                 selected={bookingData.date}
                                 onSelect={(date) => handleDataChange({ date })}
-                                className="rounded-md border"
+                                className="rounded-md"
+                                disabled={{ before: new Date() }}
                             />
                         </div>
                     </div>
@@ -517,9 +518,9 @@ export function Packages({ isPage = false }: PackagesProps) {
   const { toast } = useToast();
 
   const originalPackages = [
-    packages.find(p => p.title === 'Rajasthan'),
-    packages.find(p => p.title === 'Kerala'),
-    packages.find(p => p.title === 'Himachal Pradesh'),
+    packages.find(p => p.title.includes('Rajasthan')),
+    packages.find(p => p.title.includes('Kerala')),
+    packages.find(p => p.title.includes('Himachal')),
   ].filter(Boolean) as typeof packages;
   
   const displayedPackages = isPage ? packages : originalPackages;

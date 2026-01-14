@@ -78,3 +78,16 @@
     right: 1rem !important;
   }
 }
+
+.rdp {
+  --rdp-cell-size: 2.5rem; /* 40px */
+  --rdp-caption-font-size: 18px;
+  --rdp-background-color: transparent;
+  --rdp-accent-color: hsl(var(--primary));
+  --rdp-accent-color-dark: hsl(var(--primary));
+  --rdp-selected-color: hsl(var(--primary-foreground));
+}
+
+.rdp-button:hover:not([aria-selected]):not([disabled]) {
+    background-color: hsl(var(--accent) / 0.5) !important;
+}
