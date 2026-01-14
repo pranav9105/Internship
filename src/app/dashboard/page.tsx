@@ -5,10 +5,10 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useUser } from '@/firebase';
 import { AnimateOnScroll } from '@/components/animate-on-scroll';
-import { DashboardHeader } from '@/components/dashboard/header';
 import { EasyVisa } from '@/components/dashboard/easy-visa';
 import { MostPopular } from '@/components/dashboard/most-popular';
 import { Bookings } from '@/components/dashboard/bookings';
+import { Header } from '@/components/layout/header';
 
 export default function DashboardPage() {
   const { user, isUserLoading } = useUser();
@@ -30,8 +30,8 @@ export default function DashboardPage() {
 
   return (
     <div className="flex flex-col w-full">
-        <DashboardHeader />
-        <main className="flex-grow p-8 bg-background overflow-y-auto">
+        <Header />
+        <main className="flex-grow pt-24 p-8 bg-background overflow-y-auto">
             <div className="grid grid-cols-12 gap-8">
                 {/* Main content */}
                 <div className="col-span-12 lg:col-span-8">
