@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState } from 'react';
@@ -7,7 +6,7 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { AnimateOnScroll } from '../animate-on-scroll';
-import { CheckCircle, ArrowRight } from 'lucide-react';
+import { CheckCircle, ArrowRight, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import {
   Dialog,
@@ -29,7 +28,8 @@ import type { Occupancy } from '../search/stay-search-form';
 import { useUser, useFirestore, addDocumentNonBlocking } from '@/firebase';
 import { collection, serverTimestamp } from 'firebase/firestore';
 import { useToast } from '@/hooks/use-toast';
-import { format } from 'date-fns';
+import { format, differenceInDays } from 'date-fns';
+import { Textarea } from '../ui/textarea';
 
 const packages = [
   {
@@ -241,20 +241,39 @@ interface PackagesProps {
   isPage?: boolean;
 }
 
+type BookingData = {
+    date: DateRange | undefined;
+    occupancy: Occupancy;
+    name: string;
+    email: string;
+    phone: string;
+    specialRequests: string;
+}
+
 function BookingDialog({ pkgTitle, pkgPrice }: { pkgTitle: string, pkgPrice: string }) {
-  const [date, setDate] = useState<DateRange | undefined>({
-    from: new Date(),
-    to: new Date(new Date().setDate(new Date().getDate() + 7)),
-  });
-  const [occupancy, setOccupancy] = useState<Occupancy>({ adults: 2, children: 0, rooms: 1 });
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [isBooking, setIsBooking] = useState(false);
-  
+  const [step, setStep] = useState(1);
   const { user } = useUser();
   const firestore = useFirestore();
   const { toast } = useToast();
+  
+  const [bookingData, setBookingData] = useState<BookingData>({
+    date: {
+        from: new Date(),
+        to: new Date(new Date().setDate(new Date().getDate() + 7)),
+    },
+    occupancy: { adults: 2, children: 0, rooms: 1 },
+    name: user?.displayName || '',
+    email: user?.email || '',
+    phone: '',
+    specialRequests: ''
+  });
+  
+  const [isBooking, setIsBooking] = useState(false);
 
+  const handleDataChange = (data: Partial<BookingData>) => {
+    setBookingData(prev => ({ ...prev, ...data }));
+  };
+  
   const handleBooking = async () => {
     if (!user || !firestore) {
       toast({
@@ -264,9 +283,14 @@ function BookingDialog({ pkgTitle, pkgPrice }: { pkgTitle: string, pkgPrice: str
       });
       return;
     }
-
-    if (!date?.from || !date?.to) {
+    
+    if (!bookingData.date?.from || !bookingData.date?.to) {
         toast({ title: "Error", description: "Please select a valid date range.", variant: "destructive" });
+        return;
+    }
+
+    if (!bookingData.name || !bookingData.email) {
+        toast({ title: "Error", description: "Please provide your name and email.", variant: "destructive" });
         return;
     }
 
@@ -275,102 +299,194 @@ function BookingDialog({ pkgTitle, pkgPrice }: { pkgTitle: string, pkgPrice: str
     const bookingsCollection = collection(firestore, 'users', user.uid, 'bookings');
     const transactionsCollection = collection(firestore, 'users', user.uid, 'transactions');
     
-    const formattedDates = `${format(date.from, 'LLL dd, y')} - ${format(date.to, 'LLL dd, y')}`;
+    const formattedDates = `${format(bookingData.date.from, 'LLL dd, y')} - ${format(bookingData.date.to, 'LLL dd, y')}`;
 
-    const tripDoc = await addDocumentNonBlocking(tripsCollection, {
-      destination: pkgTitle,
-      dates: formattedDates,
-      status: 'Upcoming',
-      occupancy,
-    });
-    
-    const bookingDoc = await addDocumentNonBlocking(bookingsCollection, {
-      type: 'Package',
-      details: pkgTitle,
-      date: format(date.from, 'yyyy-MM-dd'),
-      status: 'Confirmed',
-    });
-
-    if (bookingDoc) {
-        addDocumentNonBlocking(transactionsCollection, {
-            bookingId: bookingDoc.id,
-            createdAt: serverTimestamp(),
-            paymentMethod: "Card",
-            paymentMethodDetails: "Visa **** 1234",
-            amount: parseFloat(pkgPrice),
-            purpose: "Package",
-            status: "Paid",
-            travelerName: name || user.displayName,
-            destinationName: pkgTitle,
+    try {
+        const tripDoc = await addDocumentNonBlocking(tripsCollection, {
+            destination: pkgTitle,
+            dates: formattedDates,
+            status: 'Upcoming',
+            occupancy: bookingData.occupancy,
         });
-    }
+        
+        const bookingDoc = await addDocumentNonBlocking(bookingsCollection, {
+            type: 'Package',
+            details: pkgTitle,
+            date: format(bookingData.date.from, 'yyyy-MM-dd'),
+            status: 'Confirmed',
+        });
 
-    toast({
-      title: 'Booking Confirmed!',
-      description: `Your trip to ${pkgTitle} has been booked.`,
-    });
-    
-    setIsBooking(false);
+        if (bookingDoc) {
+            await addDocumentNonBlocking(transactionsCollection, {
+                bookingId: bookingDoc.id,
+                createdAt: serverTimestamp(),
+                paymentMethod: "Card",
+                paymentMethodDetails: "Visa **** 1234",
+                amount: parseFloat(pkgPrice) * bookingData.occupancy.adults,
+                purpose: "Package",
+                status: "Paid",
+                travelerName: bookingData.name || user.displayName,
+                destinationName: pkgTitle,
+            });
+        }
+        
+        setStep(4); // Move to confirmation step
+
+    } catch (error) {
+        console.error("Booking failed:", error);
+        toast({
+            title: 'Booking Failed',
+            description: 'An error occurred while confirming your booking. Please try again.',
+            variant: 'destructive',
+        });
+    } finally {
+        setIsBooking(false);
+    }
   };
 
+  const resetFlow = () => {
+    setStep(1);
+    setBookingData({
+        date: { from: new Date(), to: new Date(new Date().setDate(new Date().getDate() + 7)) },
+        occupancy: { adults: 2, children: 0, rooms: 1 },
+        name: user?.displayName || '',
+        email: user?.email || '',
+        phone: '',
+        specialRequests: ''
+    });
+  }
+  
+  const totalPrice = parseFloat(pkgPrice) * bookingData.occupancy.adults;
+  const numNights = bookingData.date?.from && bookingData.date?.to ? differenceInDays(bookingData.date.to, bookingData.date.from) : 0;
+
+
   return (
-    <Dialog>
+    <Dialog onOpenChange={(open) => !open && resetFlow()}>
       <DialogTrigger asChild>
         <Button size="lg" className="w-full bg-gradient-to-r from-primary to-accent text-primary-foreground hover:opacity-90 transition-opacity">
           Book Now
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-md max-h-[90vh] overflow-y-auto">
-        <DialogHeader>
-          <DialogTitle>Book Your Trip: {pkgTitle}</DialogTitle>
-          <DialogDescription>
-            Select your desired dates and provide your information for this adventure.
-          </DialogDescription>
-        </DialogHeader>
-        <div className="space-y-4">
-            <div>
-                <Label className="text-base font-semibold">Select Dates</Label>
-                <div className="flex justify-center mt-2">
-                    <Calendar
-                        mode="range"
-                        selected={date}
-                        onSelect={setDate}
-                        className="rounded-md border"
-                    />
+      <DialogContent className="sm:max-w-2xl max-h-[90vh] overflow-y-auto">
+        {step === 1 && (
+            <>
+                <DialogHeader>
+                    <DialogTitle>Step 1: Review Your Trip</DialogTitle>
+                    <DialogDescription>Confirm dates and details for your trip to {pkgTitle}.</DialogDescription>
+                </DialogHeader>
+                <div className="space-y-4">
+                    <div>
+                        <Label className="text-base font-semibold">Select Dates</Label>
+                         <div className="flex justify-center mt-2">
+                            <Calendar
+                                mode="range"
+                                selected={bookingData.date}
+                                onSelect={(date) => handleDataChange({ date })}
+                                className="rounded-md border"
+                            />
+                        </div>
+                    </div>
+                    <Separator />
+                    <div className="space-y-2">
+                        <h3 className="text-base font-semibold">Price Breakup</h3>
+                        <div className="flex justify-between"><span>Base Price:</span><span>₹{parseFloat(pkgPrice).toLocaleString('en-IN')} x {bookingData.occupancy.adults} Adults</span></div>
+                        <div className="flex justify-between"><span>Taxes & Fees (18%):</span><span>₹{(totalPrice * 0.18).toLocaleString('en-IN')}</span></div>
+                        <Separator />
+                        <div className="flex justify-between font-bold text-lg"><span>Total Price:</span><span>₹{(totalPrice * 1.18).toLocaleString('en-IN')}</span></div>
+                    </div>
+                    <p className="text-xs text-muted-foreground">Cancellation policy: Full refund if cancelled 14 days prior to check-in.</p>
                 </div>
-            </div>
-            <Separator />
-            <div>
-                <Label className="text-base font-semibold">Who is going?</Label>
-                <OccupancyPicker value={occupancy} onChange={setOccupancy} />
-            </div>
-            <Separator />
-             <div>
-                <Label className="text-base font-semibold">Your Information</Label>
-                 <div className="space-y-4 mt-2">
-                     <div className="space-y-2">
-                        <Label htmlFor="name">Name</Label>
-                        <Input id="name" placeholder="Enter your name" defaultValue={user?.displayName || ''} onChange={(e) => setName(e.target.value)} />
+                <DialogFooter>
+                    <DialogClose asChild><Button variant="secondary">Cancel</Button></DialogClose>
+                    <Button onClick={() => setStep(2)}>Continue</Button>
+                </DialogFooter>
+            </>
+        )}
+        {step === 2 && (
+             <>
+                <DialogHeader>
+                    <DialogTitle>Step 2: Add Traveller Details</DialogTitle>
+                    <DialogDescription>Please provide information for the primary traveler.</DialogDescription>
+                </DialogHeader>
+                 <div className="space-y-4">
+                    <div>
+                        <Label className="text-base font-semibold">Who is going?</Label>
+                        <OccupancyPicker value={bookingData.occupancy} onChange={(occupancy) => handleDataChange({ occupancy })} />
                     </div>
-                     <div className="space-y-2">
-                        <Label htmlFor="email">Email</Label>
-                        <Input id="email" type="email" placeholder="Enter your email" defaultValue={user?.email || ''} onChange={(e) => setEmail(e.target.value)} />
+                    <Separator />
+                    <div className="space-y-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="space-y-2">
+                                <Label htmlFor="name">Full Name</Label>
+                                <Input id="name" value={bookingData.name} onChange={(e) => handleDataChange({ name: e.target.value })} />
+                            </div>
+                             <div className="space-y-2">
+                                <Label htmlFor="email">Email</Label>
+                                <Input id="email" type="email" value={bookingData.email} onChange={(e) => handleDataChange({ email: e.target.value })} />
+                            </div>
+                        </div>
+                        <div className="space-y-2">
+                            <Label htmlFor="phone">Phone Number</Label>
+                            <Input id="phone" type="tel" value={bookingData.phone} onChange={(e) => handleDataChange({ phone: e.target.value })} />
+                        </div>
+                        <div className="space-y-2">
+                            <Label htmlFor="special-requests">Special Requests</Label>
+                            <Textarea id="special-requests" value={bookingData.specialRequests} onChange={(e) => handleDataChange({ specialRequests: e.target.value })} />
+                        </div>
                     </div>
-                 </div>
-            </div>
-        </div>
-        <DialogFooter>
-          <DialogClose asChild>
-            <Button type="button" variant="secondary">
-                Cancel
-            </Button>
-          </DialogClose>
-           <DialogClose asChild>
-            <Button onClick={handleBooking} disabled={isBooking || !date?.from || !date?.to}>
-              {isBooking ? 'Confirming...' : 'Confirm Booking'}
-            </Button>
-          </DialogClose>
-        </DialogFooter>
+                </div>
+                <DialogFooter>
+                    <Button variant="secondary" onClick={() => setStep(1)}><ArrowLeft className="mr-2 h-4 w-4" /> Back</Button>
+                    <Button onClick={() => setStep(3)}>Proceed to Payment</Button>
+                </DialogFooter>
+            </>
+        )}
+        {step === 3 && (
+            <>
+                <DialogHeader>
+                    <DialogTitle>Step 3: Confirm and Pay</DialogTitle>
+                    <DialogDescription>Please review your booking details before confirming.</DialogDescription>
+                </DialogHeader>
+                 <div className="space-y-4">
+                     <Card>
+                        <CardHeader>
+                            <CardTitle>{pkgTitle}</CardTitle>
+                        </CardHeader>
+                        <CardContent className="space-y-2">
+                            <p><strong>Dates:</strong> {bookingData.date?.from && format(bookingData.date.from, 'LLL dd, y')} - {bookingData.date?.to && format(bookingData.date.to, 'LLL dd, y')} ({numNights} nights)</p>
+                            <p><strong>Guests:</strong> {bookingData.occupancy.adults} Adults, {bookingData.occupancy.children} Children, {bookingData.occupancy.rooms} Rooms</p>
+                            <p><strong>Traveller:</strong> {bookingData.name} ({bookingData.email})</p>
+                            <Separator className="my-4" />
+                            <div className="flex justify-between font-bold text-xl">
+                                <span>Total Amount:</span>
+                                <span>₹{(totalPrice * 1.18).toLocaleString('en-IN')}</span>
+                            </div>
+                             <p className="text-sm text-muted-foreground">You will be charged using your default payment method (Visa **** 1234).</p>
+                        </CardContent>
+                     </Card>
+                </div>
+                <DialogFooter>
+                    <Button variant="secondary" onClick={() => setStep(2)}><ArrowLeft className="mr-2 h-4 w-4" /> Back</Button>
+                    <Button onClick={handleBooking} disabled={isBooking}>{isBooking ? 'Confirming...' : 'Confirm Booking'}</Button>
+                </DialogFooter>
+            </>
+        )}
+        {step === 4 && (
+             <>
+                <DialogHeader>
+                    <DialogTitle>Booking Confirmed!</DialogTitle>
+                    <DialogDescription>Your trip to {pkgTitle} is booked. An email confirmation has been sent.</DialogDescription>
+                </DialogHeader>
+                <div className="text-center py-8">
+                     <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
+                     <p>Your booking ID is: <strong>#{(Math.random()*100000).toFixed(0)}</strong></p>
+                </div>
+                <DialogFooter>
+                    <DialogClose asChild><Button variant="secondary">Close</Button></DialogClose>
+                    <Button asChild><Link href="/my-trips">View Trip</Link></Button>
+                </DialogFooter>
+            </>
+        )}
       </DialogContent>
     </Dialog>
   );
