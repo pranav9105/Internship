@@ -136,6 +136,12 @@ const nextConfig: NextConfig = {
         hostname: 'media.assettype.com',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 's7ap1.scene7.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
