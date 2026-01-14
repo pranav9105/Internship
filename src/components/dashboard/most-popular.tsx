@@ -1,4 +1,3 @@
-
 'use client';
 import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
@@ -7,10 +6,35 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { MapPin } from 'lucide-react';
 
 const popularPlaces = [
-    { name: 'Kerala', country: 'India', imageId: 'package-kerala-backwaters', price: '₹3,500' },
-    { name: 'Jaipur', country: 'India', imageId: 'destination-jaipur', price: '₹2,800' },
-    { name: 'Goa', country: 'India', imageId: 'package-goa-beach', price: '₹3,200' },
-    { name: 'Kashmir', country: 'India', imageId: 'package-himalayan-escape', price: '₹4,100' },
+  { name: 'Andhra Pradesh', country: 'India', imageId: 'state-andhra-pradesh', price: '₹22,000' },
+  { name: 'Arunachal Pradesh', country: 'India', imageId: 'state-arunachal-pradesh', price: '₹30,000' },
+  { name: 'Assam', country: 'India', imageId: 'state-assam', price: '₹25,000' },
+  { name: 'Bihar', country: 'India', imageId: 'state-bihar', price: '₹18,000' },
+  { name: 'Chhattisgarh', country: 'India', imageId: 'state-chhattisgarh', price: '₹20,000' },
+  { name: 'Goa', country: 'India', imageId: 'package-goa-beach', price: '₹35,000' },
+  { name: 'Gujarat', country: 'India', imageId: 'state-gujarat', price: '₹28,000' },
+  { name: 'Haryana', country: 'India', imageId: 'state-haryana', price: '₹15,000' },
+  { name: 'Himachal Pradesh', country: 'India', imageId: 'package-himalayan-escape', price: '₹25,000' },
+  { name: 'Jharkhand', country: 'India', imageId: 'state-jharkhand', price: '₹19,000' },
+  { name: 'Karnataka', country: 'India', imageId: 'state-karnataka', price: '₹26,000' },
+  { name: 'Kerala', country: 'India', imageId: 'package-kerala-backwaters', price: '₹16,000' },
+  { name: 'Madhya Pradesh', country: 'India', imageId: 'state-madhya-pradesh', price: '₹24,000' },
+  { name: 'Maharashtra', country: 'India', imageId: 'state-maharashtra', price: '₹27,000' },
+  { name: 'Manipur', country: 'India', imageId: 'state-manipur', price: '₹29,000' },
+  { name: 'Meghalaya', country: 'India', imageId: 'state-meghalaya', price: '₹31,000' },
+  { name: 'Mizoram', country: 'India', imageId: 'state-mizoram', price: '₹32,000' },
+  { name: 'Nagaland', country: 'India', imageId: 'state-nagaland', price: '₹33,000' },
+  { name: 'Odisha', country: 'India', imageId: 'state-odisha', price: '₹21,000' },
+  { name: 'Punjab', country: 'India', imageId: 'state-punjab', price: '₹17,000' },
+  { name: 'Rajasthan', country: 'India', imageId: 'package-heritage-rajasthan', price: '₹20,000' },
+  { name: 'Sikkim', country: 'India', imageId: 'state-sikkim', price: '₹34,000' },
+  { name: 'Tamil Nadu', country: 'India', imageId: 'state-tamil-nadu', price: '₹23,000' },
+  { name: 'Telangana', country: 'India', imageId: 'state-telangana', price: '₹20,000' },
+  { name: 'Tripura', country: 'India', imageId: 'state-tripura', price: '₹28,000' },
+  { name: 'Uttar Pradesh', country: 'India', imageId: 'state-uttar-pradesh', price: '₹19,000' },
+  { name: 'Uttarakhand', country: 'India', imageId: 'state-uttarakhand', price: '₹26,000' },
+  { name: 'West Bengal', country: 'India', imageId: 'state-west-bengal', price: '₹22,000' },
+  { name: 'Jammu and Kashmir', country: 'India', imageId: 'state-jammu-kashmir', price: '₹35,000' }
 ];
 
 export function MostPopular() {
@@ -46,7 +70,7 @@ export function MostPopular() {
                                      </div>
                                      <div className="text-right">
                                         <p className="font-bold text-primary text-lg">{place.price}</p>
-                                        <p className="text-sm text-muted-foreground">/day</p>
+                                        <p className="text-sm text-muted-foreground">/person</p>
                                      </div>
                                 </CardContent>
                              </Card>
