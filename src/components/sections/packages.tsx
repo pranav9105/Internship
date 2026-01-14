@@ -350,7 +350,7 @@ function BookingDialog({ pkg }: { pkg: PackageDetails }) {
             });
         }
         
-        setStep(4); // Move to confirmation step
+        setStep(3); // Move to confirmation step
 
     } catch (error) {
         console.error("Booking failed:", error);
@@ -392,42 +392,7 @@ function BookingDialog({ pkg }: { pkg: PackageDetails }) {
         {step === 1 && (
             <>
                 <DialogHeader className="p-6 pb-0">
-                    <DialogTitle>Step 1: Review Your Trip</DialogTitle>
-                    <DialogDescription>Confirm dates and details for your trip to {pkg.title}.</DialogDescription>
-                </DialogHeader>
-                <div className="p-6 space-y-4">
-                    <div className="rounded-xl p-4 bg-muted/50">
-                        <Label className="text-base font-semibold">Select Dates</Label>
-                         <div className="flex justify-center mt-2">
-                            <Calendar
-                                mode="range"
-                                selected={bookingData.date}
-                                onSelect={(date) => handleDataChange({ date })}
-                                className="rounded-md"
-                                disabled={{ before: new Date() }}
-                            />
-                        </div>
-                    </div>
-                    <Separator />
-                    <div className="space-y-2">
-                        <h3 className="text-base font-semibold">Price Breakup</h3>
-                        <div className="flex justify-between"><span>Base Price:</span><span>₹{basePrice.toLocaleString('en-IN')} x {bookingData.occupancy.adults} Adults</span></div>
-                        <div className="flex justify-between"><span>Taxes & Fees (12%):</span><span>₹{(totalPrice * 0.12).toLocaleString('en-IN')}</span></div>
-                        <Separator />
-                        <div className="flex justify-between font-bold text-lg"><span>Total Price:</span><span>₹{(totalPrice * 1.12).toLocaleString('en-IN')}</span></div>
-                    </div>
-                    <p className="text-xs text-muted-foreground">Cancellation policy: Full refund if cancelled 14 days prior to check-in.</p>
-                </div>
-                <DialogFooter className="p-6 pt-0 bg-background sticky bottom-0">
-                    <DialogClose asChild><Button variant="secondary">Cancel</Button></DialogClose>
-                    <Button onClick={() => setStep(2)}>Continue</Button>
-                </DialogFooter>
-            </>
-        )}
-        {step === 2 && (
-             <>
-                <DialogHeader className="p-6 pb-0">
-                    <DialogTitle>Step 2: Add Traveller Details</DialogTitle>
+                    <DialogTitle>Step 1: Traveller Details</DialogTitle>
                     <DialogDescription>Please provide information for the primary traveler.</DialogDescription>
                 </DialogHeader>
                  <div className="p-6 space-y-4">
@@ -458,15 +423,15 @@ function BookingDialog({ pkg }: { pkg: PackageDetails }) {
                     </div>
                 </div>
                 <DialogFooter className="p-6 pt-0 bg-background sticky bottom-0">
-                    <Button variant="secondary" onClick={() => setStep(1)}><ArrowLeft className="mr-2 h-4 w-4" /> Back</Button>
-                    <Button onClick={() => setStep(3)}>Proceed to Payment</Button>
+                    <DialogClose asChild><Button variant="secondary">Cancel</Button></DialogClose>
+                    <Button onClick={() => setStep(2)}>Proceed to Payment</Button>
                 </DialogFooter>
             </>
         )}
-        {step === 3 && (
+        {step === 2 && (
             <>
                 <DialogHeader className="p-6 pb-0">
-                    <DialogTitle>Step 3: Confirm and Pay</DialogTitle>
+                    <DialogTitle>Step 2: Confirm and Pay</DialogTitle>
                     <DialogDescription>Please review your booking details before confirming.</DialogDescription>
                 </DialogHeader>
                  <div className="p-6 space-y-4">
@@ -488,12 +453,12 @@ function BookingDialog({ pkg }: { pkg: PackageDetails }) {
                      </Card>
                 </div>
                 <DialogFooter className="p-6 pt-0 bg-background sticky bottom-0">
-                    <Button variant="secondary" onClick={() => setStep(2)}><ArrowLeft className="mr-2 h-4 w-4" /> Back</Button>
+                    <Button variant="secondary" onClick={() => setStep(1)}><ArrowLeft className="mr-2 h-4 w-4" /> Back</Button>
                     <Button onClick={handleBooking} disabled={isBooking}>{isBooking ? 'Confirming...' : 'Confirm Booking'}</Button>
                 </DialogFooter>
             </>
         )}
-        {step === 4 && (
+        {step === 3 && (
              <>
                 <DialogHeader className="p-6 pb-0">
                     <DialogTitle>Booking Confirmed!</DialogTitle>
