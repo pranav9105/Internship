@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 import { Logo } from '@/components/logo';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, X, Search, Globe } from 'lucide-react';
+import { Menu, X, Search, Globe, ChevronDown, LayoutDashboard, Briefcase, Heart, Ticket, Repeat, Settings } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useUser } from '@/firebase';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
@@ -17,12 +17,25 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuPortal
 } from '@/components/ui/dropdown-menu';
 
 const navLinks = [
   { href: '/deals', label: 'Destinations' },
   { href: '/help', label: 'Blog' },
   { href: '/feedback', label: 'Contact' },
+];
+
+const exploreLinks = [
+  { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+  { href: '/my-trips', label: 'My Trips', icon: Briefcase },
+  { href: '/wishlist', label: 'Wishlist', icon: Heart },
+  { href: '/bookings', label: 'Bookings', icon: Ticket },
+  { href: '/transactions', label: 'Transactions', icon: Repeat },
+  { href: '/settings', label: 'Settings', icon: Settings },
 ];
 
 export function Header() {
@@ -73,6 +86,24 @@ export function Header() {
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className={cn("flex items-center gap-1 font-medium transition-colors hover:text-primary", headerTextColor)}>
+                  Explore <ChevronDown className="h-4 w-4" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                {exploreLinks.map((link) => (
+                  <DropdownMenuItem key={link.href} asChild>
+                    <Link href={link.href}>
+                      <link.icon className="mr-2 h-4 w-4" />
+                      {link.label}
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
             {navLinks.map((link) => (
               <Link
                 key={link.href}

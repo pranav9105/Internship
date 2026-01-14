@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -8,9 +9,6 @@ import { Logo } from '@/components/logo';
 import { useAuth } from '@/firebase';
 import { LayoutDashboard, Briefcase, Heart, MessageSquare, Repeat, Settings, LogOut, Ticket } from 'lucide-react';
 import { Card, CardContent } from '../ui/card';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../ui/accordion';
-import { ExploreIcon } from '../icons/explore-icon';
-
 
 const navLinks = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
@@ -38,38 +36,22 @@ export function Sidebar() {
           <Logo />
         </div>
         <nav className="flex flex-col gap-2">
-            <Accordion type="single" collapsible defaultValue="explore" className="w-full border-b-0">
-                <AccordionItem value="explore" className="border-b-0">
-                    <AccordionTrigger className={cn(
-                        "p-0 hover:no-underline rounded-md",
-                        "w-full justify-start text-base h-12",
-                        "bg-primary/10 text-primary hover:bg-primary/20",
-                        "inline-flex items-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
-                        "px-4 py-2" // from button size default
-                    )}>
-                        <ExploreIcon className="mr-3 h-5 w-5" />
-                        Explore
-                    </AccordionTrigger>
-                    <AccordionContent className="pt-2 flex flex-col gap-2">
-                        {navLinks.map((link) => (
-                            <Button
-                            key={link.href}
-                            asChild
-                            variant={pathname.startsWith(link.href) ? 'secondary' : 'ghost'}
-                            className={cn(
-                                'justify-start text-base h-12',
-                                pathname.startsWith(link.href) ? 'bg-primary/10 text-primary' : 'text-muted-foreground hover:bg-muted hover:text-foreground'
-                            )}
-                            >
-                            <Link href={link.href}>
-                                <link.icon className="mr-3 h-5 w-5" />
-                                {link.label}
-                            </Link>
-                            </Button>
-                        ))}
-                    </AccordionContent>
-                </AccordionItem>
-            </Accordion>
+          {navLinks.map((link) => (
+            <Button
+              key={link.href}
+              asChild
+              variant={pathname.startsWith(link.href) ? 'secondary' : 'ghost'}
+              className={cn(
+                'justify-start text-base h-12',
+                pathname.startsWith(link.href) ? 'bg-primary/10 text-primary' : 'text-muted-foreground hover:bg-muted hover:text-foreground'
+              )}
+            >
+              <Link href={link.href}>
+                <link.icon className="mr-3 h-5 w-5" />
+                {link.label}
+              </Link>
+            </Button>
+          ))}
         </nav>
       </div>
 
