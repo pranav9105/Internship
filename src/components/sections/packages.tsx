@@ -29,7 +29,7 @@ import type { Occupancy } from '../search/stay-search-form';
 import { useUser, useFirestore, addDocumentNonBlocking } from '@/firebase';
 import { collection, serverTimestamp } from 'firebase/firestore';
 import { useToast } from '@/hooks/use-toast';
-import { format, differenceInDays, parse } from 'date-fns';
+import { format, differenceInDays, parse, addDays } from 'date-fns';
 import { Textarea } from '../ui/textarea';
 
 const packages = [
@@ -285,14 +285,28 @@ function BookingDialog({ pkg }: { pkg: PackageDetails }) {
   
   const [isBooking, setIsBooking] = useState(false);
 
-  const handleDateChange = (field: 'from' | 'to', value: string) => {
+  const getDurationInDays = (duration: string): number => {
+    const daysMatch = duration.match(/(\d+)\s*Days/);
+    return daysMatch ? parseInt(daysMatch[1], 10) : 0;
+  };
+
+  const handleDateChange = (value: string) => {
     try {
-      const date = value ? parse(value, 'yyyy-MM-dd', new Date()) : undefined;
+      const fromDate = value ? parse(value, 'yyyy-MM-dd', new Date()) : undefined;
+      let toDate: Date | undefined = undefined;
+      if (fromDate) {
+        const durationDays = getDurationInDays(pkg.duration);
+        if (durationDays > 0) {
+            // Subtract 1 because e.g. a 4 day trip from the 1st ends on the 4th, which is 3 days after.
+            toDate = addDays(fromDate, durationDays - 1);
+        }
+      }
+
       setBookingData(prev => ({
         ...prev,
         date: {
-          ...prev.date,
-          [field]: date
+          from: fromDate,
+          to: toDate,
         }
       }));
     } catch (error) {
@@ -316,7 +330,7 @@ function BookingDialog({ pkg }: { pkg: PackageDetails }) {
     }
     
     if (!bookingData.date?.from || !bookingData.date?.to) {
-        toast({ title: "Error", description: "Please select a valid date range.", variant: "destructive" });
+        toast({ title: "Error", description: "Please select a valid check-in date.", variant: "destructive" });
         return;
     }
 
@@ -393,7 +407,7 @@ function BookingDialog({ pkg }: { pkg: PackageDetails }) {
   
   const basePrice = parseFloat(pkg.price.split('–')[0].trim().replace(/,/g, ''));
   const totalPrice = basePrice * bookingData.occupancy.adults;
-  const numNights = bookingData.date?.from && bookingData.date?.to ? differenceInDays(bookingData.date.to, bookingData.date.from) : 0;
+  const numNights = bookingData.date?.from && bookingData.date?.to ? differenceInDays(bookingData.date.to, bookingData.date.from) : (getDurationInDays(pkg.duration) - 1);
 
 
   return (
@@ -411,21 +425,12 @@ function BookingDialog({ pkg }: { pkg: PackageDetails }) {
                     <DialogDescription>Enter your travel dates and personal information.</DialogDescription>
                 </DialogHeader>
                  <div className="p-6 grid grid-cols-1 gap-6">
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="space-y-2">
+                    <div className="space-y-2">
                         <Label>Check-in Date</Label>
                         <Input 
-                          type="date" 
-                          onChange={(e) => handleDateChange('from', e.target.value)}
+                            type="date" 
+                            onChange={(e) => handleDateChange(e.target.value)}
                         />
-                      </div>
-                       <div className="space-y-2">
-                        <Label>Check-out Date</Label>
-                        <Input 
-                          type="date"
-                          onChange={(e) => handleDateChange('to', e.target.value)}
-                        />
-                      </div>
                     </div>
                     <div>
                         <Label className="text-base font-semibold">Who is going?</Label>
