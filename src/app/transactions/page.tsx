@@ -23,6 +23,7 @@ import { AnimateOnScroll } from '@/components/animate-on-scroll';
 import { useUser, useCollection, useFirestore, useMemoFirebase } from '@/firebase';
 import { collection, query, orderBy } from 'firebase/firestore';
 import { format } from 'date-fns';
+import Link from 'next/link';
 
 export default function TransactionsPage() {
   const { user } = useUser();
@@ -137,9 +138,11 @@ export default function TransactionsPage() {
                             </Badge>
                           </TableCell>
                           <TableCell className="text-right">
-                            <Button variant="ghost" size="icon">
-                                <Download className="h-4 w-4" />
-                                <span className="sr-only">Download Invoice</span>
+                            <Button variant="ghost" size="icon" asChild>
+                                <Link href={`/receipt/${tx.id}`} target="_blank">
+                                    <Download className="h-4 w-4" />
+                                    <span className="sr-only">Download Invoice</span>
+                                </Link>
                             </Button>
                           </TableCell>
                         </TableRow>
