@@ -142,6 +142,18 @@ const nextConfig: NextConfig = {
         hostname: 's7ap1.scene7.com',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.revv.co.in',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.tourmyindia.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
@@ -156,5 +168,3 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
-
-    

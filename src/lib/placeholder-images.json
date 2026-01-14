@@ -155,6 +155,156 @@
       "description": "A breathtaking view of a hill station in India with mountains and clouds.",
       "imageUrl": "https://images.unsplash.com/photo-1605540428111-a08851e01462?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfH힐lJTIwc3RhdGlvbiUyMGluZGlhfGVufDB8fHx8MTcyNTkyNTEwMnww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "hill station"
+    },
+    {
+      "id": "state-andhra-pradesh",
+      "description": "Tirupati Temple in Andhra Pradesh.",
+      "imageUrl": "https://images.unsplash.com/photo-1617894921932-9598971d8ea8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "Andhra Pradesh temple"
+    },
+    {
+      "id": "state-arunachal-pradesh",
+      "description": "Tawang Monastery in Arunachal Pradesh.",
+      "imageUrl": "https://images.unsplash.com/photo-1605648437337-ab7a7c5553b3?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "Arunachal Pradesh monastery"
+    },
+    {
+      "id": "state-assam",
+      "description": "Tea gardens in Assam.",
+      "imageUrl": "https://images.unsplash.com/photo-1582318622143-e6962f9a4e23?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "Assam tea garden"
+    },
+    {
+      "id": "state-bihar",
+      "description": "Mahabodhi Temple in Bodh Gaya, Bihar.",
+      "imageUrl": "https://images.unsplash.com/photo-1576459349839-a99f1c84134d?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "Bihar temple"
+    },
+    {
+      "id": "state-chhattisgarh",
+      "description": "Chitrakote Falls in Chhattisgarh.",
+      "imageUrl": "https://images.unsplash.com/photo-1627583680106-a8854541e4a3?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "Chhattisgarh waterfall"
+    },
+    {
+      "id": "state-gujarat",
+      "description": "Great Rann of Kutch in Gujarat.",
+      "imageUrl": "https://images.unsplash.com/photo-1604258079294-f87e5d808451?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "Gujarat Rann Kutch"
+    },
+    {
+      "id": "state-haryana",
+      "description": "Sultanpur National Park in Haryana.",
+      "imageUrl": "https://www.revv.co.in/blogs/wp-content/uploads/2020/08/Sultanpur-National-Park.jpg",
+      "imageHint": "Haryana national park"
+    },
+    {
+      "id": "state-jharkhand",
+      "description": "Dassam Falls in Jharkhand.",
+      "imageUrl": "https://www.revv.co.in/blogs/wp-content/uploads/2020/09/Dassam-Falls-Ranchi.jpg",
+      "imageHint": "Jharkhand waterfall"
+    },
+    {
+      "id": "state-karnataka",
+      "description": "Hampi in Karnataka.",
+      "imageUrl": "https://images.unsplash.com/photo-1594102220412-24357b98a1a3?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "Karnataka Hampi"
+    },
+    {
+      "id": "state-madhya-pradesh",
+      "description": "Khajuraho Temples in Madhya Pradesh.",
+      "imageUrl": "https://images.unsplash.com/photo-1582612064879-8809c065a39f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "Madhya Pradesh temple"
+    },
+    {
+      "id": "state-maharashtra",
+      "description": "Gateway of India in Mumbai, Maharashtra.",
+      "imageUrl": "https://images.unsplash.com/photo-1567157501783-0a9a1d436154?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "Maharashtra Mumbai"
+    },
+    {
+      "id": "state-manipur",
+      "description": "Loktak Lake in Manipur.",
+      "imageUrl": "https://images.unsplash.com/photo-1627583680106-a8854541e4a3?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "Manipur lake"
+    },
+    {
+      "id": "state-meghalaya",
+      "description": "Double Decker Living Root Bridge in Meghalaya.",
+      "imageUrl": "https://images.unsplash.com/photo-1617354366533-5c8c4a1b1c4b?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "Meghalaya root bridge"
+    },
+    {
+      "id": "state-mizoram",
+      "description": "Vantawng Falls in Mizoram.",
+      "imageUrl": "https://www.tourmyindia.com/states/mizoram/image/vantawng-falls-mizoram.jpg",
+      "imageHint": "Mizoram waterfall"
+    },
+    {
+      "id": "state-nagaland",
+      "description": "Dzukou Valley in Nagaland.",
+      "imageUrl": "https://www.tourmyindia.com/states/nagaland/image/dzukou-valley-nagaland.jpg",
+      "imageHint": "Nagaland valley"
+    },
+    {
+      "id": "state-odisha",
+      "description": "Konark Sun Temple in Odisha.",
+      "imageUrl": "https://images.unsplash.com/photo-1594488541293-9418a033694f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "Odisha temple"
+    },
+    {
+      "id": "state-punjab",
+      "description": "Golden Temple in Amritsar, Punjab.",
+      "imageUrl": "https://images.unsplash.com/photo-1588243178552-004d03d585b8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "Punjab Golden Temple"
+    },
+    {
+      "id": "state-sikkim",
+      "description": "Gurudongmar Lake in Sikkim.",
+      "imageUrl": "https://images.unsplash.com/photo-1616658092289-482088f11815?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "Sikkim lake"
+    },
+    {
+      "id": "state-tamil-nadu",
+      "description": "Meenakshi Amman Temple in Madurai, Tamil Nadu.",
+      "imageUrl": "https://images.unsplash.com/photo-1563877969190-333e6809180f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "Tamil Nadu temple"
+    },
+    {
+      "id": "state-telangana",
+      "description": "Charminar in Hyderabad, Telangana.",
+      "imageUrl": "https://images.unsplash.com/photo-1594488541293-9418a033694f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "Telangana Hyderabad"
+    },
+    {
+      "id": "state-tripura",
+      "description": "Ujjayanta Palace in Agartala, Tripura.",
+      "imageUrl": "https://www.tourmyindia.com/states/tripura/image/ujjayanta-palace-tripura.jpg",
+      "imageHint": "Tripura palace"
+    },
+    {
+      "id": "state-uttar-pradesh",
+      "description": "Taj Mahal in Agra, Uttar Pradesh.",
+      "imageUrl": "https://images.unsplash.com/photo-1564507592333-c60657eea523?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxUYWolMjBNYWhhbHxlbnwwfHx8fDE3MjQ3NTI1MjV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Uttar Pradesh Taj Mahal"
+    },
+    {
+      "id": "state-uttarakhand",
+      "description": "Rishikesh in Uttarakhand.",
+      "imageUrl": "https://images.unsplash.com/photo-1609769682984-7278d11ce424?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "Uttarakhand Rishikesh"
+    },
+    {
+      "id": "state-west-bengal",
+      "description": "Howrah Bridge in Kolkata, West Bengal.",
+      "imageUrl": "https://images.unsplash.com/photo-1594488541293-9418a033694f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "West Bengal Kolkata"
+    },
+    {
+      "id": "state-jammu-kashmir",
+      "description": "Dal Lake in Srinagar, Jammu and Kashmir.",
+      "imageUrl": "https://images.unsplash.com/photo-1589566270509-93a129f1b402?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "Jammu Kashmir Dal Lake"
     }
   ]
 }
