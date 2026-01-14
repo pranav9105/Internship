@@ -13,6 +13,7 @@ import { MyTripsSummary } from '@/components/dashboard/my-trips-summary';
 import { WishlistSummary } from '@/components/dashboard/wishlist-summary';
 import { TransactionsSummary } from '@/components/dashboard/transactions-summary';
 import { RewardsSummary } from '@/components/dashboard/rewards-summary';
+import { SupportConnect } from '@/components/dashboard/support-connect';
 
 export default function DashboardPage() {
   const { user, isUserLoading } = useUser();
@@ -64,6 +65,9 @@ export default function DashboardPage() {
                      <AnimateOnScroll>
                         <Bookings />
                      </AnimateOnScroll>
+                     <AnimateOnScroll>
+                        <SupportConnect />
+                    </AnimateOnScroll>
                 </div>
             </div>
         </main>
