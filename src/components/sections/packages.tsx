@@ -16,6 +16,7 @@ import {
   DialogDescription,
   DialogFooter,
   DialogTrigger,
+  DialogClose
 } from '@/components/ui/dialog';
 import { Calendar } from '../ui/calendar';
 import { DateRange } from 'react-day-picker';
@@ -24,6 +25,10 @@ import { Input } from '../ui/input';
 import { Separator } from '../ui/separator';
 import { OccupancyPicker } from '../search/occupancy-picker';
 import type { Occupancy } from '../search/stay-search-form';
+import { useUser, useFirestore, addDocumentNonBlocking } from '@/firebase';
+import { collection } from 'firebase/firestore';
+import { useToast } from '@/hooks/use-toast';
+import { format } from 'date-fns';
 
 const packages = [
   {
@@ -241,7 +246,49 @@ function BookingDialog({ pkgTitle }: { pkgTitle: string }) {
     to: new Date(new Date().setDate(new Date().getDate() + 7)),
   });
   const [occupancy, setOccupancy] = useState<Occupancy>({ adults: 2, children: 0, rooms: 1 });
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [isBooking, setIsBooking] = useState(false);
+  
+  const { user } = useUser();
+  const firestore = useFirestore();
+  const { toast } = useToast();
 
+  const handleBooking = async () => {
+    if (!user || !firestore) {
+      toast({
+        title: "Please Sign In",
+        description: "You need to be signed in to book a trip.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (!date?.from || !date?.to) {
+        toast({ title: "Error", description: "Please select a valid date range.", variant: "destructive" });
+        return;
+    }
+
+    setIsBooking(true);
+    const tripsCollection = collection(firestore, 'users', user.uid, 'trips');
+    
+    const formattedDates = `${format(date.from, 'LLL dd, y')} - ${format(date.to, 'LLL dd, y')}`;
+
+    addDocumentNonBlocking(tripsCollection, {
+      destination: pkgTitle,
+      dates: formattedDates,
+      status: 'Upcoming',
+      occupancy,
+    });
+
+    toast({
+      title: 'Booking Confirmed!',
+      description: `Your trip to ${pkgTitle} has been booked.`,
+    });
+    
+    setIsBooking(false);
+    // The DialogClose button will handle closing the dialog.
+  };
 
   return (
     <Dialog>
@@ -280,22 +327,26 @@ function BookingDialog({ pkgTitle }: { pkgTitle: string }) {
                  <div className="space-y-4 mt-2">
                      <div className="space-y-2">
                         <Label htmlFor="name">Name</Label>
-                        <Input id="name" placeholder="Enter your name" />
+                        <Input id="name" placeholder="Enter your name" value={name} onChange={(e) => setName(e.target.value)} />
                     </div>
                      <div className="space-y-2">
                         <Label htmlFor="email">Email</Label>
-                        <Input id="email" type="email" placeholder="Enter your email" />
+                        <Input id="email" type="email" placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} />
                     </div>
                  </div>
             </div>
         </div>
         <DialogFooter>
-          <Button type="button" variant="secondary">
-            Cancel
-          </Button>
-          <Button asChild>
-            <Link href="/signup">Confirm Booking</Link>
-          </Button>
+          <DialogClose asChild>
+            <Button type="button" variant="secondary">
+                Cancel
+            </Button>
+          </DialogClose>
+           <DialogClose asChild>
+            <Button onClick={handleBooking} disabled={isBooking || !date?.from || !date?.to}>
+              {isBooking ? 'Confirming...' : 'Confirm Booking'}
+            </Button>
+          </DialogClose>
         </DialogFooter>
       </DialogContent>
     </Dialog>
