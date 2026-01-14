@@ -1,4 +1,3 @@
-
 'use client';
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
@@ -153,7 +152,7 @@ export function Hero() {
                         </CarouselItem>
                     ))}
                     </CarouselContent>
-                    <div className="hidden md:flex justify-start gap-2 mt-4 pl-6">
+                    <div className="hidden md:flex justify-end gap-2 mt-4">
                         <CarouselPrevious className="relative -left-0 -top-0 -translate-y-0" />
                         <CarouselNext className="relative -right-0 -top-0 -translate-y-0" />
                     </div>
