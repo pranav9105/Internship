@@ -131,6 +131,12 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'media.assettype.com',
+        port: '',
+        pathname: '/**',
+      }
     ],
   },
   env: {
