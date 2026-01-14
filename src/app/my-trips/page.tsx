@@ -11,6 +11,7 @@ import { AnimateOnScroll } from '@/components/animate-on-scroll';
 import { Badge } from '@/components/ui/badge';
 import { useUser, useCollection, useFirestore, useMemoFirebase } from '@/firebase';
 import { collection, query, where } from 'firebase/firestore';
+import Link from 'next/link';
 
 export default function MyTripsPage() {
   const { user } = useUser();
@@ -87,8 +88,8 @@ export default function MyTripsPage() {
                           <Badge variant="outline">{trip.status}</Badge>
                         </CardContent>
                         <CardFooter>
-                          <Button variant="outline" className="w-full">
-                            View Details
+                          <Button variant="outline" className="w-full" asChild>
+                            <Link href={`/my-trips/${trip.id}`}>View Details</Link>
                           </Button>
                         </CardFooter>
                       </Card>
