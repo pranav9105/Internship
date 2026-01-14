@@ -578,7 +578,3 @@ export function Packages({ isPage = false }: PackagesProps) {
     </section>
   );
 }
-
-    
-
-    
