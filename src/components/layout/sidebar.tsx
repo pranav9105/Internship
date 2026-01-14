@@ -39,6 +39,8 @@ export function Sidebar() {
     router.push('/');
   };
 
+  const isExploreActive = pathname.startsWith('/dashboard') || pathname.startsWith('/my-trips') || pathname.startsWith('/wishlist') || pathname.startsWith('/bookings');
+
   return (
     <aside className="w-64 flex-shrink-0 bg-gradient-to-b from-card to-background p-6 flex flex-col justify-between">
       <div>
@@ -48,17 +50,16 @@ export function Sidebar() {
         <nav className="flex flex-col gap-2">
             <Accordion type="single" collapsible defaultValue="item-1" className="w-full">
               <AccordionItem value="item-1" className="border-b-0">
-                <AccordionTrigger className="p-0 hover:no-underline">
-                    <Button
-                      variant={pathname.startsWith('/dashboard') || pathname.startsWith('/my-trips') || pathname.startsWith('/wishlist') || pathname.startsWith('/bookings') ? 'default' : 'ghost'}
-                      className={cn(
-                        'w-full justify-start text-base h-12',
-                         pathname.startsWith('/dashboard') || pathname.startsWith('/my-trips') || pathname.startsWith('/wishlist') || pathname.startsWith('/bookings') ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:bg-muted hover:text-foreground'
-                      )}
-                    >
-                      <ExploreIcon className="mr-3 h-5 w-5" />
-                      Explore
-                    </Button>
+                <AccordionTrigger
+                  className={cn(
+                    'w-full justify-start text-base h-12 px-4 py-2 rounded-md hover:no-underline',
+                    isExploreActive 
+                      ? 'bg-primary text-primary-foreground hover:bg-primary/90' 
+                      : 'text-muted-foreground hover:bg-muted hover:text-foreground'
+                  )}
+                >
+                  <ExploreIcon className="mr-3 h-5 w-5" />
+                  Explore
                 </AccordionTrigger>
                 <AccordionContent className="pt-2 flex flex-col gap-1 pl-4">
                   {navLinks.map((link) => (
