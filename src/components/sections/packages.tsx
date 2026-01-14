@@ -127,7 +127,7 @@ const packages = [
   },
   {
     title: 'Maharashtra',
-    price: '9999',
+    price: '13999',
     duration: '7 Days / 6 Nights',
     features: ['Cave Temples', 'Forts', 'Mumbai City Tour'],
     image: PlaceHolderImages.find((img) => img.id === 'state-maharashtra'),
