@@ -7,7 +7,6 @@ import { useUser } from '@/firebase';
 import { AnimateOnScroll } from '@/components/animate-on-scroll';
 import { Sidebar } from '@/components/layout/sidebar';
 import { DashboardHeader } from '@/components/dashboard/header';
-import { DashboardCalendar } from '@/components/dashboard/calendar';
 import { EasyVisa } from '@/components/dashboard/easy-visa';
 import { MostPopular } from '@/components/dashboard/most-popular';
 import { Bookings } from '@/components/dashboard/bookings';
@@ -52,9 +51,6 @@ export default function DashboardPage() {
 
                 {/* Right sidebar */}
                 <div className="col-span-12 lg:col-span-4">
-                    <AnimateOnScroll>
-                        <DashboardCalendar />
-                    </AnimateOnScroll>
                      <div className="mt-8">
                          <AnimateOnScroll>
                             <Bookings />

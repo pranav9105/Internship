@@ -1,4 +1,7 @@
 
+'use client';
+
+import { useState } from 'react';
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
@@ -6,6 +9,17 @@ import { Button } from '@/components/ui/button';
 import { AnimateOnScroll } from '../animate-on-scroll';
 import { CheckCircle, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+  DialogTrigger,
+} from '@/components/ui/dialog';
+import { Calendar } from '../ui/calendar';
+import { DateRange } from 'react-day-picker';
 
 const packages = [
   {
@@ -70,6 +84,47 @@ interface PackagesProps {
   isPage?: boolean;
 }
 
+function BookingDialog({ pkgTitle }: { pkgTitle: string }) {
+  const [date, setDate] = useState<DateRange | undefined>({
+    from: new Date(),
+    to: new Date(new Date().setDate(new Date().getDate() + 7)),
+  });
+
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button size="lg" className="w-full bg-gradient-to-r from-primary to-accent text-primary-foreground hover:opacity-90 transition-opacity">
+          Book Now
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-md">
+        <DialogHeader>
+          <DialogTitle>Book Your Trip: {pkgTitle}</DialogTitle>
+          <DialogDescription>
+            Select your desired dates for this adventure.
+          </DialogDescription>
+        </DialogHeader>
+        <div className="flex justify-center">
+          <Calendar
+            mode="range"
+            selected={date}
+            onSelect={setDate}
+            className="rounded-md border"
+          />
+        </div>
+        <DialogFooter>
+          <Button type="button" variant="secondary">
+            Cancel
+          </Button>
+          <Button asChild>
+            <Link href="/signup">Confirm Booking</Link>
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
 export function Packages({ isPage = false }: PackagesProps) {
   const displayedPackages = isPage ? packages : packages.slice(0, 3);
 
@@ -116,9 +171,7 @@ export function Packages({ isPage = false }: PackagesProps) {
                   <p className="text-sm text-muted-foreground">per person</p>
                 </CardContent>
                 <CardFooter className="p-6 pt-0">
-                  <Button asChild size="lg" className="w-full bg-gradient-to-r from-primary to-accent text-primary-foreground hover:opacity-90 transition-opacity">
-                    <Link href="/signup">Book Now</Link>
-                  </Button>
+                  <BookingDialog pkgTitle={pkg.title} />
                 </CardFooter>
               </Card>
             </AnimateOnScroll>
