@@ -30,6 +30,13 @@ const packages = [
     image: PlaceHolderImages.find((img) => img.id === 'package-himalayan-escape'),
   },
   {
+    title: 'Grand India Tour',
+    price: '₹1,20,000',
+    duration: '30 Days / 29 Nights',
+    features: ['Covers 10 major states', 'Delhi, Rajasthan, UP, Punjab', 'Goa, Kerala, Tamil Nadu', 'All-inclusive stays & transport'],
+    image: PlaceHolderImages.find((img) => img.id === 'gallery-2'),
+  },
+  {
     title: 'Goa Beach Bliss',
     price: '₹35,000',
     duration: '4 Days / 3 Nights',
