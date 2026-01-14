@@ -33,7 +33,7 @@
     {
       "id": "destination-ladakh",
       "description": "A Buddhist monastery in the high-altitude desert of Ladakh.",
-      "imageUrl": "https://storage.googleapis.com/stateless-www-justwravel-com/2025/03/5393cbf3-blogs-cover-aarshi-1200-x-675-px-1024x576.png",
+      "imageUrl": "https://storage.googleapis.com/stateless-www-justwravel-com/2025/03/5393cbf3-aarshi-1200-x-675-px-1024x576.png",
       "imageHint": "Ladakh monastery"
     },
     {
@@ -177,7 +177,7 @@
     {
       "id": "state-bihar",
       "description": "A view of a landmark in Bihar.",
-      "imageUrl": "https://www.transindiatravels.com/wp-content/uploads/nalanda-bihar.jpg",
+      "imageUrl": "https://www.holidify.com/images/cmsuploads/compressed/fh_20190728235947.jpg",
       "imageHint": "Bihar landmark"
     },
     {
@@ -279,7 +279,7 @@
     {
       "id": "state-tripura",
       "description": "Ujjayanta Palace in Agartala, Tripura.",
-      "imageUrl": "https://www.tourmyindia.com/states/tripura/image/ujjayanta-palace-tripura.jpg",
+      "imageUrl": "https://easternroutes.com/wp-content/uploads/2019/02/6_Sisters_Road_Trip-India-1024x678.jpg",
       "imageHint": "Tripura palace"
     },
     {
@@ -291,19 +291,19 @@
     {
       "id": "state-uttarakhand",
       "description": "Rishikesh in Uttarakhand.",
-      "imageUrl": "https://images.unsplash.com/photo-1609769682984-7278d11ce424?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpqfxlikEXC9JIZJPaO17LsWKpa5k1-Hg3FQ&s",
       "imageHint": "Uttarakhand Rishikesh"
     },
     {
       "id": "state-west-bengal",
       "description": "Howrah Bridge in Kolkata, West Bengal.",
-      "imageUrl": "https://images.unsplash.com/photo-1594488541293-9418a033694f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageUrl": "https://deih43ym53wif.cloudfront.net/victoria-memorial-architectural-monument-museum-kolkata-shutterstock_643469977.jpg_bea19c345c.jpg",
       "imageHint": "West Bengal Kolkata"
     },
     {
       "id": "state-jammu-kashmir",
       "description": "Dal Lake in Srinagar, Jammu and Kashmir.",
-      "imageUrl": "https://images.unsplash.com/photo-1589566270509-93a129f1b402?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageUrl": "https://www.mybesttrip.in/img/Admin/packages/thumb/20230922_PRODUCT_IMAGE_1695382200.png",
       "imageHint": "Jammu Kashmir Dal Lake"
     }
   ]

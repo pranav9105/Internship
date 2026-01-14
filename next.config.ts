@@ -232,6 +232,24 @@ const nextConfig: NextConfig = {
         hostname: 'www.holidify.com',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'easternroutes.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'deih43ym53wif.cloudfront.net',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.mybesttrip.in',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
