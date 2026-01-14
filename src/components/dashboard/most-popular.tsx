@@ -7,10 +7,10 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { MapPin } from 'lucide-react';
 
 const popularPlaces = [
-    { name: 'Kerala', country: 'India', imageId: 'package-kerala-backwaters', price: '₹248' },
-    { name: 'Sukhothai Old City', country: 'Thailand', imageId: 'gallery-3', price: '₹248' },
-    { name: 'Eiffel Tower Tour', country: 'Paris', imageId: 'auth-background-4', price: '₹248' },
-    { name: 'Kashmir', country: 'India', imageId: 'package-himalayan-escape', price: '₹248' },
+    { name: 'Kerala', country: 'India', imageId: 'package-kerala-backwaters', price: '₹3,500' },
+    { name: 'Jaipur', country: 'India', imageId: 'destination-jaipur', price: '₹2,800' },
+    { name: 'Varanasi', country: 'India', imageId: 'gallery-3', price: '₹2,200' },
+    { name: 'Kashmir', country: 'India', imageId: 'package-himalayan-escape', price: '₹4,100' },
 ];
 
 export function MostPopular() {

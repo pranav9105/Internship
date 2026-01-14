@@ -6,16 +6,16 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Button } from '../ui/button';
 
 const destinations = [
-    { name: 'Bali', imageId: 'package-heritage-rajasthan', price: '₹19,600' },
-    { name: 'Dubai', imageId: 'gallery-5', price: '₹21,700' },
-    { name: 'Maldives', imageId: 'package-andaman-islands', price: '₹11,300' },
+    { name: 'Andaman', imageId: 'package-andaman-islands', price: '₹18,500' },
+    { name: 'Goa', imageId: 'package-goa-beach', price: '₹12,200' },
+    { name: 'Pondicherry', imageId: 'gallery-4', price: '₹9,800' },
 ];
 
 export function EasyVisa() {
   return (
     <div>
       <div className="flex justify-between items-center mb-4">
-        <h2 className="font-headline text-3xl font-bold">Easy Visa Destinations</h2>
+        <h2 className="font-headline text-3xl font-bold">In-Demand Destinations</h2>
         <Button variant="link" className="text-primary">View All</Button>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
