@@ -1,7 +1,7 @@
+
 'use client';
 
 import Image from 'next/image';
-import { Sidebar } from '@/components/layout/sidebar';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -12,6 +12,7 @@ import { Badge } from '@/components/ui/badge';
 import { useUser, useCollection, useFirestore, useMemoFirebase } from '@/firebase';
 import { collection, query, where } from 'firebase/firestore';
 import Link from 'next/link';
+import { Header } from '@/components/layout/header';
 
 export default function MyTripsPage() {
   const { user } = useUser();
@@ -42,8 +43,8 @@ export default function MyTripsPage() {
   };
 
   return (
-    <div className="flex w-full">
-      <Sidebar />
+    <div className="flex flex-col w-full">
+      <Header />
       <main className="flex-grow p-8">
           <div className="container mx-auto px-4 md:px-6">
             <AnimateOnScroll>

@@ -27,6 +27,7 @@ import {
 import { DialogTitle } from '../ui/dialog';
 import { Card, CardHeader, CardContent, CardFooter } from '../ui/card';
 import Link from 'next/link';
+import { Header } from '../layout/header';
 
 const indianStates = [
   "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat", "Haryana",
@@ -101,19 +102,9 @@ export function DashboardHeader() {
   }
 
   return (
-    <header className="flex justify-between items-center">
+    <header className="flex justify-between items-center p-4 border-b">
       <div className="flex-grow max-w-xl">
-        <Button
-            variant="outline"
-            className="relative w-full h-12 justify-start pl-10 pr-4 text-muted-foreground bg-card border-0"
-            onClick={() => setOpen(true)}
-          >
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5" />
-            <span className="flex-grow text-left">Search for your favourite destination</span>
-            <kbd className="hidden lg:inline-flex pointer-events-none h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100">
-              <span className="text-xs">⌘</span>K
-            </kbd>
-        </Button>
+        <Header />
       </div>
 
       <CommandDialog open={open} onOpenChange={setOpen}>

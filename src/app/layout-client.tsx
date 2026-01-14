@@ -1,7 +1,9 @@
+
 'use client';
 
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
+import { Sidebar } from '@/components/layout/sidebar';
 
 export default function RootLayoutClient({
   children,
@@ -10,20 +12,24 @@ export default function RootLayoutClient({
 }) {
   const pathname = usePathname();
 
-  const isDashboard = pathname.startsWith('/dashboard') || 
-                      pathname.startsWith('/my-trips') ||
-                      pathname.startsWith('/wishlist') ||
-                      pathname.startsWith('/bookings') ||
-                      pathname.startsWith('/transactions') ||
-                      pathname.startsWith('/settings');
+  const isDashboardLayout = [
+    '/dashboard',
+    '/my-trips',
+    '/wishlist',
+    '/bookings',
+    '/transactions',
+    '/settings',
+  ].some((path) => pathname.startsWith(path));
+
 
   return (
-    <div
-      className={cn(
-        'relative flex min-h-screen w-full'
+    <div className={cn('relative flex min-h-screen w-full')}>
+      {isDashboardLayout && (
+        <div className="hidden md:block">
+            <Sidebar />
+        </div>
       )}
-    >
-      {children}
+      <div className="flex-1 flex flex-col">{children}</div>
     </div>
   );
 }

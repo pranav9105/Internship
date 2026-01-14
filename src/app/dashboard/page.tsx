@@ -5,7 +5,6 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useUser } from '@/firebase';
 import { AnimateOnScroll } from '@/components/animate-on-scroll';
-import { Sidebar } from '@/components/layout/sidebar';
 import { DashboardHeader } from '@/components/dashboard/header';
 import { EasyVisa } from '@/components/dashboard/easy-visa';
 import { MostPopular } from '@/components/dashboard/most-popular';
@@ -30,13 +29,12 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="flex w-full">
-        <Sidebar />
+    <div className="flex flex-col w-full">
+        <DashboardHeader />
         <main className="flex-grow p-8 bg-background overflow-y-auto">
             <div className="grid grid-cols-12 gap-8">
                 {/* Main content */}
                 <div className="col-span-12 lg:col-span-8">
-                    <DashboardHeader />
                     <div className="mt-8">
                         <AnimateOnScroll>
                           <EasyVisa />

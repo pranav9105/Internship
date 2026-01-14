@@ -1,6 +1,6 @@
+
 'use client';
 
-import { Sidebar } from '@/components/layout/sidebar';
 import {
   Card,
   CardHeader,
@@ -24,6 +24,7 @@ import { useUser, useCollection, useFirestore, useMemoFirebase } from '@/firebas
 import { collection, query, orderBy } from 'firebase/firestore';
 import { format } from 'date-fns';
 import Link from 'next/link';
+import { Header } from '@/components/layout/header';
 
 export default function TransactionsPage() {
   const { user } = useUser();
@@ -67,8 +68,8 @@ export default function TransactionsPage() {
   };
 
   return (
-    <div className="flex w-full">
-        <Sidebar />
+    <div className="flex flex-col w-full">
+        <Header />
         <main className="flex-grow p-8">
           <div className="container mx-auto px-4 md:px-6">
             <AnimateOnScroll>

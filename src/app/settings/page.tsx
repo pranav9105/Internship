@@ -1,11 +1,12 @@
+
 "use client";
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useUser } from '@/firebase';
-import { Sidebar } from '@/components/layout/sidebar';
 import { SettingsLayout } from '@/components/settings/settings-layout';
 import { AnimateOnScroll } from '@/components/animate-on-scroll';
+import { Header } from '@/components/layout/header';
 
 export default function SettingsPage() {
   const { user, isUserLoading } = useUser();
@@ -26,8 +27,8 @@ export default function SettingsPage() {
   }
 
   return (
-    <div className="flex w-full">
-      <Sidebar />
+    <div className="flex flex-col w-full">
+      <Header />
       <main className="flex-grow p-8">
           <div className="container mx-auto px-4 md:px-6">
              <header className="mb-8">

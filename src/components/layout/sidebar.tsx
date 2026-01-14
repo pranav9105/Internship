@@ -19,7 +19,11 @@ const navLinks = [
   { href: '/settings', label: 'Settings', icon: Settings },
 ];
 
-export function Sidebar() {
+interface SidebarProps {
+  onLinkClick?: () => void;
+}
+
+export function Sidebar({ onLinkClick }: SidebarProps) {
   const pathname = usePathname();
   const auth = useAuth();
   const router = useRouter();
@@ -27,10 +31,15 @@ export function Sidebar() {
   const handleLogout = async () => {
     await auth.signOut();
     router.push('/');
+    onLinkClick?.();
+  };
+  
+  const handleLinkClick = () => {
+    onLinkClick?.();
   };
 
   return (
-    <aside className="w-64 flex-shrink-0 bg-gradient-to-b from-card to-background p-6 flex flex-col justify-between">
+    <aside className="h-full w-full bg-gradient-to-b from-card to-background p-6 flex flex-col justify-between">
       <div>
         <div className="mb-10">
           <Logo />
@@ -45,6 +54,7 @@ export function Sidebar() {
                 'justify-start text-base h-12',
                 pathname.startsWith(link.href) ? 'bg-primary/10 text-primary' : 'text-muted-foreground hover:bg-muted hover:text-foreground'
               )}
+              onClick={handleLinkClick}
             >
               <Link href={link.href}>
                 <link.icon className="mr-3 h-5 w-5" />

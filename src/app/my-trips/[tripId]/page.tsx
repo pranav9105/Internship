@@ -16,7 +16,6 @@ import {
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { AnimateOnScroll } from '@/components/animate-on-scroll';
-import { Sidebar } from '@/components/layout/sidebar';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Badge } from '@/components/ui/badge';
 import {
@@ -40,6 +39,7 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import { differenceInDays, parse } from 'date-fns';
+import { Header } from '@/components/layout/header';
 
 const dayIcons = {
   Morning: Sunrise,
@@ -140,8 +140,8 @@ export default function TripDetailsPage() {
   const tripImage = getImageForTrip(trip.destination);
 
   return (
-    <div className="flex w-full">
-      <Sidebar />
+    <div className="flex flex-col w-full">
+      <Header />
       <main className="flex-grow p-8 bg-muted/40">
         <AnimateOnScroll>
           <div className="container mx-auto px-4 md:px-6">

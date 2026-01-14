@@ -17,11 +17,8 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
-  DropdownMenuPortal
 } from '@/components/ui/dropdown-menu';
+import { Sidebar } from './sidebar';
 
 const navLinks = [
   { href: '/deals', label: 'Destinations' },
@@ -45,6 +42,15 @@ export function Header() {
   const { user } = useUser();
 
   const isHomePage = pathname === '/';
+  const isDashboardPage = [
+    '/dashboard',
+    '/my-trips',
+    '/wishlist',
+    '/bookings',
+    '/transactions',
+    '/settings',
+  ].some((path) => pathname.startsWith(path));
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -82,7 +88,22 @@ export function Header() {
     >
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between h-20">
-          <Logo />
+          <div className="flex items-center gap-4">
+            {isDashboardPage && (
+              <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
+                <SheetTrigger asChild>
+                  <Button variant="ghost" size="icon" className={cn("md:hidden", headerTextColor)}>
+                    <Menu />
+                    <span className="sr-only">Open Menu</span>
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="left" className="p-0 w-72">
+                  <Sidebar onLinkClick={() => setIsMenuOpen(false)} />
+                </SheetContent>
+              </Sheet>
+            )}
+            <Logo />
+          </div>
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
@@ -161,7 +182,7 @@ export function Header() {
           <div className="md:hidden">
             <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className={headerTextColor}>
+                 <Button variant="ghost" size="icon" className={cn(headerTextColor, isDashboardPage && "hidden")}>
                   {isMenuOpen ? <X /> : <Menu />}
                   <span className="sr-only">Toggle Menu</span>
                 </Button>

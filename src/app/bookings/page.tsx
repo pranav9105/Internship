@@ -1,6 +1,6 @@
+
 'use client';
 
-import { Sidebar } from '@/components/layout/sidebar';
 import {
   Card,
   CardHeader,
@@ -21,6 +21,7 @@ import { Hotel } from 'lucide-react';
 import { AnimateOnScroll } from '@/components/animate-on-scroll';
 import { useUser, useCollection, useFirestore, useMemoFirebase } from '@/firebase';
 import { collection, query } from 'firebase/firestore';
+import { Header } from '@/components/layout/header';
 
 export default function BookingsPage() {
   const { user } = useUser();
@@ -34,8 +35,8 @@ export default function BookingsPage() {
   const { data: bookings, isLoading } = useCollection(bookingsQuery);
 
   return (
-    <div className="flex w-full">
-        <Sidebar />
+    <div className="flex flex-col w-full">
+        <Header />
         <main className="flex-grow p-8">
           <div className="container mx-auto px-4 md:px-6">
             <AnimateOnScroll>
