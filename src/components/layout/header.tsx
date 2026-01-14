@@ -7,7 +7,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { Logo } from '@/components/logo';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, X, Search, Globe, ChevronDown, LogOut, Briefcase, Heart, Settings, Building, Star, MapPin, CheckCircle, Plane, CreditCard, Gift, MessageSquare, Ticket, Award, User as UserIcon, Bell, Repeat } from 'lucide-react';
+import { Menu, X, Search, Globe, ChevronDown, LogOut, Briefcase, Heart, Settings, Building, Star, MapPin, CheckCircle, Plane, CreditCard, Gift, MessageSquare, Ticket, Award, User as UserIcon, Bell, Repeat, LayoutDashboard } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useUser, useAuth } from '@/firebase';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
@@ -41,8 +41,8 @@ const navLinks = [
 ];
 
 const dashboardLinks = [
-    { href: '/dashboard', label: 'Dashboard', icon: Briefcase },
-    { href: '/my-trips', label: 'My Trips', icon: Heart },
+    { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+    { href: '/my-trips', label: 'My Trips', icon: Briefcase },
     { href: '/bookings', label: 'Bookings', icon: Ticket },
     { href: '/transactions', label: 'Transactions', icon: Repeat },
     { href: '/rewards', label: 'Rewards', icon: Award },
@@ -178,25 +178,6 @@ export function Header() {
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
-             {user && isDashboardPage && (
-                 <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <button className={cn("flex items-center gap-1 font-medium transition-colors hover:text-primary", headerTextColor)}>
-                      Explore <ChevronDown className="h-4 w-4" />
-                    </button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent>
-                    {dashboardLinks.map((link) => (
-                      <DropdownMenuItem key={link.href} asChild>
-                        <Link href={link.href}>
-                          <link.icon className="mr-2 h-4 w-4" />
-                          {link.label}
-                        </Link>
-                      </DropdownMenuItem>
-                    ))}
-                  </DropdownMenuContent>
-                </DropdownMenu>
-            )}
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -318,8 +299,14 @@ export function Header() {
                     <DropdownMenuContent className="w-56" align="end">
                         <DropdownMenuLabel>My Account</DropdownMenuLabel>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem asChild><Link href="/settings"><UserIcon className="mr-2 h-4 w-4" />Profile</Link></DropdownMenuItem>
-                        <DropdownMenuItem asChild><Link href="/my-trips"><Briefcase className="mr-2 h-4 w-4" />My Trips</Link></DropdownMenuItem>
+                        {dashboardLinks.map((link) => (
+                          <DropdownMenuItem key={link.href} asChild>
+                            <Link href={link.href}>
+                              <link.icon className="mr-2 h-4 w-4" />
+                              {link.label}
+                            </Link>
+                          </DropdownMenuItem>
+                        ))}
                         <DropdownMenuSeparator />
                         <DropdownMenuItem onClick={handleLogout}>
                             <LogOut className="mr-2 h-4 w-4" />
