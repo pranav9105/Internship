@@ -8,7 +8,7 @@ import { Button } from '../ui/button';
 const destinations = [
     { name: 'Andaman', imageId: 'package-andaman-islands', price: '₹18,500' },
     { name: 'Goa', imageId: 'package-goa-beach', price: '₹12,200' },
-    { name: 'Pondicherry', imageId: 'gallery-4', price: '₹9,800' },
+    { name: 'Varanasi', imageId: 'gallery-3', price: '₹9,800' },
 ];
 
 export function EasyVisa() {
