@@ -20,7 +20,6 @@ import {
   DialogTrigger,
   DialogClose
 } from '@/components/ui/dialog';
-import { Calendar } from '../ui/calendar';
 import { DateRange } from 'react-day-picker';
 import { Label } from '../ui/label';
 import { Input } from '../ui/input';
@@ -30,7 +29,7 @@ import type { Occupancy } from '../search/stay-search-form';
 import { useUser, useFirestore, addDocumentNonBlocking } from '@/firebase';
 import { collection, serverTimestamp } from 'firebase/firestore';
 import { useToast } from '@/hooks/use-toast';
-import { format, differenceInDays } from 'date-fns';
+import { format, differenceInDays, parse } from 'date-fns';
 import { Textarea } from '../ui/textarea';
 
 const packages = [
@@ -286,6 +285,22 @@ function BookingDialog({ pkg }: { pkg: PackageDetails }) {
   
   const [isBooking, setIsBooking] = useState(false);
 
+  const handleDateChange = (field: 'from' | 'to', value: string) => {
+    try {
+      const date = value ? parse(value, 'yyyy-MM-dd', new Date()) : undefined;
+      setBookingData(prev => ({
+        ...prev,
+        date: {
+          ...prev.date,
+          [field]: date
+        }
+      }));
+    } catch (error) {
+      // Handle invalid date format if needed
+      console.error("Invalid date format:", value);
+    }
+  };
+
   const handleDataChange = (data: Partial<BookingData>) => {
     setBookingData(prev => ({ ...prev, ...data }));
   };
@@ -388,38 +403,43 @@ function BookingDialog({ pkg }: { pkg: PackageDetails }) {
           Book Now
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-4xl max-h-[90vh] overflow-y-auto p-0">
+      <DialogContent className="sm:max-w-2xl max-h-[90vh] overflow-y-auto p-0">
         {step === 1 && (
             <>
                 <DialogHeader className="p-6 pb-0">
-                    <DialogTitle>Step 1: Select Dates &amp; Guests</DialogTitle>
-                    <DialogDescription>Choose your travel dates and specify the number of travelers.</DialogDescription>
+                    <DialogTitle>Step 1: Your Details</DialogTitle>
+                    <DialogDescription>Enter your travel dates and personal information.</DialogDescription>
                 </DialogHeader>
-                 <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div className="flex justify-center">
-                        <Calendar
-                            mode="range"
-                            selected={bookingData.date}
-                            onSelect={(date) => handleDataChange({ date })}
-                            numberOfMonths={2}
-                            disabled={{ before: new Date() }}
+                 <div className="p-6 grid grid-cols-1 gap-6">
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label>Check-in Date</Label>
+                        <Input 
+                          type="date" 
+                          onChange={(e) => handleDateChange('from', e.target.value)}
                         />
+                      </div>
+                       <div className="space-y-2">
+                        <Label>Check-out Date</Label>
+                        <Input 
+                          type="date"
+                          onChange={(e) => handleDateChange('to', e.target.value)}
+                        />
+                      </div>
                     </div>
-                    <div className="space-y-6">
-                        <div>
-                            <Label className="text-base font-semibold">Who is going?</Label>
-                            <OccupancyPicker value={bookingData.occupancy} onChange={(occupancy) => handleDataChange({ occupancy })} />
+                    <div>
+                        <Label className="text-base font-semibold">Who is going?</Label>
+                        <OccupancyPicker value={bookingData.occupancy} onChange={(occupancy) => handleDataChange({ occupancy })} />
+                    </div>
+                    <Separator />
+                    <div className="space-y-4">
+                         <div className="space-y-2">
+                            <Label htmlFor="name">Full Name</Label>
+                            <Input id="name" value={bookingData.name} onChange={(e) => handleDataChange({ name: e.target.value })} />
                         </div>
-                        <Separator />
-                        <div className="space-y-4">
-                             <div className="space-y-2">
-                                <Label htmlFor="name">Full Name</Label>
-                                <Input id="name" value={bookingData.name} onChange={(e) => handleDataChange({ name: e.target.value })} />
-                            </div>
-                             <div className="space-y-2">
-                                <Label htmlFor="email">Email</Label>
-                                <Input id="email" type="email" value={bookingData.email} onChange={(e) => handleDataChange({ email: e.target.value })} />
-                            </div>
+                         <div className="space-y-2">
+                            <Label htmlFor="email">Email</Label>
+                            <Input id="email" type="email" value={bookingData.email} onChange={(e) => handleDataChange({ email: e.target.value })} />
                         </div>
                     </div>
                 </div>
