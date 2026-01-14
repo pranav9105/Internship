@@ -14,6 +14,7 @@ export default function RootLayoutClient({
                       pathname.startsWith('/my-trips') ||
                       pathname.startsWith('/wishlist') ||
                       pathname.startsWith('/bookings') ||
+                      pathname.startsWith('/transactions') ||
                       pathname.startsWith('/settings');
 
   return (

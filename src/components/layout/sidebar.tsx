@@ -15,7 +15,7 @@ const navLinks = [
   { href: '/my-trips', label: 'My Trips', icon: Briefcase },
   { href: '/wishlist', label: 'Wishlist', icon: Heart },
   { href: '/bookings', label: 'Messages', icon: MessageSquare },
-  { href: '#', label: 'Transaction', icon: Repeat },
+  { href: '/transactions', label: 'Transaction', icon: Repeat },
   { href: '/settings', label: 'Settings', icon: Settings },
 ];
 

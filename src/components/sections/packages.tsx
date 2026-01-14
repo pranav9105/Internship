@@ -34,203 +34,203 @@ import { format } from 'date-fns';
 const packages = [
   {
     title: 'Andhra Pradesh',
-    price: '₹22,000',
+    price: '22000',
     duration: '7 Days / 6 Nights',
     features: ['Temple Tours', 'Beach Visits', 'Local Cuisine'],
     image: PlaceHolderImages.find((img) => img.id === 'state-andhra-pradesh'),
   },
   {
     title: 'Arunachal Pradesh',
-    price: '₹30,000',
+    price: '30000',
     duration: '8 Days / 7 Nights',
     features: ['Monastery Visits', 'Trekking', 'Scenic Landscapes'],
     image: PlaceHolderImages.find((img) => img.id === 'state-arunachal-pradesh'),
   },
   {
     title: 'Assam',
-    price: '₹25,000',
+    price: '25000',
     duration: '6 Days / 5 Nights',
     features: ['Wildlife Safari', 'Tea Gardens', 'River Cruise'],
     image: PlaceHolderImages.find((img) => img.id === 'state-assam'),
   },
   {
     title: 'Bihar',
-    price: '₹18,000',
+    price: '18000',
     duration: '5 Days / 4 Nights',
     features: ['Historical Sites', 'Spiritual Tours', 'Local Culture'],
     image: PlaceHolderImages.find((img) => img.id === 'state-bihar'),
   },
   {
     title: 'Chhattisgarh',
-    price: '₹20,000',
+    price: '20000',
     duration: '6 Days / 5 Nights',
     features: ['Waterfalls', 'Tribal Villages', 'Cave Exploration'],
     image: PlaceHolderImages.find((img) => img.id === 'state-chhattisgarh'),
   },
   {
     title: 'Goa',
-    price: '₹35,000',
+    price: '35000',
     duration: '4 Days / 3 Nights',
     features: ['North & South Goa Tour', 'Water Sports', 'Beachside Parties'],
     image: PlaceHolderImages.find((img) => img.id === 'package-goa-beach'),
   },
   {
     title: 'Gujarat',
-    price: '₹28,000',
+    price: '28000',
     duration: '7 Days / 6 Nights',
     features: ['Rann of Kutch', 'Temples', 'Wildlife Sanctuaries'],
     image: PlaceHolderImages.find((img) => img.id === 'state-gujarat'),
   },
   {
     title: 'Haryana',
-    price: '₹15,000',
+    price: '15000',
     duration: '4 Days / 3 Nights',
     features: ['Historical Sites', 'Lakes', 'Cultural Events'],
     image: PlaceHolderImages.find((img) => img.id === 'state-haryana'),
   },
   {
     title: 'Himachal Pradesh',
-    price: '₹25,000',
+    price: '25000',
     duration: '10 Days / 9 Nights',
     features: ['Monastery Visits', 'High-Altitude Trekking', 'River Rafting'],
     image: PlaceHolderImages.find((img) => img.id === 'package-himalayan-escape'),
   },
   {
     title: 'Jharkhand',
-    price: '₹19,000',
+    price: '19000',
     duration: '5 Days / 4 Nights',
     features: ['Waterfalls', 'Hills', 'Temples'],
     image: PlaceHolderImages.find((img) => img.id === 'state-jharkhand'),
   },
   {
     title: 'Karnataka',
-    price: '₹26,000',
+    price: '26000',
     duration: '7 Days / 6 Nights',
     features: ['Historical Monuments', 'Hill Stations', 'Beaches'],
     image: PlaceHolderImages.find((img) => img.id === 'state-karnataka'),
   },
   {
     title: 'Kerala',
-    price: '₹16,000',
+    price: '16000',
     duration: '6 Days / 5 Nights',
     features: ['Private Houseboat Stay', 'Ayurvedic Massage', 'Spice Plantation Visit'],
     image: PlaceHolderImages.find((img) => img.id === 'package-kerala-backwaters'),
   },
   {
     title: 'Madhya Pradesh',
-    price: '₹24,000',
+    price: '24000',
     duration: '8 Days / 7 Nights',
     features: ['Wildlife Sanctuaries', 'Temples', 'Historical Forts'],
     image: PlaceHolderImages.find((img) => img.id === 'state-madhya-pradesh'),
   },
   {
     title: 'Maharashtra',
-    price: '₹27,000',
+    price: '27000',
     duration: '7 Days / 6 Nights',
     features: ['Cave Temples', 'Forts', 'Mumbai City Tour'],
     image: PlaceHolderImages.find((img) => img.id === 'state-maharashtra'),
   },
   {
     title: 'Manipur',
-    price: '₹29,000',
+    price: '29000',
     duration: '6 Days / 5 Nights',
     features: ['Loktak Lake', 'Cultural Tours', 'Trekking'],
     image: PlaceHolderImages.find((img) => img.id === 'state-manipur'),
   },
   {
     title: 'Meghalaya',
-    price: '₹31,000',
+    price: '31000',
     duration: '7 Days / 6 Nights',
     features: ['Living Root Bridges', 'Waterfalls', 'Caves'],
     image: PlaceHolderImages.find((img) => img.id === 'state-meghalaya'),
   },
   {
     title: 'Mizoram',
-    price: '₹32,000',
+    price: '32000',
     duration: '8 Days / 7 Nights',
     features: ['Hills', 'Lakes', 'Cultural Experiences'],
     image: PlaceHolderImages.find((img) => img.id === 'state-mizoram'),
   },
   {
     title: 'Nagaland',
-    price: '₹33,000',
+    price: '33000',
     duration: '9 Days / 8 Nights',
     features: ['Hornbill Festival', 'Tribal Villages', 'Trekking'],
     image: PlaceHolderImages.find((img) => img.id === 'state-nagaland'),
   },
   {
     title: 'Odisha',
-    price: '₹21,000',
+    price: '21000',
     duration: '6 Days / 5 Nights',
     features: ['Temples', 'Beaches', 'Chilika Lake'],
     image: PlaceHolderImages.find((img) => img.id === 'state-odisha'),
   },
   {
     title: 'Punjab',
-    price: '₹17,000',
+    price: '17000',
     duration: '5 Days / 4 Nights',
     features: ['Golden Temple', 'Wagah Border', 'Punjabi Cuisine'],
     image: PlaceHolderImages.find((img) => img.id === 'state-punjab'),
   },
   {
     title: 'Rajasthan',
-    price: '₹20,000',
+    price: '20000',
     duration: '9 Days / 8 Nights',
     features: ['Stay in Heritage Hotels', 'Desert Safari', 'Fort & Palace Tours'],
     image: PlaceHolderImages.find((img) => img.id === 'package-heritage-rajasthan'),
   },
   {
     title: 'Sikkim',
-    price: '₹34,000',
+    price: '34000',
     duration: '8 Days / 7 Nights',
     features: ['Monasteries', 'Lakes', 'Mountain Views'],
     image: PlaceHolderImages.find((img) => img.id === 'state-sikkim'),
   },
   {
     title: 'Tamil Nadu',
-    price: '₹23,000',
+    price: '23000',
     duration: '7 Days / 6 Nights',
     features: ['Temples', 'Hill Stations', 'Beaches'],
     image: PlaceHolderImages.find((img) => img.id === 'state-tamil-nadu'),
   },
   {
     title: 'Telangana',
-    price: '₹20,000',
+    price: '20000',
     duration: '5 Days / 4 Nights',
     features: ['Historical Sites', 'Charminar', 'Ramoji Film City'],
     image: PlaceHolderImages.find((img) => img.id === 'state-telangana'),
   },
   {
     title: 'Tripura',
-    price: '₹28,000',
+    price: '28000',
     duration: '6 Days / 5 Nights',
     features: ['Palaces', 'Lakes', 'Temples'],
     image: PlaceHolderImages.find((img) => img.id === 'state-tripura'),
   },
   {
     title: 'Uttar Pradesh',
-    price: '₹19,000',
+    price: '19000',
     duration: '6 Days / 5 Nights',
     features: ['Taj Mahal', 'Varanasi Ghats', 'Lucknow Cuisine'],
     image: PlaceHolderImages.find((img) => img.id === 'state-uttar-pradesh'),
   },
   {
     title: 'Uttarakhand',
-    price: '₹26,000',
+    price: '26000',
     duration: '7 Days / 6 Nights',
     features: ['Yoga & Meditation', 'Trekking', 'River Rafting'],
     image: PlaceHolderImages.find((img) => img.id === 'state-uttarakhand'),
   },
   {
     title: 'West Bengal',
-    price: '₹22,000',
+    price: '22000',
     duration: '6 Days / 5 Nights',
     features: ['Kolkata City Tour', 'Sundarbans', 'Darjeeling Tea Gardens'],
     image: PlaceHolderImages.find((img) => img.id === 'state-west-bengal'),
   },
   {
     title: 'Jammu and Kashmir',
-    price: '₹35,000',
+    price: '35000',
     duration: '8 Days / 7 Nights',
     features: ['Houseboat Stay', 'Gondola Ride', 'Mughal Gardens'],
     image: PlaceHolderImages.find((img) => img.id === 'state-jammu-kashmir'),
@@ -241,7 +241,7 @@ interface PackagesProps {
   isPage?: boolean;
 }
 
-function BookingDialog({ pkgTitle }: { pkgTitle: string }) {
+function BookingDialog({ pkgTitle, pkgPrice }: { pkgTitle: string, pkgPrice: string }) {
   const [date, setDate] = useState<DateRange | undefined>({
     from: new Date(),
     to: new Date(new Date().setDate(new Date().getDate() + 7)),
@@ -273,22 +273,37 @@ function BookingDialog({ pkgTitle }: { pkgTitle: string }) {
     setIsBooking(true);
     const tripsCollection = collection(firestore, 'users', user.uid, 'trips');
     const bookingsCollection = collection(firestore, 'users', user.uid, 'bookings');
+    const transactionsCollection = collection(firestore, 'users', user.uid, 'transactions');
     
     const formattedDates = `${format(date.from, 'LLL dd, y')} - ${format(date.to, 'LLL dd, y')}`;
 
-    addDocumentNonBlocking(tripsCollection, {
+    const tripDoc = await addDocumentNonBlocking(tripsCollection, {
       destination: pkgTitle,
       dates: formattedDates,
       status: 'Upcoming',
       occupancy,
     });
     
-    addDocumentNonBlocking(bookingsCollection, {
-      type: 'Hotel',
+    const bookingDoc = await addDocumentNonBlocking(bookingsCollection, {
+      type: 'Package',
       details: pkgTitle,
       date: format(date.from, 'yyyy-MM-dd'),
       status: 'Confirmed',
     });
+
+    if (bookingDoc) {
+        addDocumentNonBlocking(transactionsCollection, {
+            bookingId: bookingDoc.id,
+            createdAt: serverTimestamp(),
+            paymentMethod: "Card",
+            paymentMethodDetails: "Visa **** 1234",
+            amount: parseFloat(pkgPrice),
+            purpose: "Package",
+            status: "Paid",
+            travelerName: name || user.displayName,
+            destinationName: pkgTitle,
+        });
+    }
 
     toast({
       title: 'Booking Confirmed!',
@@ -296,7 +311,6 @@ function BookingDialog({ pkgTitle }: { pkgTitle: string }) {
     });
     
     setIsBooking(false);
-    // The DialogClose button will handle closing the dialog.
   };
 
   return (
@@ -336,11 +350,11 @@ function BookingDialog({ pkgTitle }: { pkgTitle: string }) {
                  <div className="space-y-4 mt-2">
                      <div className="space-y-2">
                         <Label htmlFor="name">Name</Label>
-                        <Input id="name" placeholder="Enter your name" value={name} onChange={(e) => setName(e.target.value)} />
+                        <Input id="name" placeholder="Enter your name" defaultValue={user?.displayName || ''} onChange={(e) => setName(e.target.value)} />
                     </div>
                      <div className="space-y-2">
                         <Label htmlFor="email">Email</Label>
-                        <Input id="email" type="email" placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                        <Input id="email" type="email" placeholder="Enter your email" defaultValue={user?.email || ''} onChange={(e) => setEmail(e.target.value)} />
                     </div>
                  </div>
             </div>
@@ -364,9 +378,9 @@ function BookingDialog({ pkgTitle }: { pkgTitle: string }) {
 
 export function Packages({ isPage = false }: PackagesProps) {
   const originalPackages = [
-    packages.find(p => p.title === 'Heritage Rajasthan'),
-    packages.find(p => p.title === 'Kerala Backwaters'),
-    packages.find(p => p.title === 'Himalayan Escape'),
+    packages.find(p => p.title === 'Rajasthan'),
+    packages.find(p => p.title === 'Kerala'),
+    packages.find(p => p.title === 'Himachal Pradesh'),
   ].filter(Boolean) as typeof packages;
   
   const displayedPackages = isPage ? packages : originalPackages;
@@ -410,11 +424,11 @@ export function Packages({ isPage = false }: PackagesProps) {
                       </li>
                     ))}
                   </ul>
-                  <div className="mt-6 text-4xl font-bold font-headline">{pkg.price}</div>
+                  <div className="mt-6 text-4xl font-bold font-headline">₹{parseInt(pkg.price).toLocaleString('en-IN')}</div>
                   <p className="text-sm text-muted-foreground">per person</p>
                 </CardContent>
                 <CardFooter className="p-6 pt-0">
-                  <BookingDialog pkgTitle={pkg.title} />
+                  <BookingDialog pkgTitle={pkg.title} pkgPrice={pkg.price} />
                 </CardFooter>
               </Card>
             </AnimateOnScroll>

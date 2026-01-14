@@ -211,6 +211,14 @@ service cloud.firestore {
         allow read: if isOwner(userId);
         allow create, update, delete: if false;
       }
+      
+      /**
+       * @description Users can view their own transaction history.
+       *              Client-side creation is allowed for simplicity in this app.
+       */
+      match /transactions/{transactionId} {
+        allow read, write: if isOwner(userId);
+      }
     }
   }
 }

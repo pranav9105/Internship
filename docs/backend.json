@@ -121,6 +121,23 @@
             "tier": { "type": "string" }
         },
         "required": ["points", "level", "progress", "tier"]
+    },
+    "Transaction": {
+      "title": "Transaction",
+      "description": "Represents a single financial transaction made by a user.",
+      "type": "object",
+      "properties": {
+        "bookingId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "paymentMethod": { "type": "string" },
+        "paymentMethodDetails": { "type": "string", "description": "e.g., last 4 digits of card or UPI ID" },
+        "amount": { "type": "number" },
+        "purpose": { "type": "string", "enum": ["Hotel", "Flight", "Package", "Activity"] },
+        "status": { "type": "string", "enum": ["Paid", "Pending", "Refunded", "Failed"] },
+        "travelerName": { "type": "string" },
+        "destinationName": { "type": "string" }
+      },
+      "required": ["bookingId", "createdAt", "paymentMethod", "amount", "purpose", "status", "travelerName", "destinationName"]
     }
   },
   "auth": {
@@ -154,6 +171,10 @@
     "/users/{userId}/rewards/{rewardId}": {
         "schema": { "$ref": "#/entities/Reward" },
         "description": "User's rewards and loyalty status."
+    },
+    "/users/{userId}/transactions/{transactionId}": {
+        "schema": { "$ref": "#/entities/Transaction" },
+        "description": "User's financial transactions."
     }
   }
 }
