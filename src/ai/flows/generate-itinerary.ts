@@ -18,7 +18,7 @@ const ItineraryInputSchema = z.object({
   packageDuration: z
     .string()
     .optional()
-    .describe('The duration of the travel package (e.g., "5 Days / 4 Nights").'),
+    .describe('The duration of the travel package (e.g., "5 Days / 4 Nights"). This is the most important parameter to determine the number of days in the itinerary.'),
   packageFeatures: z
     .array(z.string())
     .optional()
@@ -50,7 +50,7 @@ const ItinerarySchema = z.object({
   days: z
     .array(DailyPlanSchema)
     .describe(
-      'An itinerary for the destination, with the number of days matching the package duration.'
+      'An array of daily plans for the itinerary. The length of this array MUST match the number of days specified in the packageDuration input.'
     ),
 });
 export type Itinerary = z.infer<typeof ItinerarySchema>;
@@ -67,18 +67,18 @@ const prompt = ai.definePrompt({
   
   Generate a detailed, exciting, and practical travel itinerary for the following destination: {{{destination}}}.
 
-  The itinerary should be for the duration of the travel package: {{{packageDuration}}}.
+  The itinerary MUST be for the exact duration of the travel package: {{{packageDuration}}}.
   
-  Please make sure to create a plan for the specified number of days.
+  For example, if the duration is "8 Days / 7 Nights", you MUST generate a plan for exactly 8 days. Create a full plan for every single day specified in the duration.
   
-  The package includes the following key features, so please prioritize them in your plan:
+  The package may include the following key features, so please prioritize them in your plan:
   {{#each packageFeatures}}
   - {{{this}}}
   {{/each}}
 
   For each day, provide a title, a list of activities (for Morning, Afternoon, Evening), and a specific food suggestion (a local dish or type of cuisine).
   
-  Make the itinerary realistic, engaging, and centered around the provided package features.`,
+  Make the itinerary realistic, engaging, and centered around the provided package features. Ensure the number of days in your output strictly matches the requested duration.`,
 });
 
 const generateItineraryFlow = ai.defineFlow(
@@ -92,5 +92,3 @@ const generateItineraryFlow = ai.defineFlow(
     return output!;
   }
 );
-
-    

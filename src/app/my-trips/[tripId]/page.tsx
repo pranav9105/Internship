@@ -39,6 +39,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
+import { differenceInDays, parse } from 'date-fns';
 
 const dayIcons = {
   Morning: Sunrise,
@@ -71,13 +72,34 @@ export default function TripDetailsPage() {
     );
   };
 
+  const calculateDuration = (dates: string): string | undefined => {
+    if (!dates) return undefined;
+    const parts = dates.split(' - ');
+    if (parts.length !== 2) return undefined;
+
+    try {
+      // Assuming format "LLL dd, y" -> "Jan 14, 2026"
+      const fromDate = parse(parts[0], 'LLL dd, y', new Date());
+      const toDate = parse(parts[1], 'LLL dd, y', new Date());
+      const days = differenceInDays(toDate, fromDate) + 1; // Inclusive of start day
+      const nights = days - 1;
+      if (days > 0 && nights >= 0) {
+        return `${days} Days / ${nights} Nights`;
+      }
+    } catch (e) {
+        console.error("Error parsing date for duration", e);
+    }
+    return undefined;
+  }
+
   const handleGenerateItinerary = async () => {
     if (!trip) return;
     setIsLoadingItinerary(true);
+    const calculatedDuration = calculateDuration(trip.dates);
     try {
       const result = await getItinerary({
         destination: trip.destination,
-        packageDuration: trip.packageDuration,
+        packageDuration: calculatedDuration || trip.packageDuration,
         packageFeatures: trip.packageFeatures,
       });
       setItinerary(result);
@@ -268,5 +290,3 @@ export default function TripDetailsPage() {
     </div>
   );
 }
-
-    
