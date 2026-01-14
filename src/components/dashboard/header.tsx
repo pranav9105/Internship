@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useUser, useAuth } from '@/firebase';
 import { Button } from '@/components/ui/button';
-import { Search, Bell, LogOut, Briefcase, Heart, Settings, Building, Star, MapPin } from 'lucide-react';
+import { Search, Bell, LogOut, Briefcase, Heart, Settings, Building, Star, MapPin, CheckCircle, Plane, CreditCard, Gift, MessageSquare } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import {
   DropdownMenu,
@@ -25,12 +25,47 @@ import {
   CommandList,
 } from '@/components/ui/command';
 import { DialogTitle } from '../ui/dialog';
+import { Card, CardHeader, CardContent, CardFooter } from '../ui/card';
+import Link from 'next/link';
 
 const indianStates = [
   "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat", "Haryana",
   "Himachal Pradesh", "Jharkhand", "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur",
   "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu",
   "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal", "Jammu and Kashmir"
+];
+
+const notifications = [
+    {
+      icon: <CheckCircle className="h-6 w-6 text-green-500" />,
+      title: 'Booking Confirmed: Goa',
+      description: 'Your beach getaway is set! Pack your bags.',
+      time: '2 hours ago',
+    },
+    {
+      icon: <Plane className="h-6 w-6 text-blue-500" />,
+      title: 'Flight Reminder',
+      description: 'Flight 6E 245 to Delhi departs in 3 hours.',
+      time: '3 hours ago',
+    },
+     {
+      icon: <Gift className="h-6 w-6 text-accent" />,
+      title: 'Special Offer Unlocked!',
+      description: 'Get 20% off your next trip to Kerala.',
+      time: '1 day ago',
+    },
+    {
+      icon: <CreditCard className="h-6 w-6 text-red-500" />,
+      title: 'Payment Failed',
+      description: 'Your payment for the Manali package failed.',
+      time: '2 days ago',
+    },
+    {
+      icon: <MessageSquare className="h-6 w-6 text-purple-500" />,
+      title: 'New Message',
+      description: 'You have a new message from support.',
+      time: '4 days ago',
+    },
 ];
 
 export function DashboardHeader() {
@@ -127,13 +162,43 @@ export function DashboardHeader() {
 
 
       <div className="flex items-center gap-6 ml-6">
-        <div className="relative">
-            <Bell className="h-6 w-6 text-muted-foreground" />
-            <span className="absolute -top-1 -right-1 flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
-            </span>
-        </div>
+        <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon" className="relative">
+                    <Bell className="h-6 w-6" />
+                    <span className="absolute -top-1 -right-1 flex h-3 w-3">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+                    </span>
+                </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-96 p-0">
+                <Card className="border-0">
+                    <CardHeader className="p-4">
+                        <h3 className="font-bold text-lg">Notifications</h3>
+                    </CardHeader>
+                    <CardContent className="p-0">
+                       <div className="flex flex-col">
+                            {notifications.map((notification, index) => (
+                                <Link href="#" key={index} className="flex items-start gap-4 p-4 hover:bg-muted/50 transition-colors border-t">
+                                    <div className="flex-shrink-0 mt-1">{notification.icon}</div>
+                                    <div className="flex-grow">
+                                        <p className="font-semibold">{notification.title}</p>
+                                        <p className="text-sm text-muted-foreground">{notification.description}</p>
+                                        <p className="text-xs text-muted-foreground mt-1">{notification.time}</p>
+                                    </div>
+                                </Link>
+                            ))}
+                       </div>
+                    </CardContent>
+                    <CardFooter className="p-2 border-t">
+                        <Button variant="link" className="w-full">
+                            View All Notifications
+                        </Button>
+                    </CardFooter>
+                </Card>
+            </DropdownMenuContent>
+        </DropdownMenu>
 
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
