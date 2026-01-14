@@ -341,7 +341,7 @@ function BookingDialog({ pkg }: { pkg: PackageDetails }) {
                 createdAt: serverTimestamp(),
                 paymentMethod: "Card",
                 paymentMethodDetails: "Visa **** 1234",
-                amount: parseFloat(pkg.price) * bookingData.occupancy.adults,
+                amount: parseFloat(pkg.price) * bookingData.occupancy.adults * 1.12,
                 purpose: "Package",
                 status: "Paid",
                 travelerName: bookingData.name || user.displayName,
@@ -409,9 +409,9 @@ function BookingDialog({ pkg }: { pkg: PackageDetails }) {
                     <div className="space-y-2">
                         <h3 className="text-base font-semibold">Price Breakup</h3>
                         <div className="flex justify-between"><span>Base Price:</span><span>₹{parseFloat(pkg.price).toLocaleString('en-IN')} x {bookingData.occupancy.adults} Adults</span></div>
-                        <div className="flex justify-between"><span>Taxes & Fees (18%):</span><span>₹{(totalPrice * 0.18).toLocaleString('en-IN')}</span></div>
+                        <div className="flex justify-between"><span>Taxes & Fees (12%):</span><span>₹{(totalPrice * 0.12).toLocaleString('en-IN')}</span></div>
                         <Separator />
-                        <div className="flex justify-between font-bold text-lg"><span>Total Price:</span><span>₹{(totalPrice * 1.18).toLocaleString('en-IN')}</span></div>
+                        <div className="flex justify-between font-bold text-lg"><span>Total Price:</span><span>₹{(totalPrice * 1.12).toLocaleString('en-IN')}</span></div>
                     </div>
                     <p className="text-xs text-muted-foreground">Cancellation policy: Full refund if cancelled 14 days prior to check-in.</p>
                 </div>
@@ -478,7 +478,7 @@ function BookingDialog({ pkg }: { pkg: PackageDetails }) {
                             <Separator className="my-4" />
                             <div className="flex justify-between font-bold text-xl">
                                 <span>Total Amount:</span>
-                                <span>₹{(totalPrice * 1.18).toLocaleString('en-IN')}</span>
+                                <span>₹{(totalPrice * 1.12).toLocaleString('en-IN')}</span>
                             </div>
                              <p className="text-sm text-muted-foreground">You will be charged using your default payment method (Visa **** 1234).</p>
                         </CardContent>
@@ -593,7 +593,9 @@ export function Packages({ isPage = false }: PackagesProps) {
                       </li>
                     ))}
                   </ul>
-                  <div className="mt-6 text-4xl font-bold font-headline">From ₹{parseInt(pkg.price).toLocaleString('en-IN')}</div>
+                  <div className="mt-6 text-4xl font-bold font-headline">
+                    {pkg.price.includes('–') ? `From ₹${parseInt(pkg.price.split('–')[0].trim().replace(/₹|,/g, '')).toLocaleString('en-IN')}` : `₹${parseInt(pkg.price).toLocaleString('en-IN')}`}
+                    </div>
                   <p className="text-sm text-muted-foreground">per person</p>
                 </CardContent>
                 <CardFooter className="p-6 pt-0">

@@ -54,7 +54,7 @@ export default function ReceiptPage() {
     window.print();
   };
 
-  const subtotal = transaction.amount / 1.18;
+  const subtotal = transaction.amount / 1.12;
   const tax = transaction.amount - subtotal;
 
   return (
@@ -120,7 +120,7 @@ export default function ReceiptPage() {
                         <span>₹{subtotal.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                     </div>
                      <div className="flex justify-between">
-                        <span className="text-muted-foreground">Taxes (18% GST)</span>
+                        <span className="text-muted-foreground">Taxes (12% GST)</span>
                         <span>₹{tax.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                     </div>
                      <Separator />
