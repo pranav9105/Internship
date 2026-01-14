@@ -305,6 +305,36 @@
       "description": "Dal Lake in Srinagar, Jammu and Kashmir.",
       "imageUrl": "https://www.mybesttrip.in/img/Admin/packages/thumb/20230922_PRODUCT_IMAGE_1695382200.png",
       "imageHint": "Jammu Kashmir Dal Lake"
+    },
+    {
+      "id": "property-type-apart-hotel",
+      "description": "A modern hotel room with a comfortable bed and wooden headboard.",
+      "imageUrl": "https://images.unsplash.com/photo-1629140727571-9b5c6f6267b4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxob3RlbCUyMHJvb218ZW58MHx8fHwxNzY4MzcwNzk0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "hotel room"
+    },
+    {
+      "id": "property-type-spa",
+      "description": "An indoor swimming pool in a spa with brick arches.",
+      "imageUrl": "https://images.unsplash.com/photo-1529290130-4ca3753253ae?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxzcGElMjBwb29sfGVufDB8fHx8MTc2ODQxNzMxMnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "spa pool"
+    },
+    {
+      "id": "property-type-resort",
+      "description": "A luxury resort with a swimming pool and modern architecture.",
+      "imageUrl": "https://images.unsplash.com/photo-1605537964076-3cb0ea2ff329?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxsdXh1cnklMjByZXNvcnR8ZW58MHx8fHwxNzY4NDE3MzEyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "luxury resort"
+    },
+    {
+      "id": "property-type-villa",
+      "description": "A large villa with a green lawn where two children are running.",
+      "imageUrl": "https://images.unsplash.com/photo-1642265362138-e0e837ec6e31?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx2aWxsYSUyMGdhcmRlbnxlbnwwfHx8fDE3NjgzODMyODZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "villa garden"
+    },
+    {
+      "id": "property-type-apartment",
+      "description": "A stylish apartment living room with modern furniture.",
+      "imageUrl": "https://images.unsplash.com/photo-1629042306547-c1d7c6c85ffa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxhcGFydG1lbnQlMjBsaXZpbmclMjByb29tfGVufDB8fHx8MTc2ODMxMjYzMHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "apartment living room"
     }
   ]
 }

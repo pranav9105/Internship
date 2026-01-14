@@ -7,6 +7,7 @@ import { Gallery } from '@/components/sections/gallery';
 import { Contact } from '@/components/sections/contact';
 import { Popular } from '@/components/sections/popular';
 import { Header } from '@/components/layout/header';
+import { BrowseByPropertyType } from '@/components/sections/browse-by-property-type';
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       <main className="flex-grow">
         <Hero />
         <Popular />
+        <BrowseByPropertyType />
         <Packages />
         <About />
         <Faq />
