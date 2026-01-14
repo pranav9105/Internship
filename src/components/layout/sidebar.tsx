@@ -40,11 +40,15 @@ export function Sidebar() {
         <nav className="flex flex-col gap-2">
             <Accordion type="single" collapsible defaultValue="explore" className="w-full border-b-0">
                 <AccordionItem value="explore" className="border-b-0">
-                    <AccordionTrigger className="p-0 hover:no-underline">
-                        <Button variant='secondary' className="w-full justify-start text-base h-12 bg-primary/10 text-primary">
-                            <ExploreIcon className="mr-3 h-5 w-5" />
-                            Explore
-                        </Button>
+                    <AccordionTrigger className={cn(
+                        "p-0 hover:no-underline rounded-md",
+                        "w-full justify-start text-base h-12",
+                        "bg-primary/10 text-primary hover:bg-primary/20",
+                        "inline-flex items-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+                        "px-4 py-2" // from button size default
+                    )}>
+                        <ExploreIcon className="mr-3 h-5 w-5" />
+                        Explore
                     </AccordionTrigger>
                     <AccordionContent className="pt-2 flex flex-col gap-2">
                         {navLinks.map((link) => (
