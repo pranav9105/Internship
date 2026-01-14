@@ -1,11 +1,12 @@
 
 'use client';
 
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useUser, useAuth } from '@/firebase';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Search, Bell, LogOut } from 'lucide-react';
+import { Search, Bell, LogOut, Briefcase, Heart, Settings, Building, Star } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import {
   DropdownMenu,
@@ -15,12 +16,33 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import {
+  Command,
+  CommandDialog,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from '@/components/ui/command';
 
 export function DashboardHeader() {
   const { user } = useUser();
   const auth = useAuth();
   const router = useRouter();
+  const [open, setOpen] = useState(false);
   
+  useEffect(() => {
+    const down = (e: KeyboardEvent) => {
+      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault()
+        setOpen((open) => !open)
+      }
+    }
+    document.addEventListener("keydown", down)
+    return () => document.removeEventListener("keydown", down)
+  }, [])
+
   const handleLogout = async () => {
     await auth.signOut();
     router.push('/');
@@ -31,16 +53,64 @@ export function DashboardHeader() {
     return name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
   };
 
+  const navigateTo = (path: string) => {
+    router.push(path);
+    setOpen(false);
+  }
+
   return (
     <header className="flex justify-between items-center">
       <div className="flex-grow max-w-xl">
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground h-5 w-5" />
-          <Input placeholder="Search for your favourite destination" className="pl-10 h-12 bg-card border-0" />
-        </div>
+        <Button
+            variant="outline"
+            className="relative w-full h-12 justify-start pl-10 pr-4 text-muted-foreground bg-card border-0"
+            onClick={() => setOpen(true)}
+          >
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5" />
+            <span className="flex-grow text-left">Search for your favourite destination</span>
+            <kbd className="hidden lg:inline-flex pointer-events-none h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100">
+              <span className="text-xs">⌘</span>K
+            </kbd>
+        </Button>
       </div>
-      <div className="flex items-center gap-6">
-        <Button variant="default" size="lg" className="h-12">Search</Button>
+
+      <CommandDialog open={open} onOpenChange={setOpen}>
+        <CommandInput placeholder="Type a command or search..." />
+        <CommandList>
+          <CommandEmpty>No results found.</CommandEmpty>
+          <CommandGroup heading="Suggestions">
+            <CommandItem onSelect={() => navigateTo('/my-trips')}>
+              <Briefcase className="mr-2 h-4 w-4" />
+              <span>My Trips</span>
+            </CommandItem>
+            <CommandItem onSelect={() => navigateTo('/wishlist')}>
+              <Heart className="mr-2 h-4 w-4" />
+              <span>Wishlist</span>
+            </CommandItem>
+            <CommandItem onSelect={() => navigateTo('/settings')}>
+              <Settings className="mr-2 h-4 w-4" />
+              <span>Settings</span>
+            </CommandItem>
+          </CommandGroup>
+          <CommandGroup heading="Popular Destinations">
+            <CommandItem onSelect={() => navigateTo('/deals')}>
+              <Building className="mr-2 h-4 w-4" />
+              <span>Goa</span>
+            </CommandItem>
+             <CommandItem onSelect={() => navigateTo('/deals')}>
+              <Building className="mr-2 h-4 w-4" />
+              <span>Jaipur</span>
+            </CommandItem>
+            <CommandItem onSelect={() => navigateTo('/deals')}>
+                <Star className="mr-2 h-4 w-4" />
+                <span>Special Offers</span>
+            </CommandItem>
+          </CommandGroup>
+        </CommandList>
+      </CommandDialog>
+
+
+      <div className="flex items-center gap-6 ml-6">
         <div className="relative">
             <Bell className="h-6 w-6 text-muted-foreground" />
             <span className="absolute -top-1 -right-1 flex h-3 w-3">
