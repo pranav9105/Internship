@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -250,7 +251,14 @@ type BookingData = {
     specialRequests: string;
 }
 
-function BookingDialog({ pkgTitle, pkgPrice }: { pkgTitle: string, pkgPrice: string }) {
+type PackageDetails = {
+    title: string;
+    price: string;
+    duration: string;
+    features: string[];
+}
+
+function BookingDialog({ pkg }: { pkg: PackageDetails }) {
   const [step, setStep] = useState(1);
   const { user } = useUser();
   const firestore = useFirestore();
@@ -303,15 +311,17 @@ function BookingDialog({ pkgTitle, pkgPrice }: { pkgTitle: string, pkgPrice: str
 
     try {
         const tripDoc = await addDocumentNonBlocking(tripsCollection, {
-            destination: pkgTitle,
+            destination: pkg.title,
             dates: formattedDates,
             status: 'Upcoming',
             occupancy: bookingData.occupancy,
+            packageDuration: pkg.duration,
+            packageFeatures: pkg.features,
         });
         
         const bookingDoc = await addDocumentNonBlocking(bookingsCollection, {
             type: 'Package',
-            details: pkgTitle,
+            details: pkg.title,
             date: format(bookingData.date.from, 'yyyy-MM-dd'),
             status: 'Confirmed',
         });
@@ -322,11 +332,11 @@ function BookingDialog({ pkgTitle, pkgPrice }: { pkgTitle: string, pkgPrice: str
                 createdAt: serverTimestamp(),
                 paymentMethod: "Card",
                 paymentMethodDetails: "Visa **** 1234",
-                amount: parseFloat(pkgPrice) * bookingData.occupancy.adults,
+                amount: parseFloat(pkg.price) * bookingData.occupancy.adults,
                 purpose: "Package",
                 status: "Paid",
                 travelerName: bookingData.name || user.displayName,
-                destinationName: pkgTitle,
+                destinationName: pkg.title,
             });
         }
         
@@ -356,7 +366,7 @@ function BookingDialog({ pkgTitle, pkgPrice }: { pkgTitle: string, pkgPrice: str
     });
   }
   
-  const totalPrice = parseFloat(pkgPrice) * bookingData.occupancy.adults;
+  const totalPrice = parseFloat(pkg.price) * bookingData.occupancy.adults;
   const numNights = bookingData.date?.from && bookingData.date?.to ? differenceInDays(bookingData.date.to, bookingData.date.from) : 0;
 
 
@@ -372,7 +382,7 @@ function BookingDialog({ pkgTitle, pkgPrice }: { pkgTitle: string, pkgPrice: str
             <>
                 <DialogHeader>
                     <DialogTitle>Step 1: Review Your Trip</DialogTitle>
-                    <DialogDescription>Confirm dates and details for your trip to {pkgTitle}.</DialogDescription>
+                    <DialogDescription>Confirm dates and details for your trip to {pkg.title}.</DialogDescription>
                 </DialogHeader>
                 <div className="space-y-4">
                     <div>
@@ -389,7 +399,7 @@ function BookingDialog({ pkgTitle, pkgPrice }: { pkgTitle: string, pkgPrice: str
                     <Separator />
                     <div className="space-y-2">
                         <h3 className="text-base font-semibold">Price Breakup</h3>
-                        <div className="flex justify-between"><span>Base Price:</span><span>₹{parseFloat(pkgPrice).toLocaleString('en-IN')} x {bookingData.occupancy.adults} Adults</span></div>
+                        <div className="flex justify-between"><span>Base Price:</span><span>₹{parseFloat(pkg.price).toLocaleString('en-IN')} x {bookingData.occupancy.adults} Adults</span></div>
                         <div className="flex justify-between"><span>Taxes & Fees (18%):</span><span>₹{(totalPrice * 0.18).toLocaleString('en-IN')}</span></div>
                         <Separator />
                         <div className="flex justify-between font-bold text-lg"><span>Total Price:</span><span>₹{(totalPrice * 1.18).toLocaleString('en-IN')}</span></div>
@@ -450,7 +460,7 @@ function BookingDialog({ pkgTitle, pkgPrice }: { pkgTitle: string, pkgPrice: str
                  <div className="space-y-4">
                      <Card>
                         <CardHeader>
-                            <CardTitle>{pkgTitle}</CardTitle>
+                            <CardTitle>{pkg.title}</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-2">
                             <p><strong>Dates:</strong> {bookingData.date?.from && format(bookingData.date.from, 'LLL dd, y')} - {bookingData.date?.to && format(bookingData.date.to, 'LLL dd, y')} ({numNights} nights)</p>
@@ -475,7 +485,7 @@ function BookingDialog({ pkgTitle, pkgPrice }: { pkgTitle: string, pkgPrice: str
              <>
                 <DialogHeader>
                     <DialogTitle>Booking Confirmed!</DialogTitle>
-                    <DialogDescription>Your trip to {pkgTitle} is booked. An email confirmation has been sent.</DialogDescription>
+                    <DialogDescription>Your trip to {pkg.title} is booked. An email confirmation has been sent.</DialogDescription>
                 </DialogHeader>
                 <div className="text-center py-8">
                      <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
@@ -544,7 +554,7 @@ export function Packages({ isPage = false }: PackagesProps) {
                   <p className="text-sm text-muted-foreground">per person</p>
                 </CardContent>
                 <CardFooter className="p-6 pt-0">
-                  <BookingDialog pkgTitle={pkg.title} pkgPrice={pkg.price} />
+                  <BookingDialog pkg={pkg} />
                 </CardFooter>
               </Card>
             </AnimateOnScroll>
@@ -566,3 +576,5 @@ export function Packages({ isPage = false }: PackagesProps) {
     </section>
   );
 }
+
+    

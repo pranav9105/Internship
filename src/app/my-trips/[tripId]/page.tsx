@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -74,7 +75,11 @@ export default function TripDetailsPage() {
     if (!trip) return;
     setIsLoadingItinerary(true);
     try {
-      const result = await getItinerary({ destination: trip.destination });
+      const result = await getItinerary({
+        destination: trip.destination,
+        packageDuration: trip.packageDuration,
+        packageFeatures: trip.packageFeatures,
+      });
       setItinerary(result);
     } catch (error) {
       console.error('Failed to generate itinerary:', error);
@@ -172,7 +177,7 @@ export default function TripDetailsPage() {
                       AI-Powered Itinerary
                     </CardTitle>
                     <CardDescription>
-                      Let our AI generate a sample 5-day plan for your trip.
+                      Let our AI generate a sample plan for your trip based on your package.
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
@@ -263,3 +268,5 @@ export default function TripDetailsPage() {
     </div>
   );
 }
+
+    

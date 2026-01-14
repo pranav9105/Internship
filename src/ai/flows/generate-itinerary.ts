@@ -1,3 +1,4 @@
+
 'use server';
 /**
  * @fileOverview An AI agent for generating travel itineraries.
@@ -14,6 +15,16 @@ const ItineraryInputSchema = z.object({
   destination: z
     .string()
     .describe('The travel destination for which to generate an itinerary.'),
+  packageDuration: z
+    .string()
+    .optional()
+    .describe('The duration of the travel package (e.g., "5 Days / 4 Nights").'),
+  packageFeatures: z
+    .array(z.string())
+    .optional()
+    .describe(
+      'A list of key features or activities included in the package (e.g., "Wildlife Safari", "Temple Tours").'
+    ),
 });
 export type ItineraryInput = z.infer<typeof ItineraryInputSchema>;
 
@@ -38,8 +49,9 @@ const DailyPlanSchema = z.object({
 const ItinerarySchema = z.object({
   days: z
     .array(DailyPlanSchema)
-    .length(5)
-    .describe('A 5-day itinerary for the destination.'),
+    .describe(
+      'An itinerary for the destination, with the number of days matching the package duration.'
+    ),
 });
 export type Itinerary = z.infer<typeof ItinerarySchema>;
 
@@ -53,11 +65,20 @@ const prompt = ai.definePrompt({
   output: { schema: ItinerarySchema },
   prompt: `You are a world-class travel planner.
   
-  Generate a detailed, exciting, and practical 5-day travel itinerary for the following destination: {{{destination}}}.
+  Generate a detailed, exciting, and practical travel itinerary for the following destination: {{{destination}}}.
+
+  The itinerary should be for the duration of the travel package: {{{packageDuration}}}.
+  
+  Please make sure to create a plan for the specified number of days.
+  
+  The package includes the following key features, so please prioritize them in your plan:
+  {{#each packageFeatures}}
+  - {{{this}}}
+  {{/each}}
 
   For each day, provide a title, a list of activities (for Morning, Afternoon, Evening), and a specific food suggestion (a local dish or type of cuisine).
   
-  Make the itinerary realistic and engaging for a typical traveler.`,
+  Make the itinerary realistic, engaging, and centered around the provided package features.`,
 });
 
 const generateItineraryFlow = ai.defineFlow(
@@ -71,3 +92,5 @@ const generateItineraryFlow = ai.defineFlow(
     return output!;
   }
 );
+
+    
