@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -26,7 +27,7 @@ import { Separator } from '../ui/separator';
 import { OccupancyPicker } from '../search/occupancy-picker';
 import type { Occupancy } from '../search/stay-search-form';
 import { useUser, useFirestore, addDocumentNonBlocking } from '@/firebase';
-import { collection } from 'firebase/firestore';
+import { collection, serverTimestamp } from 'firebase/firestore';
 import { useToast } from '@/hooks/use-toast';
 import { format } from 'date-fns';
 
@@ -234,7 +235,7 @@ const packages = [
     features: ['Houseboat Stay', 'Gondola Ride', 'Mughal Gardens'],
     image: PlaceHolderImages.find((img) => img.id === 'state-jammu-kashmir'),
   }
-];
+].filter(pkg => pkg.image);
 
 interface PackagesProps {
   isPage?: boolean;
@@ -271,6 +272,7 @@ function BookingDialog({ pkgTitle }: { pkgTitle: string }) {
 
     setIsBooking(true);
     const tripsCollection = collection(firestore, 'users', user.uid, 'trips');
+    const bookingsCollection = collection(firestore, 'users', user.uid, 'bookings');
     
     const formattedDates = `${format(date.from, 'LLL dd, y')} - ${format(date.to, 'LLL dd, y')}`;
 
@@ -279,6 +281,13 @@ function BookingDialog({ pkgTitle }: { pkgTitle: string }) {
       dates: formattedDates,
       status: 'Upcoming',
       occupancy,
+    });
+    
+    addDocumentNonBlocking(bookingsCollection, {
+      type: 'Hotel',
+      details: pkgTitle,
+      date: format(date.from, 'yyyy-MM-dd'),
+      status: 'Confirmed',
     });
 
     toast({
@@ -354,7 +363,13 @@ function BookingDialog({ pkgTitle }: { pkgTitle: string }) {
 }
 
 export function Packages({ isPage = false }: PackagesProps) {
-  const displayedPackages = isPage ? packages : packages.slice(0, 3);
+  const originalPackages = [
+    packages.find(p => p.title === 'Heritage Rajasthan'),
+    packages.find(p => p.title === 'Kerala Backwaters'),
+    packages.find(p => p.title === 'Himalayan Escape'),
+  ].filter(Boolean) as typeof packages;
+  
+  const displayedPackages = isPage ? packages : originalPackages;
 
   return (
     <section id="packages" className="py-20 md:py-32 bg-muted/50">
