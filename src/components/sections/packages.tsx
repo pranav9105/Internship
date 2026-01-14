@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import { useState } from 'react';
@@ -308,6 +309,7 @@ function BookingDialog({ pkg }: { pkg: PackageDetails }) {
     const transactionsCollection = collection(firestore, 'users', user.uid, 'transactions');
     
     const formattedDates = `${format(bookingData.date.from, 'LLL dd, y')} - ${format(bookingData.date.to, 'LLL dd, y')}`;
+    const mockDetails = `Flight: 6E-245, Hotel: Ocean View Resort`;
 
     try {
         const tripDoc = await addDocumentNonBlocking(tripsCollection, {
@@ -321,7 +323,7 @@ function BookingDialog({ pkg }: { pkg: PackageDetails }) {
         
         const bookingDoc = await addDocumentNonBlocking(bookingsCollection, {
             type: 'Package',
-            details: pkg.title,
+            details: mockDetails,
             date: format(bookingData.date.from, 'yyyy-MM-dd'),
             status: 'Confirmed',
         });
@@ -576,5 +578,7 @@ export function Packages({ isPage = false }: PackagesProps) {
     </section>
   );
 }
+
+    
 
     
