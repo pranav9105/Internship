@@ -36,20 +36,20 @@ import { Textarea } from '../ui/textarea';
 const packages = [
   {
     title: 'Andhra Pradesh',
-    price: '22000',
+    price: '14999',
     duration: '7 Days / 6 Nights',
     features: ['Temple Tours', 'Beach Visits', 'Local Cuisine'],
     image: PlaceHolderImages.find((img) => img.id === 'state-andhra-pradesh'),
   },
   {
     title: 'Arunachal Pradesh',
-    price: '30000',
+    price: '26999',
     duration: '8 Days / 7 Nights',
     features: ['Monastery Visits', 'Trekking', 'Scenic Landscapes'],
     image: PlaceHolderImages.find((img) => img.id === 'state-arunachal-pradesh'),
   },
   {
-    title: 'Assam',
+    title: 'Assam–Meghalaya',
     price: '17499',
     duration: '6 Days / 5 Nights',
     features: ['Wildlife Safari', 'Tea Gardens', 'River Cruise'],
@@ -140,22 +140,15 @@ const packages = [
     image: PlaceHolderImages.find((img) => img.id === 'state-manipur'),
   },
   {
-    title: 'Meghalaya',
-    price: '17499',
-    duration: '7 Days / 6 Nights',
-    features: ['Living Root Bridges', 'Waterfalls', 'Caves'],
-    image: PlaceHolderImages.find((img) => img.id === 'state-meghalaya'),
-  },
-  {
     title: 'Mizoram',
-    price: '32000',
+    price: '22999',
     duration: '8 Days / 7 Nights',
     features: ['Hills', 'Lakes', 'Cultural Experiences'],
     image: PlaceHolderImages.find((img) => img.id === 'state-mizoram'),
   },
   {
     title: 'Nagaland',
-    price: '33000',
+    price: '23999',
     duration: '9 Days / 8 Nights',
     features: ['Hornbill Festival', 'Tribal Villages', 'Trekking'],
     image: PlaceHolderImages.find((img) => img.id === 'state-nagaland'),
@@ -169,7 +162,7 @@ const packages = [
   },
   {
     title: 'Punjab',
-    price: '9999',
+    price: '11999',
     duration: '5 Days / 4 Nights',
     features: ['Golden Temple', 'Wagah Border', 'Punjabi Cuisine'],
     image: PlaceHolderImages.find((img) => img.id === 'state-punjab'),
@@ -182,7 +175,7 @@ const packages = [
     image: PlaceHolderImages.find((img) => img.id === 'package-heritage-rajasthan'),
   },
   {
-    title: 'Sikkim',
+    title: 'Sikkim–Darjeeling',
     price: '18499',
     duration: '8 Days / 7 Nights',
     features: ['Monasteries', 'Lakes', 'Mountain Views'],
@@ -197,7 +190,7 @@ const packages = [
   },
   {
     title: 'Telangana',
-    price: '10499',
+    price: '12999',
     duration: '5 Days / 4 Nights',
     features: ['Historical Sites', 'Charminar', 'Ramoji Film City'],
     image: PlaceHolderImages.find((img) => img.id === 'state-telangana'),
@@ -210,8 +203,8 @@ const packages = [
     image: PlaceHolderImages.find((img) => img.id === 'state-tripura'),
   },
   {
-    title: 'Uttar Pradesh',
-    price: '19000',
+    title: 'Delhi–Agra–Mathura–Vrindavan',
+    price: '10999',
     duration: '6 Days / 5 Nights',
     features: ['Taj Mahal', 'Varanasi Ghats', 'Lucknow Cuisine'],
     image: PlaceHolderImages.find((img) => img.id === 'state-uttar-pradesh'),
@@ -231,11 +224,25 @@ const packages = [
     image: PlaceHolderImages.find((img) => img.id === 'state-west-bengal'),
   },
   {
-    title: 'Jammu and Kashmir',
-    price: '18999',
+    title: 'Jammu & Kashmir',
+    price: '24999',
     duration: '8 Days / 7 Nights',
     features: ['Houseboat Stay', 'Gondola Ride', 'Mughal Gardens'],
     image: PlaceHolderImages.find((img) => img.id === 'state-jammu-kashmir'),
+  },
+  {
+    title: 'Andaman & Nicobar',
+    price: '28999',
+    duration: '7 Days / 6 Nights',
+    features: ['Scuba Diving', 'Cellular Jail', 'Radhanagar Beach'],
+    image: PlaceHolderImages.find((img) => img.id === 'package-andaman-islands'),
+  },
+  {
+    title: 'Leh–Ladakh',
+    price: '32999',
+    duration: '8 Days / 7 Nights',
+    features: ['Pangong Lake', 'Nubra Valley', 'Monastery Tour'],
+    image: PlaceHolderImages.find((img) => img.id === 'destination-ladakh'),
   }
 ].filter(pkg => pkg.image);
 
@@ -586,7 +593,7 @@ export function Packages({ isPage = false }: PackagesProps) {
                       </li>
                     ))}
                   </ul>
-                  <div className="mt-6 text-4xl font-bold font-headline">₹{parseInt(pkg.price).toLocaleString('en-IN')}</div>
+                  <div className="mt-6 text-4xl font-bold font-headline">From ₹{parseInt(pkg.price).toLocaleString('en-IN')}</div>
                   <p className="text-sm text-muted-foreground">per person</p>
                 </CardContent>
                 <CardFooter className="p-6 pt-0">
