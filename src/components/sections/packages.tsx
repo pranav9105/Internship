@@ -250,7 +250,7 @@ function BookingDialog({ pkgTitle }: { pkgTitle: string }) {
           Book Now
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="sm:max-w-md max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>Book Your Trip: {pkgTitle}</DialogTitle>
           <DialogDescription>
