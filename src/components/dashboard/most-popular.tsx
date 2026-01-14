@@ -1,9 +1,11 @@
 'use client';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { MapPin } from 'lucide-react';
+import { Button } from '../ui/button';
 
 const popularPlaces = [
   { name: 'Andhra Pradesh', country: 'India', imageId: 'state-andhra-pradesh', price: '₹22,000' },
@@ -76,6 +78,11 @@ export function MostPopular() {
                              </Card>
                         )
                     })}
+                </div>
+                <div className="mt-8 text-center">
+                    <Button asChild size="lg">
+                        <Link href="/deals">Book Now</Link>
+                    </Button>
                 </div>
             </TabsContent>
              <TabsContent value="special">
