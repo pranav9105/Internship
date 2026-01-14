@@ -14,37 +14,14 @@ const domesticCities = [
   'Srinagar hotels', 'Rishikesh hotels', 'Hampi hotels', 'Pondicherry hotels', 'Varkala hotels',
   'Alleppey hotels', 'Shimla hotels', 'Nainital hotels', 'Mangalore hotels', 'Lonavala hotels',
   'Ahmedabad hotels', 'Ayodhya hotels', 'Kolkata hotels', 'Alibaug hotels', 'Tiruvannamalai hotels',
+  'The Taj Mahal Palace, Mumbai', 'The Oberoi, Gurgaon', 'ITC Maurya, New Delhi',
 ];
 
 const regions = [
-    "Andhra Pradesh",
-    "Arunachal Pradesh",
-    "Assam",
-    "Bihar",
-    "Chhattisgarh",
-    "Goa",
-    "Gujarat",
-    "Haryana",
-    "Himachal Pradesh",
-    "Jharkhand",
-    "Karnataka",
-    "Kerala",
-    "Madhya Pradesh",
-    "Maharashtra",
-    "Manipur",
-    "Meghalaya",
-    "Mizoram",
-    "Nagaland",
-    "Odisha",
-    "Punjab",
-    "Rajasthan",
-    "Sikkim",
-    "Tamil Nadu",
-    "Telangana",
-    "Tripura",
-    "Uttar Pradesh",
-    "Uttarakhand",
-    "West Bengal"
+    "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat", "Haryana",
+    "Himachal Pradesh", "Jharkhand", "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur",
+    "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu",
+    "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal"
 ];
 
 const countries = [
