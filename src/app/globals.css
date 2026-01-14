@@ -91,3 +91,38 @@
 .rdp-button:hover:not([aria-selected]):not([disabled]) {
     background-color: hsl(var(--accent) / 0.5) !important;
 }
+
+/* Glassmorphism Calendar Styles */
+.glass-calendar {
+  @apply bg-card/60 backdrop-blur-md border border-white/20 p-4 rounded-2xl shadow-lg;
+}
+.glass-calendar .rdp-caption_label {
+  @apply text-foreground font-bold;
+}
+.glass-calendar .rdp-nav_button {
+  @apply rounded-full bg-foreground/10 text-foreground hover:bg-foreground/20;
+}
+.glass-calendar .rdp-head_cell {
+  @apply text-muted-foreground font-semibold;
+}
+.glass-calendar .rdp-day {
+  @apply rounded-lg transition-all duration-200;
+}
+.glass-calendar .rdp-day:hover {
+  @apply bg-accent/80 shadow-md transform -translate-y-0.5;
+}
+.glass-calendar .rdp-day_today {
+  @apply bg-transparent ring-2 ring-primary;
+}
+.glass-calendar .rdp-day_selected {
+  @apply bg-primary text-primary-foreground rounded-lg shadow-inner;
+}
+.glass-calendar .rdp-day_range_middle {
+  @apply bg-primary/20 rounded-none;
+}
+.glass-calendar .rdp-day_range_start {
+  @apply bg-primary text-primary-foreground rounded-l-lg;
+}
+.glass-calendar .rdp-day_range_end {
+  @apply bg-primary text-primary-foreground rounded-r-lg;
+}

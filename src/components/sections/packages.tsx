@@ -36,14 +36,14 @@ import { Textarea } from '../ui/textarea';
 const packages = [
   {
     title: 'Andhra Pradesh (Vishakhapatnam – Araku – Lambasingi)',
-    price: '14999',
+    price: '14999 – 16999',
     duration: '7 Days / 6 Nights',
     features: ['Temple Tours', 'Beach Visits', 'Local Cuisine'],
     image: PlaceHolderImages.find((img) => img.id === 'state-andhra-pradesh'),
   },
   {
     title: 'Arunachal Pradesh (Tawang – Dirang – Bomdila)',
-    price: '26999',
+    price: '26999 – 29999',
     duration: '8 Days / 7 Nights',
     features: ['Monastery Visits', 'Trekking', 'Scenic Landscapes'],
     image: PlaceHolderImages.find((img) => img.id === 'state-arunachal-pradesh'),
@@ -127,7 +127,7 @@ const packages = [
   },
   {
     title: 'Maharashtra',
-    price: '13999',
+    price: '13999 – 17999',
     duration: '7 Days / 6 Nights',
     features: ['Cave Temples', 'Forts', 'Mumbai City Tour'],
     image: PlaceHolderImages.find((img) => img.id === 'state-maharashtra'),
@@ -141,14 +141,14 @@ const packages = [
   },
   {
     title: 'Mizoram (Aizawl – Reiek – Hmuifang)',
-    price: '22999',
+    price: '22999 – 24999',
     duration: '8 Days / 7 Nights',
     features: ['Hills', 'Lakes', 'Cultural Experiences'],
     image: PlaceHolderImages.find((img) => img.id === 'state-mizoram'),
   },
   {
     title: 'Nagaland (Kohima – Dzükou Valley – Khonoma)',
-    price: '23999',
+    price: '23999 – 26499',
     duration: '9 Days / 8 Nights',
     features: ['Hornbill Festival', 'Tribal Villages', 'Trekking'],
     image: PlaceHolderImages.find((img) => img.id === 'state-nagaland'),
@@ -162,7 +162,7 @@ const packages = [
   },
   {
     title: 'Punjab (Amritsar – Wagah – Jalandhar)',
-    price: '11999',
+    price: '11999 – 13999',
     duration: '5 Days / 4 Nights',
     features: ['Golden Temple', 'Wagah Border', 'Punjabi Cuisine'],
     image: PlaceHolderImages.find((img) => img.id === 'state-punjab'),
@@ -190,7 +190,7 @@ const packages = [
   },
   {
     title: 'Telangana (Hyderabad – Ramoji – Warangal)',
-    price: '12999',
+    price: '12999 – 15499',
     duration: '5 Days / 4 Nights',
     features: ['Historical Sites', 'Charminar', 'Ramoji Film City'],
     image: PlaceHolderImages.find((img) => img.id === 'state-telangana'),
@@ -225,7 +225,7 @@ const packages = [
   },
   {
     title: 'Jammu & Kashmir (Srinagar – Gulmarg – Pahalgam – Sonmarg)',
-    price: '24999',
+    price: '24999 – 32999',
     duration: '8 Days / 7 Nights',
     features: ['Houseboat Stay', 'Gondola Ride', 'Mughal Gardens'],
     image: PlaceHolderImages.find((img) => img.id === 'state-jammu-kashmir'),
@@ -317,6 +317,7 @@ function BookingDialog({ pkg }: { pkg: PackageDetails }) {
     
     const formattedDates = `${format(bookingData.date.from, 'LLL dd, y')} - ${format(bookingData.date.to, 'LLL dd, y')}`;
     const mockDetails = `Flight: 6E-245, Hotel: Ocean View Resort`;
+    const basePrice = parseFloat(pkg.price.split('–')[0].trim().replace(/,/g, ''));
 
     try {
         const tripDoc = await addDocumentNonBlocking(tripsCollection, {
@@ -341,7 +342,7 @@ function BookingDialog({ pkg }: { pkg: PackageDetails }) {
                 createdAt: serverTimestamp(),
                 paymentMethod: "Card",
                 paymentMethodDetails: "Visa **** 1234",
-                amount: parseFloat(pkg.price) * bookingData.occupancy.adults * 1.12,
+                amount: basePrice * bookingData.occupancy.adults * 1.12,
                 purpose: "Package",
                 status: "Paid",
                 travelerName: bookingData.name || user.displayName,
@@ -375,7 +376,8 @@ function BookingDialog({ pkg }: { pkg: PackageDetails }) {
     });
   }
   
-  const totalPrice = parseFloat(pkg.price) * bookingData.occupancy.adults;
+  const basePrice = parseFloat(pkg.price.split('–')[0].trim().replace(/,/g, ''));
+  const totalPrice = basePrice * bookingData.occupancy.adults;
   const numNights = bookingData.date?.from && bookingData.date?.to ? differenceInDays(bookingData.date.to, bookingData.date.from) : 0;
 
 
@@ -386,15 +388,15 @@ function BookingDialog({ pkg }: { pkg: PackageDetails }) {
           Book Now
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-2xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-2xl max-h-[90vh] overflow-y-auto p-0">
         {step === 1 && (
             <>
-                <DialogHeader>
+                <DialogHeader className="p-6 pb-0">
                     <DialogTitle>Step 1: Review Your Trip</DialogTitle>
                     <DialogDescription>Confirm dates and details for your trip to {pkg.title}.</DialogDescription>
                 </DialogHeader>
-                <div className="space-y-4">
-                    <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-4 shadow-lg">
+                <div className="p-6 space-y-4">
+                    <div className="rounded-xl p-4 bg-muted/50">
                         <Label className="text-base font-semibold">Select Dates</Label>
                          <div className="flex justify-center mt-2">
                             <Calendar
@@ -409,14 +411,14 @@ function BookingDialog({ pkg }: { pkg: PackageDetails }) {
                     <Separator />
                     <div className="space-y-2">
                         <h3 className="text-base font-semibold">Price Breakup</h3>
-                        <div className="flex justify-between"><span>Base Price:</span><span>₹{parseFloat(pkg.price).toLocaleString('en-IN')} x {bookingData.occupancy.adults} Adults</span></div>
+                        <div className="flex justify-between"><span>Base Price:</span><span>₹{basePrice.toLocaleString('en-IN')} x {bookingData.occupancy.adults} Adults</span></div>
                         <div className="flex justify-between"><span>Taxes & Fees (12%):</span><span>₹{(totalPrice * 0.12).toLocaleString('en-IN')}</span></div>
                         <Separator />
                         <div className="flex justify-between font-bold text-lg"><span>Total Price:</span><span>₹{(totalPrice * 1.12).toLocaleString('en-IN')}</span></div>
                     </div>
                     <p className="text-xs text-muted-foreground">Cancellation policy: Full refund if cancelled 14 days prior to check-in.</p>
                 </div>
-                <DialogFooter>
+                <DialogFooter className="p-6 pt-0 bg-background sticky bottom-0">
                     <DialogClose asChild><Button variant="secondary">Cancel</Button></DialogClose>
                     <Button onClick={() => setStep(2)}>Continue</Button>
                 </DialogFooter>
@@ -424,11 +426,11 @@ function BookingDialog({ pkg }: { pkg: PackageDetails }) {
         )}
         {step === 2 && (
              <>
-                <DialogHeader>
+                <DialogHeader className="p-6 pb-0">
                     <DialogTitle>Step 2: Add Traveller Details</DialogTitle>
                     <DialogDescription>Please provide information for the primary traveler.</DialogDescription>
                 </DialogHeader>
-                 <div className="space-y-4">
+                 <div className="p-6 space-y-4">
                     <div>
                         <Label className="text-base font-semibold">Who is going?</Label>
                         <OccupancyPicker value={bookingData.occupancy} onChange={(occupancy) => handleDataChange({ occupancy })} />
@@ -455,7 +457,7 @@ function BookingDialog({ pkg }: { pkg: PackageDetails }) {
                         </div>
                     </div>
                 </div>
-                <DialogFooter>
+                <DialogFooter className="p-6 pt-0 bg-background sticky bottom-0">
                     <Button variant="secondary" onClick={() => setStep(1)}><ArrowLeft className="mr-2 h-4 w-4" /> Back</Button>
                     <Button onClick={() => setStep(3)}>Proceed to Payment</Button>
                 </DialogFooter>
@@ -463,11 +465,11 @@ function BookingDialog({ pkg }: { pkg: PackageDetails }) {
         )}
         {step === 3 && (
             <>
-                <DialogHeader>
+                <DialogHeader className="p-6 pb-0">
                     <DialogTitle>Step 3: Confirm and Pay</DialogTitle>
                     <DialogDescription>Please review your booking details before confirming.</DialogDescription>
                 </DialogHeader>
-                 <div className="space-y-4">
+                 <div className="p-6 space-y-4">
                      <Card>
                         <CardHeader>
                             <CardTitle>{pkg.title}</CardTitle>
@@ -485,7 +487,7 @@ function BookingDialog({ pkg }: { pkg: PackageDetails }) {
                         </CardContent>
                      </Card>
                 </div>
-                <DialogFooter>
+                <DialogFooter className="p-6 pt-0 bg-background sticky bottom-0">
                     <Button variant="secondary" onClick={() => setStep(2)}><ArrowLeft className="mr-2 h-4 w-4" /> Back</Button>
                     <Button onClick={handleBooking} disabled={isBooking}>{isBooking ? 'Confirming...' : 'Confirm Booking'}</Button>
                 </DialogFooter>
@@ -493,15 +495,15 @@ function BookingDialog({ pkg }: { pkg: PackageDetails }) {
         )}
         {step === 4 && (
              <>
-                <DialogHeader>
+                <DialogHeader className="p-6 pb-0">
                     <DialogTitle>Booking Confirmed!</DialogTitle>
                     <DialogDescription>Your trip to {pkg.title} is booked. An email confirmation has been sent.</DialogDescription>
                 </DialogHeader>
-                <div className="text-center py-8">
+                <div className="p-6 text-center py-8">
                      <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
                      <p>Your booking ID is: <strong>#{(Math.random()*100000).toFixed(0)}</strong></p>
                 </div>
-                <DialogFooter>
+                <DialogFooter className="p-6 pt-0 bg-background sticky bottom-0">
                     <DialogClose asChild><Button variant="secondary">Close</Button></DialogClose>
                     <Button asChild><Link href="/my-trips">View Trip</Link></Button>
                 </DialogFooter>
@@ -595,7 +597,7 @@ export function Packages({ isPage = false }: PackagesProps) {
                     ))}
                   </ul>
                   <div className="mt-6 text-4xl font-bold font-headline">
-                    {pkg.price.includes('–') ? `From ₹${parseInt(pkg.price.split('–')[0].trim().replace(/₹|,/g, '')).toLocaleString('en-IN')}` : `₹${parseInt(pkg.price).toLocaleString('en-IN')}`}
+                    {pkg.price.includes('–') ? `From ₹${parseInt(pkg.price.split('–')[0].trim().replace(/,/g, '')).toLocaleString('en-IN')}` : `₹${parseInt(pkg.price).toLocaleString('en-IN')}`}
                     </div>
                   <p className="text-sm text-muted-foreground">per person</p>
                 </CardContent>
