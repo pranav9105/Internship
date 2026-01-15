@@ -9,11 +9,12 @@ import { Button } from '@/components/ui/button';
 import { AnimateOnScroll } from '@/components/animate-on-scroll';
 import { PlaceHolderImages, ImagePlaceholder } from '@/lib/placeholder-images';
 import { BedDouble, Bath, Users } from 'lucide-react';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 
 type Stay = {
   title: string;
   price: number;
-  image: ImagePlaceholder | undefined;
+  images: (ImagePlaceholder | undefined)[];
   beds: number;
   baths: number;
   guests: number;
@@ -21,25 +22,25 @@ type Stay = {
 
 const staysData: { [key: string]: Stay[] } = {
   'apart-hotel': [
-    { title: 'Serviced Studio', price: 8000, image: PlaceHolderImages.find(img => img.id === 'property-type-apart-hotel'), beds: 1, baths: 1, guests: 2 },
-    { title: 'One-Bedroom Apartment', price: 12000, image: PlaceHolderImages.find(img => img.id === 'property-type-apartment'), beds: 1, baths: 1, guests: 3 },
+    { title: 'Serviced Studio', price: 8000, images: [PlaceHolderImages.find(img => img.id === 'property-type-apart-hotel'), PlaceHolderImages.find(img => img.id === 'apartment-bedroom-1'), PlaceHolderImages.find(img => img.id === 'apartment-bathroom-1')], beds: 1, baths: 1, guests: 2 },
+    { title: 'One-Bedroom Apartment', price: 12000, images: [PlaceHolderImages.find(img => img.id === 'property-type-apartment'), PlaceHolderImages.find(img => img.id === 'apartment-living-room-1'), PlaceHolderImages.find(img => img.id === 'apartment-kitchen-1')], beds: 1, baths: 1, guests: 3 },
   ],
   'spa': [
-    { title: 'Tranquility Suite', price: 15000, image: PlaceHolderImages.find(img => img.id === 'property-type-spa'), beds: 1, baths: 1, guests: 2 },
-    { title: 'Wellness Room with Balcony', price: 18000, image: PlaceHolderImages.find(img => img.id === 'collection-bangalore'), beds: 1, baths: 1, guests: 2 },
+    { title: 'Tranquility Suite', price: 15000, images: [PlaceHolderImages.find(img => img.id === 'property-type-spa'), PlaceHolderImages.find(img => img.id === 'apartment-bedroom-1'), PlaceHolderImages.find(img => img.id === 'apartment-bathroom-1')], beds: 1, baths: 1, guests: 2 },
+    { title: 'Wellness Room with Balcony', price: 18000, images: [PlaceHolderImages.find(img => img.id === 'collection-bangalore'), PlaceHolderImages.find(img => img.id === 'apartment-living-room-1')], beds: 1, baths: 1, guests: 2 },
   ],
   'resort': [
-    { title: 'Deluxe Garden View', price: 11000, image: PlaceHolderImages.find(img => img.id === 'property-type-resort'), beds: 2, baths: 1, guests: 4 },
-    { title: 'Oceanfront Suite', price: 25000, image: PlaceHolderImages.find(img => img.id === 'collection-beach'), beds: 1, baths: 2, guests: 3 },
-    { title: 'Family Bungalow', price: 19000, image: PlaceHolderImages.find(img => img.id === 'collection-weekend'), beds: 3, baths: 2, guests: 6 },
+    { title: 'Deluxe Garden View', price: 11000, images: [PlaceHolderImages.find(img => img.id === 'property-type-resort'), PlaceHolderImages.find(img => img.id === 'apartment-bedroom-1')], beds: 2, baths: 1, guests: 4 },
+    { title: 'Oceanfront Suite', price: 25000, images: [PlaceHolderImages.find(img => img.id === 'collection-beach'), PlaceHolderImages.find(img => img.id === 'apartment-living-room-1'), PlaceHolderImages.find(img => img.id === 'apartment-bathroom-1')], beds: 1, baths: 2, guests: 3 },
+    { title: 'Family Bungalow', price: 19000, images: [PlaceHolderImages.find(img => img.id === 'collection-weekend'), PlaceHolderImages.find(img => img.id === 'apartment-bedroom-1'), PlaceHolderImages.find(img => img.id === 'apartment-kitchen-1')], beds: 3, baths: 2, guests: 6 },
   ],
   'villa': [
-    { title: 'Private Pool Villa', price: 35000, image: PlaceHolderImages.find(img => img.id === 'property-type-villa'), beds: 3, baths: 3, guests: 6 },
-    { title: 'Hillside Luxury Villa', price: 45000, image: PlaceHolderImages.find(img => img.id === 'collection-hill'), beds: 4, baths: 4, guests: 8 },
+    { title: 'Private Pool Villa', price: 35000, images: [PlaceHolderImages.find(img => img.id === 'property-type-villa'), PlaceHolderImages.find(img => img.id === 'apartment-living-room-1'), PlaceHolderImages.find(img => img.id === 'apartment-bedroom-1')], beds: 3, baths: 3, guests: 6 },
+    { title: 'Hillside Luxury Villa', price: 45000, images: [PlaceHolderImages.find(img => img.id === 'collection-hill'), PlaceHolderImages.find(img => img.id === 'apartment-bathroom-1'), PlaceHolderImages.find(img => img.id === 'apartment-kitchen-1')], beds: 4, baths: 4, guests: 8 },
   ],
   'apartment': [
-    { title: 'Modern City Apartment', price: 9000, image: PlaceHolderImages.find(img => img.id === 'property-type-apartment'), beds: 2, baths: 2, guests: 4 },
-    { title: 'Penthouse with Terrace', price: 22000, image: PlaceHolderImages.find(img => img.id === 'collection-mumbai'), beds: 3, baths: 3, guests: 5 },
+    { title: 'Modern City Apartment', price: 9000, images: [PlaceHolderImages.find(img => img.id === 'property-type-apartment'), PlaceHolderImages.find(img => img.id === 'apartment-living-room-1'), PlaceHolderImages.find(img => img.id === 'apartment-bedroom-1'), PlaceHolderImages.find(img => img.id === 'apartment-bathroom-1')], beds: 2, baths: 2, guests: 4 },
+    { title: 'Penthouse with Terrace', price: 22000, images: [PlaceHolderImages.find(img => img.id === 'collection-mumbai'), PlaceHolderImages.find(img => img.id === 'apartment-kitchen-1')], beds: 3, baths: 3, guests: 5 },
   ],
 };
 
@@ -68,17 +69,25 @@ export default function PropertyTypePage() {
                 {stays.map((stay, index) => (
                     <AnimateOnScroll key={stay.title} delay={index * 100}>
                         <Card className="h-full flex flex-col overflow-hidden transition-shadow hover:shadow-lg">
-                             {stay.image && (
-                                <div className="relative h-56 w-full">
-                                    <Image
-                                        src={stay.image.imageUrl}
-                                        alt={stay.title}
-                                        fill
-                                        className="object-cover"
-                                        data-ai-hint={stay.image.imageHint}
-                                    />
-                                </div>
-                            )}
+                            <Carousel className="w-full">
+                                <CarouselContent>
+                                    {stay.images.filter(Boolean).map((image) => (
+                                        <CarouselItem key={image!.id}>
+                                            <div className="relative h-56 w-full">
+                                                <Image
+                                                    src={image!.imageUrl}
+                                                    alt={image!.description}
+                                                    fill
+                                                    className="object-cover"
+                                                    data-ai-hint={image!.imageHint}
+                                                />
+                                            </div>
+                                        </CarouselItem>
+                                    ))}
+                                </CarouselContent>
+                                <CarouselPrevious className="absolute left-4" />
+                                <CarouselNext className="absolute right-4" />
+                            </Carousel>
                             <CardHeader>
                                 <h3 className="font-headline text-2xl font-bold">{stay.title}</h3>
                             </CardHeader>
@@ -125,3 +134,4 @@ export default function PropertyTypePage() {
     </div>
   );
 }
+
