@@ -36,7 +36,7 @@ import { Sidebar } from './sidebar';
 
 const navLinks = [
   { href: '/deals', label: 'Destinations' },
-  { href: '/help', label: 'Blog' },
+  { href: '/blog', label: 'Blog' },
   { href: '/feedback', label: 'Contact' },
 ];
 

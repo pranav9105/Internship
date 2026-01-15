@@ -256,6 +256,12 @@ const nextConfig: NextConfig = {
         hostname: 'api.qrserver.com',
         port: '',
         pathname: '/**',
+      },
+       {
+        protocol: 'https',
+        hostname: 'video.pictory.ai',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
