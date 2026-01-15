@@ -8,7 +8,7 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { AnimateOnScroll } from '../animate-on-scroll';
-import { CheckCircle, ArrowRight, ArrowLeft, Heart } from 'lucide-react';
+import { CheckCircle, ArrowRight, ArrowLeft, Heart, CreditCard, ScanLine } from 'lucide-react';
 import Link from 'next/link';
 import {
   Dialog,
@@ -31,6 +31,7 @@ import { collection, serverTimestamp } from 'firebase/firestore';
 import { useToast } from '@/hooks/use-toast';
 import { format, differenceInDays, parse, addDays } from 'date-fns';
 import { Textarea } from '../ui/textarea';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 
 const packages = [
   {
@@ -270,6 +271,7 @@ function BookingDialog({ pkg }: { pkg: PackageDetails }) {
   const { user } = useUser();
   const firestore = useFirestore();
   const { toast } = useToast();
+  const qrImage = PlaceHolderImages.find(img => img.id === 'payment-qr');
   
   const [bookingData, setBookingData] = useState<BookingData>({
     date: {
@@ -457,30 +459,73 @@ function BookingDialog({ pkg }: { pkg: PackageDetails }) {
         {step === 2 && (
             <>
                 <DialogHeader className="p-6 pb-0">
-                    <DialogTitle>Step 2: Confirm and Pay</DialogTitle>
-                    <DialogDescription>Please review your booking details before confirming.</DialogDescription>
+                    <DialogTitle>Step 2: Complete Your Payment</DialogTitle>
+                    <DialogDescription>Choose your payment method and confirm your booking.</DialogDescription>
                 </DialogHeader>
-                 <div className="p-6 space-y-4">
-                     <Card>
-                        <CardHeader>
-                            <CardTitle>{pkg.title}</CardTitle>
-                        </CardHeader>
-                        <CardContent className="space-y-2">
-                            <p><strong>Dates:</strong> {bookingData.date?.from && format(bookingData.date.from, 'LLL dd, y')} - {bookingData.date?.to && format(bookingData.date.to, 'LLL dd, y')} ({numNights} nights)</p>
-                            <p><strong>Guests:</strong> {bookingData.occupancy.adults} Adults, {bookingData.occupancy.children} Children, {bookingData.occupancy.rooms} Rooms</p>
-                            <p><strong>Traveller:</strong> {bookingData.name} ({bookingData.email})</p>
-                            <Separator className="my-4" />
-                            <div className="flex justify-between font-bold text-xl">
-                                <span>Total Amount:</span>
-                                <span>₹{(totalPrice * 1.12).toLocaleString('en-IN')}</span>
-                            </div>
-                             <p className="text-sm text-muted-foreground">You will be charged using your default payment method (Visa **** 1234).</p>
-                        </CardContent>
-                     </Card>
-                </div>
+                 <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {/* Left side - Summary */}
+                    <div className="space-y-4">
+                        <h3 className="font-bold text-lg">Booking Summary</h3>
+                        <Card>
+                            <CardContent className="p-4 space-y-2">
+                                <p className="font-bold">{pkg.title}</p>
+                                <p className="text-sm"><strong>Dates:</strong> {bookingData.date?.from && format(bookingData.date.from, 'dd MMM')} - {bookingData.date?.to && format(bookingData.date.to, 'dd MMM yyyy')}</p>
+                                <p className="text-sm"><strong>Guests:</strong> {bookingData.occupancy.adults} Adults, {bookingData.occupancy.children} Children</p>
+                                <Separator className="my-2"/>
+                                <div className="flex justify-between font-bold text-lg">
+                                    <span>Total:</span>
+                                    <span>₹{(totalPrice * 1.12).toLocaleString('en-IN')}</span>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    </div>
+
+                    {/* Right side - Payment Options */}
+                    <div className="space-y-4">
+                        <h3 className="font-bold text-lg">Payment Method</h3>
+                        <Tabs defaultValue="card" className="w-full">
+                            <TabsList className="grid w-full grid-cols-2">
+                                <TabsTrigger value="card"><CreditCard className="mr-2 h-4 w-4"/>Card</TabsTrigger>
+                                <TabsTrigger value="upi"><ScanLine className="mr-2 h-4 w-4"/>UPI / QR</TabsTrigger>
+                            </TabsList>
+                            <TabsContent value="card" className="mt-4 space-y-4">
+                                <div className="space-y-2">
+                                    <Label htmlFor="card-no">Card Number</Label>
+                                    <Input id="card-no" placeholder="xxxx xxxx xxxx xxxx" defaultValue="4242 4242 4242 4242"/>
+                                </div>
+                                 <div className="grid grid-cols-2 gap-4">
+                                     <div className="space-y-2">
+                                        <Label htmlFor="expiry">Expiry</Label>
+                                        <Input id="expiry" placeholder="MM/YY" defaultValue="12/28"/>
+                                    </div>
+                                     <div className="space-y-2">
+                                        <Label htmlFor="cvc">CVC</Label>
+                                        <Input id="cvc" placeholder="123" defaultValue="123"/>
+                                    </div>
+                                 </div>
+                            </TabsContent>
+                            <TabsContent value="upi" className="mt-4">
+                                <div className="flex flex-col items-center justify-center p-4 border-2 border-dashed rounded-lg">
+                                    {qrImage && (
+                                         <Image
+                                            src={qrImage.imageUrl}
+                                            alt={qrImage.description}
+                                            width={150}
+                                            height={150}
+                                            data-ai-hint={qrImage.imageHint}
+                                        />
+                                    )}
+                                    <p className="mt-2 font-bold">Scan to Pay</p>
+                                    <p className="text-sm text-muted-foreground">or use UPI ID</p>
+                                     <Input className="mt-4" placeholder="your-upi-id@okhdfc" />
+                                </div>
+                            </TabsContent>
+                        </Tabs>
+                    </div>
+                 </div>
                 <DialogFooter className="p-6 pt-0 bg-background sticky bottom-0">
                     <Button variant="secondary" onClick={() => setStep(1)}><ArrowLeft className="mr-2 h-4 w-4" /> Back</Button>
-                    <Button onClick={handleBooking} disabled={isBooking}>{isBooking ? 'Confirming...' : 'Confirm Booking'}</Button>
+                    <Button onClick={handleBooking} disabled={isBooking}>{isBooking ? 'Processing...' : `Pay ₹${(totalPrice * 1.12).toLocaleString('en-IN')}`}</Button>
                 </DialogFooter>
             </>
         )}

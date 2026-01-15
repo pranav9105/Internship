@@ -359,6 +359,12 @@
       "description": "A modern kitchen with white cabinets and stainless steel appliances.",
       "imageUrl": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNDI5ODJ8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBraXRjaGVufGVufDB8fHx8MTcyODU3Nzk5Nnww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "modern kitchen"
+    },
+    {
+      "id": "payment-qr",
+      "description": "A sample QR code for UPI payments.",
+      "imageUrl": "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=upi://pay?pa=roamready@okhdfcbank&pn=RoamReady",
+      "imageHint": "payment QR code"
     }
   ]
 }

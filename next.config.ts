@@ -250,6 +250,12 @@ const nextConfig: NextConfig = {
         hostname: 'www.mybesttrip.in',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'api.qrserver.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
