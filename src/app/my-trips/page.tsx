@@ -38,8 +38,9 @@ export default function MyTripsPage() {
   const { data: pastTrips, isLoading: pastLoading } = useCollection(pastTripsQuery);
 
   const getImageForTrip = (destination: string) => {
-    const tripId = `package-${destination.toLowerCase().replace(/ /g, '-')}`;
-    return PlaceHolderImages.find((img) => img.id === tripId) || PlaceHolderImages.find((img) => img.id === 'gallery-1');
+    const stateName = destination.split('(')[0].trim().toLowerCase().replace(/ /g, '-').replace(/&/g, 'and');
+    const imageId = `state-${stateName}`;
+    return PlaceHolderImages.find((img) => img.id === imageId) || PlaceHolderImages.find((img) => img.id === 'gallery-1');
   };
 
   return (

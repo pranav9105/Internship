@@ -3,7 +3,8 @@
 
 import { useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { useUser, useFirestore, useDoc, useMemoFirebase, updateDocumentNonBlocking } from '@/firebase';
+import { useUser, useFirestore, useDoc, useMemoFirebase } from '@/firebase';
+import { deleteDocumentNonBlocking, updateDocumentNonBlocking } from '@/firebase/non-blocking-updates';
 import { doc } from 'firebase/firestore';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -80,7 +81,8 @@ export default function TripDetailsPage() {
   const { data: trip, isLoading: isLoadingTrip } = useDoc(tripDocRef);
 
   const getImageForTrip = (destination: string) => {
-    const imageId = `package-${destination.toLowerCase().replace(/ /g, '-')}`;
+    const stateName = destination.split('(')[0].trim().toLowerCase().replace(/ /g, '-').replace(/&/g, 'and');
+    const imageId = `state-${stateName}`;
     return (
       PlaceHolderImages.find((img) => img.id === imageId) ||
       PlaceHolderImages.find((img) => img.id === 'gallery-1')
