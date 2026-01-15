@@ -9,22 +9,27 @@ import Link from 'next/link';
 const propertyTypes = [
   {
     name: 'Apart hotel',
+    slug: 'apart-hotel',
     image: PlaceHolderImages.find((img) => img.id === 'property-type-apart-hotel'),
   },
   {
     name: 'Spa',
+    slug: 'spa',
     image: PlaceHolderImages.find((img) => img.id === 'property-type-spa'),
   },
   {
     name: 'Resort',
+    slug: 'resort',
     image: PlaceHolderImages.find((img) => img.id === 'property-type-resort'),
   },
   {
     name: 'Villa',
+    slug: 'villa',
     image: PlaceHolderImages.find((img) => img.id === 'property-type-villa'),
   },
   {
     name: 'Apartment',
+    slug: 'apartment',
     image: PlaceHolderImages.find((img) => img.id === 'property-type-apartment'),
   },
 ].filter(Boolean);
@@ -39,7 +44,7 @@ export function BrowseByPropertyType() {
         <AnimateOnScroll delay={200}>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
                 {propertyTypes.map((type, index) => type.image && (
-                    <Link href="#" key={type.name} className="group">
+                    <Link href={`/property/${type.slug}`} key={type.name} className="group">
                         <Card className="overflow-hidden relative border-0 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300">
                              <div className="aspect-[3/4] rounded-2xl overflow-hidden">
                                 <Image
