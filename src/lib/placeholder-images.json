@@ -365,6 +365,12 @@
       "description": "A sample QR code for UPI payments.",
       "imageUrl": "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=upi://pay?pa=roamready@okhdfcbank&pn=RoamReady",
       "imageHint": "payment QR code"
+    },
+    {
+      "id": "hotel-srinagar",
+      "description": "Hotel booking in Srinagar, Kashmir.",
+      "imageUrl": "https://brownchinarkashmir.com/wp-content/uploads/2024/11/hotel-booking-in-srinagar_brown_chinar_kashmir.webp",
+      "imageHint": "Srinagar hotel"
     }
   ]
 }

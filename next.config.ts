@@ -262,6 +262,12 @@ const nextConfig: NextConfig = {
         hostname: 'video.pictory.ai',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'brownchinarkashmir.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
