@@ -186,7 +186,8 @@ service cloud.firestore {
        * @description Users can manage their own trip data.
        */
       match /trips/{tripId} {
-        allow read, write: if isOwner(userId);
+        allow read, create, delete: if isOwner(userId);
+        allow update: if isOwner(userId);
       }
 
       /**

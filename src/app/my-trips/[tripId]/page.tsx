@@ -3,7 +3,7 @@
 
 import { useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { useUser, useFirestore, useDoc, useMemoFirebase } from '@/firebase';
+import { useUser, useFirestore, useDoc, useMemoFirebase, updateDocumentNonBlocking } from '@/firebase';
 import { doc } from 'firebase/firestore';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -13,11 +13,22 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
+  CardFooter
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { AnimateOnScroll } from '@/components/animate-on-scroll';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Badge } from '@/components/ui/badge';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import {
   Calendar,
   ChevronLeft,
@@ -29,6 +40,7 @@ import {
   Sunset,
   Moon,
   Utensils,
+  Ban,
 } from 'lucide-react';
 import { getItinerary } from '@/ai/flows/generate-itinerary';
 import type { Itinerary } from '@/ai/flows/generate-itinerary';
@@ -40,6 +52,7 @@ import {
 } from '@/components/ui/accordion';
 import { differenceInDays, parse } from 'date-fns';
 import { Header } from '@/components/layout/header';
+import { useToast } from '@/hooks/use-toast';
 
 const dayIcons = {
   Morning: Sunrise,
@@ -53,6 +66,7 @@ export default function TripDetailsPage() {
   const { user } = useUser();
   const firestore = useFirestore();
   const router = useRouter();
+  const { toast } = useToast();
 
   const [itinerary, setItinerary] = useState<Itinerary | null>(null);
   const [isLoadingItinerary, setIsLoadingItinerary] = useState(false);
@@ -105,10 +119,23 @@ export default function TripDetailsPage() {
       setItinerary(result);
     } catch (error) {
       console.error('Failed to generate itinerary:', error);
-      // You could show a toast notification here
+      toast({
+        title: "Error Generating Itinerary",
+        description: "We couldn't generate a sample itinerary at this time.",
+        variant: "destructive"
+      });
     } finally {
       setIsLoadingItinerary(false);
     }
+  };
+
+  const handleCancelTrip = () => {
+    if (!tripDocRef) return;
+    updateDocumentNonBlocking(tripDocRef, { status: 'Cancelled' });
+    toast({
+        title: "Trip Cancelled",
+        description: `${trip?.destination} has been cancelled.`,
+    });
   };
 
   if (isLoadingTrip) {
@@ -138,6 +165,7 @@ export default function TripDetailsPage() {
   }
 
   const tripImage = getImageForTrip(trip.destination);
+  const isCancellable = trip.status === 'Upcoming';
 
   return (
     <div className="flex flex-col w-full">
@@ -180,14 +208,41 @@ export default function TripDetailsPage() {
                         <Calendar className="h-5 w-5 text-primary" />
                         <span className="font-medium">{trip.dates}</span>
                       </div>
-                      <Badge variant="secondary">{trip.status}</Badge>
+                      <Badge variant={trip.status === 'Upcoming' ? 'default' : 'secondary'}>{trip.status}</Badge>
                     </div>
                     <p className="text-lg">
-                      Here is a detailed look at your upcoming trip. You can
+                      Here is a detailed look at your trip. You can
                       generate a sample itinerary to get ideas for your
                       adventure.
                     </p>
                   </CardContent>
+                  {isCancellable && (
+                    <CardFooter className="bg-muted/50 p-4 flex justify-end">
+                       <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                           <Button variant="destructive">
+                                <Ban className="mr-2 h-4 w-4" />
+                                Cancel Trip
+                            </Button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                          <AlertDialogHeader>
+                            <AlertDialogTitle>Are you sure you want to cancel?</AlertDialogTitle>
+                            <AlertDialogDescription>
+                              This action cannot be undone. Your trip to {trip.destination} will be cancelled.
+                              Your refund will be processed to your original payment method within 14 business days.
+                            </AlertDialogDescription>
+                          </AlertDialogHeader>
+                          <AlertDialogFooter>
+                            <AlertDialogCancel>Go Back</AlertDialogCancel>
+                            <AlertDialogAction onClick={handleCancelTrip} className="bg-destructive hover:bg-destructive/90">
+                              Yes, Cancel Trip
+                            </AlertDialogAction>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                      </AlertDialog>
+                    </CardFooter>
+                  )}
                 </Card>
               </div>
 
