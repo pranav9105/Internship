@@ -21,13 +21,13 @@ export default function BlogPage() {
           <AnimateOnScroll delay={200}>
             <div className="max-w-4xl mx-auto">
               <div className="aspect-video overflow-hidden rounded-lg shadow-2xl">
-                <video
-                  src={videoUrl}
-                  controls
-                  className="w-full h-full object-cover"
-                >
-                  Your browser does not support the video tag.
-                </video>
+                <iframe
+                    src={videoUrl}
+                    className="w-full h-full"
+                    allow="autoplay; encrypted-media"
+                    allowFullScreen
+                    title="Travel Blog Video"
+                ></iframe>
               </div>
             </div>
           </AnimateOnScroll>
