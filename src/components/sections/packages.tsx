@@ -8,7 +8,7 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { AnimateOnScroll } from '../animate-on-scroll';
-import { CheckCircle, ArrowRight, ArrowLeft, Heart, CreditCard, ScanLine } from 'lucide-react';
+import { CheckCircle, ArrowRight, ArrowLeft, Heart, CreditCard, ScanLine, Star } from 'lucide-react';
 import Link from 'next/link';
 import {
   Dialog,
@@ -40,6 +40,8 @@ const packages = [
     duration: '7 Days / 6 Nights',
     features: ['Temple Tours', 'Beach Visits', 'Local Cuisine'],
     image: PlaceHolderImages.find((img) => img.id === 'state-andhra-pradesh'),
+    rating: 4.7,
+    reviews: 132,
   },
   {
     title: 'Arunachal Pradesh (Tawang – Dirang – Bomdila)',
@@ -47,6 +49,8 @@ const packages = [
     duration: '8 Days / 7 Nights',
     features: ['Monastery Visits', 'Trekking', 'Scenic Landscapes'],
     image: PlaceHolderImages.find((img) => img.id === 'state-arunachal-pradesh'),
+    rating: 4.9,
+    reviews: 98,
   },
   {
     title: 'Assam–Meghalaya',
@@ -54,6 +58,8 @@ const packages = [
     duration: '6 Days / 5 Nights',
     features: ['Wildlife Safari', 'Tea Gardens', 'River Cruise'],
     image: PlaceHolderImages.find((img) => img.id === 'state-assam'),
+    rating: 4.8,
+    reviews: 215,
   },
   {
     title: 'Bihar',
@@ -61,6 +67,8 @@ const packages = [
     duration: '5 Days / 4 Nights',
     features: ['Historical Sites', 'Spiritual Tours', 'Local Culture'],
     image: PlaceHolderImages.find((img) => img.id === 'state-bihar'),
+    rating: 4.5,
+    reviews: 88,
   },
   {
     title: 'Chhattisgarh',
@@ -68,6 +76,8 @@ const packages = [
     duration: '6 Days / 5 Nights',
     features: ['Waterfalls', 'Tribal Villages', 'Cave Exploration'],
     image: PlaceHolderImages.find((img) => img.id === 'state-chhattisgarh'),
+    rating: 4.6,
+    reviews: 75,
   },
   {
     title: 'Goa',
@@ -75,6 +85,8 @@ const packages = [
     duration: '4 Days / 3 Nights',
     features: ['North & South Goa Tour', 'Water Sports', 'Beachside Parties'],
     image: PlaceHolderImages.find((img) => img.id === 'package-goa-beach'),
+    rating: 4.8,
+    reviews: 540,
   },
   {
     title: 'Gujarat (Kutch–Somnath–Dwarka)',
@@ -82,6 +94,8 @@ const packages = [
     duration: '7 Days / 6 Nights',
     features: ['Rann of Kutch', 'Temples', 'Wildlife Sanctuaries'],
     image: PlaceHolderImages.find((img) => img.id === 'state-gujarat'),
+    rating: 4.7,
+    reviews: 320,
   },
   {
     title: 'Haryana',
@@ -89,6 +103,8 @@ const packages = [
     duration: '4 Days / 3 Nights',
     features: ['Historical Sites', 'Lakes', 'Cultural Events'],
     image: PlaceHolderImages.find((img) => img.id === 'state-haryana'),
+    rating: 4.4,
+    reviews: 65,
   },
   {
     title: 'Himachal Pradesh (Manali–Shimla)',
@@ -96,6 +112,8 @@ const packages = [
     duration: '10 Days / 9 Nights',
     features: ['Monastery Visits', 'High-Altitude Trekking', 'River Rafting'],
     image: PlaceHolderImages.find((img) => img.id === 'package-himalayan-escape'),
+    rating: 4.9,
+    reviews: 890,
   },
   {
     title: 'Jharkhand',
@@ -103,6 +121,8 @@ const packages = [
     duration: '5 Days / 4 Nights',
     features: ['Waterfalls', 'Hills', 'Temples'],
     image: PlaceHolderImages.find((img) => img.id === 'state-jharkhand'),
+    rating: 4.5,
+    reviews: 55,
   },
   {
     title: 'Karnataka (Coorg–Chikmagalur)',
@@ -110,6 +130,8 @@ const packages = [
     duration: '7 Days / 6 Nights',
     features: ['Historical Monuments', 'Hill Stations', 'Beaches'],
     image: PlaceHolderImages.find((img) => img.id === 'state-karnataka'),
+    rating: 4.7,
+    reviews: 250,
   },
   {
     title: 'Kerala (Munnar–Alleppey Houseboat)',
@@ -117,6 +139,8 @@ const packages = [
     duration: '6 Days / 5 Nights',
     features: ['Private Houseboat Stay', 'Ayurvedic Massage', 'Spice Plantation Visit'],
     image: PlaceHolderImages.find((img) => img.id === 'package-kerala-backwaters'),
+    rating: 4.9,
+    reviews: 1102,
   },
   {
     title: 'Madhya Pradesh (Khajuraho–Bandhavgarh)',
@@ -124,6 +148,8 @@ const packages = [
     duration: '8 Days / 7 Nights',
     features: ['Wildlife Sanctuaries', 'Temples', 'Historical Forts'],
     image: PlaceHolderImages.find((img) => img.id === 'state-madhya-pradesh'),
+    rating: 4.6,
+    reviews: 180,
   },
   {
     title: 'Maharashtra',
@@ -131,6 +157,8 @@ const packages = [
     duration: '7 Days / 6 Nights',
     features: ['Cave Temples', 'Forts', 'Mumbai City Tour'],
     image: PlaceHolderImages.find((img) => img.id === 'state-maharashtra'),
+    rating: 4.7,
+    reviews: 450,
   },
   {
     title: 'Manipur',
@@ -138,6 +166,8 @@ const packages = [
     duration: '6 Days / 5 Nights',
     features: ['Loktak Lake', 'Cultural Tours', 'Trekking'],
     image: PlaceHolderImages.find((img) => img.id === 'state-manipur'),
+    rating: 4.8,
+    reviews: 45,
   },
   {
     title: 'Mizoram (Aizawl – Reiek – Hmuifang)',
@@ -145,6 +175,8 @@ const packages = [
     duration: '8 Days / 7 Nights',
     features: ['Hills', 'Lakes', 'Cultural Experiences'],
     image: PlaceHolderImages.find((img) => img.id === 'state-mizoram'),
+    rating: 4.7,
+    reviews: 30,
   },
   {
     title: 'Nagaland (Kohima – Dzükou Valley – Khonoma)',
@@ -152,6 +184,8 @@ const packages = [
     duration: '9 Days / 8 Nights',
     features: ['Hornbill Festival', 'Tribal Villages', 'Trekking'],
     image: PlaceHolderImages.find((img) => img.id === 'state-nagaland'),
+    rating: 4.9,
+    reviews: 60,
   },
   {
     title: 'Odisha (Puri–Konark)',
@@ -159,6 +193,8 @@ const packages = [
     duration: '6 Days / 5 Nights',
     features: ['Temples', 'Beaches', 'Chilika Lake'],
     image: PlaceHolderImages.find((img) => img.id === 'state-odisha'),
+    rating: 4.6,
+    reviews: 150,
   },
   {
     title: 'Punjab (Amritsar – Wagah – Jalandhar)',
@@ -166,6 +202,8 @@ const packages = [
     duration: '5 Days / 4 Nights',
     features: ['Golden Temple', 'Wagah Border', 'Punjabi Cuisine'],
     image: PlaceHolderImages.find((img) => img.id === 'state-punjab'),
+    rating: 4.8,
+    reviews: 300,
   },
   {
     title: 'Rajasthan (Jaipur–Udaipur–Jaisalmer)',
@@ -173,6 +211,8 @@ const packages = [
     duration: '9 Days / 8 Nights',
     features: ['Stay in Heritage Hotels', 'Desert Safari', 'Fort & Palace Tours'],
     image: PlaceHolderImages.find((img) => img.id === 'package-heritage-rajasthan'),
+    rating: 4.8,
+    reviews: 950,
   },
   {
     title: 'Sikkim–Darjeeling',
@@ -180,6 +220,8 @@ const packages = [
     duration: '8 Days / 7 Nights',
     features: ['Monasteries', 'Lakes', 'Mountain Views'],
     image: PlaceHolderImages.find((img) => img.id === 'state-sikkim'),
+    rating: 4.8,
+    reviews: 480,
   },
   {
     title: 'Tamil Nadu (Ooty–Kodaikanal)',
@@ -187,6 +229,8 @@ const packages = [
     duration: '7 Days / 6 Nights',
     features: ['Temples', 'Hill Stations', 'Beaches'],
     image: PlaceHolderImages.find((img) => img.id === 'state-tamil-nadu'),
+    rating: 4.7,
+    reviews: 350,
   },
   {
     title: 'Telangana (Hyderabad – Ramoji – Warangal)',
@@ -194,6 +238,8 @@ const packages = [
     duration: '5 Days / 4 Nights',
     features: ['Historical Sites', 'Charminar', 'Ramoji Film City'],
     image: PlaceHolderImages.find((img) => img.id === 'state-telangana'),
+    rating: 4.6,
+    reviews: 200,
   },
   {
     title: 'Tripura',
@@ -201,6 +247,8 @@ const packages = [
     duration: '6 Days / 5 Nights',
     features: ['Palaces', 'Lakes', 'Temples'],
     image: PlaceHolderImages.find((img) => img.id === 'state-tripura'),
+    rating: 4.5,
+    reviews: 40,
   },
   {
     title: 'Delhi–Agra–Mathura–Vrindavan',
@@ -208,6 +256,8 @@ const packages = [
     duration: '6 Days / 5 Nights',
     features: ['Taj Mahal', 'Varanasi Ghats', 'Lucknow Cuisine'],
     image: PlaceHolderImages.find((img) => img.id === 'state-uttar-pradesh'),
+    rating: 4.7,
+    reviews: 600,
   },
   {
     title: 'Uttarakhand (Nainital–Mussoorie)',
@@ -215,6 +265,8 @@ const packages = [
     duration: '7 Days / 6 Nights',
     features: ['Yoga & Meditation', 'Trekking', 'River Rafting'],
     image: PlaceHolderImages.find((img) => img.id === 'state-uttarakhand'),
+    rating: 4.8,
+    reviews: 420,
   },
   {
     title: 'West Bengal',
@@ -222,6 +274,8 @@ const packages = [
     duration: '6 Days / 5 Nights',
     features: ['Kolkata City Tour', 'Sundarbans', 'Darjeeling Tea Gardens'],
     image: PlaceHolderImages.find((img) => img.id === 'state-west-bengal'),
+    rating: 4.6,
+    reviews: 280,
   },
   {
     title: 'Jammu & Kashmir (Srinagar – Gulmarg – Pahalgam – Sonmarg)',
@@ -229,6 +283,8 @@ const packages = [
     duration: '8 Days / 7 Nights',
     features: ['Houseboat Stay', 'Gondola Ride', 'Mughal Gardens'],
     image: PlaceHolderImages.find((img) => img.id === 'state-jammu-kashmir'),
+    rating: 4.9,
+    reviews: 1200,
   },
   {
     title: 'Andaman & Nicobar',
@@ -236,6 +292,8 @@ const packages = [
     duration: '7 Days / 6 Nights',
     features: ['Scuba Diving', 'Cellular Jail', 'Radhanagar Beach'],
     image: PlaceHolderImages.find((img) => img.id === 'package-andaman-islands'),
+    rating: 4.9,
+    reviews: 750,
   },
   {
     title: 'Leh–Ladakh',
@@ -243,6 +301,8 @@ const packages = [
     duration: '8 Days / 7 Nights',
     features: ['Pangong Lake', 'Nubra Valley', 'Monastery Tour'],
     image: PlaceHolderImages.find((img) => img.id === 'destination-ladakh'),
+    rating: 4.9,
+    reviews: 1500,
   }
 ].filter(pkg => pkg.image);
 
@@ -624,7 +684,14 @@ export function Packages({ isPage = false }: PackagesProps) {
                 <CardContent className="p-6 flex-grow flex flex-col">
                   <CardTitle className="font-headline text-2xl">{pkg.title}</CardTitle>
                   <CardDescription className="mt-2">{pkg.duration}</CardDescription>
-                  <ul className="mt-6 space-y-3 text-muted-foreground flex-grow">
+                  <div className="flex items-center gap-2 mt-4 text-sm">
+                    <div className="flex items-center gap-1">
+                        <Star className="h-5 w-5 text-yellow-400 fill-yellow-400" />
+                    </div>
+                    <span className="font-bold">{pkg.rating}</span>
+                    <span className="text-muted-foreground">({pkg.reviews} reviews)</span>
+                  </div>
+                  <ul className="mt-4 space-y-3 text-muted-foreground flex-grow">
                     {pkg.features.map((feature) => (
                       <li key={feature} className="flex items-center gap-3">
                         <CheckCircle className="h-5 w-5 text-accent" />
