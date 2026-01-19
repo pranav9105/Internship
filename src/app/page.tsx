@@ -8,6 +8,7 @@ import { Contact } from '@/components/sections/contact';
 import { Popular } from '@/components/sections/popular';
 import { Header } from '@/components/layout/header';
 import { BrowseByPropertyType } from '@/components/sections/browse-by-property-type';
+import { Reviews } from '@/components/sections/reviews';
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
         <BrowseByPropertyType />
         <Packages />
         <About />
+        <Reviews />
         <Faq />
         <Gallery />
         <Contact />
